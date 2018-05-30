@@ -1,0 +1,24 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "bookstore",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bookstore"
+  ],
+  "author": "W-Qing",
+  "license": "ISC",
+  "dependencies": {
+    "auto-reload": "0.0.2",
+    "co-views": "^2.1.0",
+    "ejs": "^2.4.2",
+    "koa": "^1.2.0",
+    "koa-route": "^2.4.2",
+    "koa-static-server": "^0.1.8",
+    "koa-views": "^4.1.0",
+    "webpack": "^1.13.1"
+  }
+}
