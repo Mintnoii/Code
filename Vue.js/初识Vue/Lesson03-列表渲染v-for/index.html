@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<!-- 除了通过v-if和v-show根据条件渲染所需要的DOM元素或者模板。我们还经常需要将JSON数据中的数组或对象渲染出列表之类的元素 -->
+<div id="app">
+    <p>技术类图书</p>
+    <ul>
+        <!-- v-for使用alias in expression形式的特殊语法,expression是源数据数组并且 alias是数组元素迭代的别名。 -->
+        <li v-for="book in books">{{book.title}} / {{book.price}}元</li>
+    </ul>
+    <ul>
+        <!-- 在 v-for块中，我们拥有对父作用域属性的完全访问权限。v-for 还支持一个可选的第二个参数为当前项的索引。-->
+        <li v-for="(book,index) in books">{{index}}--{{book.title}}</li>
+    </ul>
+    <!-- 也可以用 of 替代 in 作为分隔符，因为它是最接近 JavaScript 迭代器的语法 -->
+    <!-- <div v-for="item of items"></div> -->
+    <hr>
+    <!-- 使用v-for将对象的属性进行迭代。还可以提供第二个参数为键名或第三个参数为索引 -->
+    <div v-for="(value, key, index) in person">
+        {{ index }}. {{ key }}: {{ value }}
+    </div>
+    <!-- 在遍历对象时，是按 Object.keys() 的结果遍历，所以不能保证它的渲染结果在不同的 JavaScript 引擎下是一致的。 -->
+    <!-- 当v-for和v-if处于同一节点，v-for 的优先级比 v-if 更高，这意味着 v-if 将分别重复运行于每个 v-for 循环中。 -->
+</div>
+</body>
+<script>
+    var myApp = new Vue({
+        el:'#app',
+        data: {
+            books: [
+        		{title:'锋利的jQuery',price:30},
+        		{title:'图解HTTP',price:35},
+        		{title:'JavaScript高级程序设计',price:60}
+        	],
+            person: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            }
+        }
+    });
+</script>
+</html>

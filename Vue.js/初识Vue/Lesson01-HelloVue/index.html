@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello Vue</title>
+	<!-- 引用vue.js -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+	<!-- 采用简洁的模板语法来声明式地将数据渲染进 DOM view -->
+	<div id="app">
+	  <p>{{ message }}</p>
+	</div>
+</body>
+<script>
+	//通过用Vue函数创建一个新的Vue实例  用来连接 View 与 Model
+    var myApp = new Vue({
+        el: '#app', //指向view 将Vue实例挂载
+        data: {
+            message: 'Hello Vue.js!' //指向model
+        }
+    });
+</script>
+</html>
