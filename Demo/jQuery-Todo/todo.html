@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Jquery增删改查</title>
+</head>
+<body>
+	<table id="myTable" border="1">
+		<thead>
+			<tr>
+    		<th>姓名</th>
+    		<th>年龄</th>
+    		<th>性别</th>
+    		<th>删除</th>
+    		<th>修改</th>
+		</tr>
+		</thead>
+		<tbody id="tbody"></tbody>
+	</table>
+		<input type="text" id="name" placeholder="请输入姓名" style="width: 90px;height: 25px;">
+		<br/>
+		<textarea name="age" id="age" cols="20" rows="2" placeholder="填写年龄"></textarea>
+		<br/>
+		<textarea name="sex" id="sex" cols="20" rows="2" placeholder="填写性别"></textarea>
+		
+		<button id="BtnAdd">提交</button>
+
+		<input type="text" id="keyword" placeholder="请输入关键字" runat="server" />
+
+		<button id="BtnSearch">查询</button>
+		
+		<script src="jquery-1.12.3.min.js"></script>
+		<script src="jquery.js"></script>
+</body>
+</html>
