@@ -1,0 +1,77 @@
+@import "common";
+
+//===================================index
+//====================main
+#main {
+  .hotPosts {
+    .panel-body {
+      padding: 0;
+    }
+    .list-group {
+      margin-bottom: 0;
+    }
+  }
+  .todayVisitor {
+    .panel-body {
+      padding: 0;
+    }
+  }
+  .server {
+    .progress {
+      margin-bottom: 13px;
+    }
+  }
+}
+
+//===================messageBoard
+#messageBoard {
+  .media {
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+}
+
+//====================================other
+textarea {
+  resize: none;
+}
+
+.page-header {
+  margin-top: 0;
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.nav-tabs {
+  a {
+    color: #666666;
+  }
+}
+
+.tab-content {
+  border-left: 1px solid rgb(221, 221, 221);
+  border-right: 1px solid rgb(221, 221, 221);
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding: 15px;
+}
+
+.modal {
+  top: 50px;
+}
+
+//=====================================tag-main
+#tag-main {
+  input, .btn {
+    height: 50px;
+  }
+  .btn {
+    width: 100%;
+  }
+  .alert {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

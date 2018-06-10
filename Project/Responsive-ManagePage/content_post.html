@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>网站后台管理系统</title>
+    <!-- Bootstrap -->
+    <link href="build/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!--[if lt IE 9]>
+    <script src="build/html5shiv.min.js"></script>
+    <script src="build/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--nav-->
+<nav id="nav" class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./index.html">XX Admin</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="./index.html"><i class="glyphicon glyphicon-home icon"></i>后台首页</a></li>
+                <li><a href="user_list.html"><i class="glyphicon glyphicon-user icon"></i>用户管理</a></li>
+                <li class="active"><a href="content.html"><i class="glyphicon glyphicon-list-alt icon"></i>内容管理</a></li>
+                <li><a href="tag.html"><i class="glyphicon glyphicon-tags icon"></i>标签管理</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">admin<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><i class="glyphicon glyphicon-screenshot icon"></i>前台首页</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-user icon"></i>个人主页</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-cog icon"></i>个人设置</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-credit-card icon"></i>账户中心</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-user icon"></i>我的收藏</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-off icon"></i>退出</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!--/nav-->
+<!--main-->
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group">
+                    <a href="./content.html" class="list-group-item">内容管理</a>
+                    <a href="content_post.html" class="list-group-item active">添加内容</a>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="page-header">
+                    <h2>内容管理</h2>
+                </div>
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li><a href="./content.html">内容管理</a></li>
+                        <li class="active"><a href="content_post.html">添加内容</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="article-tit">标题</label>
+                                <input type="email" class="form-control" id="article-tit" placeholder="输入标题">
+                            </div>
+                            <div class="form-group">
+                                <label for="article-con">文章内容</label>
+                                <textarea class="form-control" rows="10" id="article-con" placeholder="输入文章内容"></textarea>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">全局置顶
+                                </label>
+                                <button type="submit" class="btn btn-default pull-right">发布文章</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/main-->
+<!--footer-->
+<footer id="footer">
+    <p>Copyright © 2012-2015  www.maiziedu.com  蜀ICP备13014270号-4</p>
+</footer>
+<!--/footer-->
+
+</body>
+</html>
+<script src="build/jquery.min.js"></script>
+<script src="build/bootstrap/js/bootstrap.min.js"></script>

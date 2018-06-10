@@ -1,0 +1,31 @@
+$color-blue: #0ac;
+//=================================public
+body{
+  font-family: "Microsoft YaHei UI";
+}
+.icon{
+  margin-right: 10px;
+}
+.mt_15{
+  margin-top: 15px;
+}
+//================================bootstrap
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{
+  outline: none;
+}
+//=================================nav
+#nav{
+  .caret{
+    margin-left: 5px;
+  }
+  .navbar-nav li a:hover{
+    color: rgb(85, 85, 85);
+    background-color: rgb(231, 231, 231);
+  }
+}
+
+//=================================footer
+#footer{
+  padding: 20px 0;
+  text-align: center;
+}

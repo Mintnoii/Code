@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>jQuery导航插件One-Page-Nav演示-阿里巴巴_dowebok</title>
+<style>
+* { margin: 0; padding: 0;}
+#nav { display: none; position: fixed; left: 50%; top: 20px; width: 105px; margin-left: 515px; padding-bottom: 10px; border-top: 3px solid #ff7300; list-style-type: none; font: 12px Tahoma,Helvetica,Arial,"宋体"; background-color: #f5f5f5;}
+#nav li { width: 95px; height: 20px; margin: 10px auto 0; border-radius: 10px; line-height: 20px;}
+#nav em { float: left; width: 22px; margin-left: 6px; text-align: center; font-style: normal;}
+#nav span { float: left; width: 60px; text-align: center;}
+#nav a { color: #888; text-decoration: none;}
+#nav .current { background-color: #888;}
+#nav .current a { color: #fff;}
+.wrap h2 { margin-bottom: 15px; padding: 10px 2px; border-bottom: 1px solid #ccc; font: 24px Tahoma,Helvetica,Arial,"Microsoft Yahei";}
+.wrap p { line-height: 24px; margin: 15px 0;}
+.wrap ul { padding-left: 1.2em; line-height: 24px;}
+.wrap .table { width: 100%; border-spacing: 0; border-collapse: collapse;}
+.wrap th, .wrap td { padding: 8px 5px; border: 1px solid #ddd;}
+
+#f0 { height: 622px; background: url(images/alibaba1.jpg) 50% 0 no-repeat;}
+#f1 { height: 277px; background: url(images/alibaba2.jpg) 50% 0 no-repeat;}
+#f2 { height: 277px; background: url(images/alibaba3.jpg) 50% 0 no-repeat;}
+#f3 { height: 277px; background: url(images/alibaba4.jpg) 50% 0 no-repeat;}
+#f4 { height: 277px; background: url(images/alibaba5.jpg) 50% 0 no-repeat;}
+#f5 { height: 277px; background: url(images/alibaba6.jpg) 50% 0 no-repeat;}
+#f6 { height: 277px; background: url(images/alibaba7.jpg) 50% 0 no-repeat;}
+#f7 { height: 277px; background: url(images/alibaba8.jpg) 50% 0 no-repeat;}
+#f8 { height: 277px; background: url(images/alibaba9.jpg) 50% 0 no-repeat;}
+#f9 { height: 277px; background: url(images/alibaba10.jpg) 50% 0 no-repeat;}
+#f10 { height: 277px; background: url(images/alibaba11.jpg) 50% 0 no-repeat;}
+#f11 { height: 277px; background: url(images/alibaba12.jpg) 50% 0 no-repeat;}
+#f12 { height: 277px; background: url(images/alibaba13.jpg) 50% 0 no-repeat;}
+#f13 { height: 277px; background: url(images/alibaba14.jpg) 50% 0 no-repeat;}
+#f14 { height: 277px; background: url(images/alibaba15.jpg) 50% 0 no-repeat;}
+#f15 { height: 277px; background: url(images/alibaba16.jpg) 50% 0 no-repeat;}
+#f16 { height: 277px; background: url(images/alibaba17.jpg) 50% 0 no-repeat;}
+#f17 { height: 277px; background: url(images/alibaba18.jpg) 50% 0 no-repeat;}
+#f18 { height: 277px; background: url(images/alibaba19.jpg) 50% 0 no-repeat;}
+#f19 { height: 449px; background: url(images/alibaba20.jpg) 50% 0 no-repeat;}
+#f20 { height: 309px; background: url(images/alibaba21.jpg) 50% 0 no-repeat;}
+#f21 { height: 504px; background: url(images/alibaba22.jpg) 50% 0 no-repeat;}
+</style>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script>
+$(function() {
+	$('#nav').onePageNav({
+		scrollThreshold: 0.3
+	});
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 200){
+			$('#nav').fadeIn();
+		} else {
+			$('#nav').fadeOut();
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<ul id="nav">
+	<li><a href="#f1"><em>1F</em><span>橡胶塑料</span></a></li>
+	<li><a href="#f2"><em>2F</em><span>冶金钢材</span></a></li>
+	<li><a href="#f3"><em>3F</em><span>化工精细</span></a></li>
+	<li><a href="#f4"><em>4F</em><span>纺织市场</span></a></li>
+	<li><a href="#f5"><em>5F</em><span>包装市场</span></a></li>
+	<li><a href="#f6"><em>6F</em><span>机械五金</span></a></li>
+	<li><a href="#f7"><em>7F</em><span>电子电工</span></a></li>
+	<li><a href="#f8"><em>8F</em><span>照明安防</span></a></li>
+	<li><a href="#f9"><em>9F</em><span>服装内衣</span></a></li>
+	<li><a href="#f10"><em>10F</em><span>鞋包配饰</span></a></li>
+	<li><a href="#f11"><em>11F</em><span>数码家电</span></a></li>
+	<li><a href="#f12"><em>12F</em><span>美妆日化</span></a></li>
+	<li><a href="#f13"><em>13F</em><span>童装母婴</span></a></li>
+	<li><a href="#f14"><em>14F</em><span>家纺家装</span></a></li>
+	<li><a href="#f15"><em>15F</em><span>食品农业</span></a></li>
+	<li><a href="#f16"><em>16F</em><span>日用百货</span></a></li>
+	<li><a href="#f17"><em>17F</em><span>采购必应</span></a></li>
+	<li><a href="#f18"><em>18F</em><span>商务服务</span></a></li>
+	<li><a href="#f19"><em>19F</em><span>以商会友</span></a></li>
+</ul>
+
+<div class="wrap">
+	<div id="f0"></div>
+	<div id="f1"></div>
+	<div id="f2"></div>
+	<div id="f3"></div>
+	<div id="f4"></div>
+	<div id="f5"></div>
+	<div id="f6"></div>
+	<div id="f7"></div>
+	<div id="f8"></div>
+	<div id="f9"></div>
+	<div id="f10"></div>
+	<div id="f11"></div>
+	<div id="f12"></div>
+	<div id="f13"></div>
+	<div id="f14"></div>
+	<div id="f15"></div>
+	<div id="f16"></div>
+	<div id="f17"></div>
+	<div id="f18"></div>
+	<div id="f19"></div>
+	<div id="f20"></div>
+	<div id="f21"></div>
+</div>
+
+
+<!-- 以下是统计及其他信息，与演示无关，不必理会 -->
+<style>
+* { margin: 0; padding: 0;}
+body { font-family: Consolas,arial,"宋体";}
+h1 { width: 900px; margin: 40px auto; font: 32px "Microsoft Yahei"; text-align: center;}
+.explain, .dowebok-explain { margin-top: 20px; font-size: 14px; text-align: center; color: #f50;}
+
+.vad { margin: 50px 0 5px; font-family: Consolas,arial,宋体; text-align:center;}
+.vad a { display: inline-block; height: 36px; line-height: 36px; margin: 0 5px; padding: 0 50px; font-size: 14px; text-align:center; color:#eee; text-decoration: none; background-color: #222;}
+.vad a:hover { color: #fff; background-color: #000;}
+.thead { width: 728px; height: 90px; margin: 0 auto; border-bottom: 40px solid transparent;}
+
+.code { position: relative; margin-top: 100px; padding-top: 41px;}
+.code h3 { position: absolute; top: 0; z-index: 10; width: 100px; height: 40px; font: 16px/40px "Microsoft Yahei"; text-align: center; cursor: pointer;}
+.code .cur { border: 1px solid #f0f0f0; border-bottom: 1px solid #f8f8f8; background-color: #f8f8f8;}
+.code .h31 { left: 0;}
+.code .h32 { left: 102px;}
+.code .h33 { left: 204px;}
+.code .h34 { left: 306px;}
+.code { width: 900px; margin-left: auto; margin-right: auto;}
+pre { padding: 15px 0; border: 1px solid #f0f0f0; background-color: #f8f8f8;}
+.f-dn { display: none;}
+</style>
+<link href="http://xww-global.u.qiniudn.com/prettify.css" rel="stylesheet">
+<script src="http://xww-global.u.qiniudn.com/prettify.js"></script>
+<script>
+window.prettyPrint && prettyPrint();
+$('.code h3').not(':first').next().addClass('f-dn');
+$('.code h3').click(function(){
+	$(this).addClass('cur').siblings('h3').removeClass('cur');
+	$(this).next().removeClass('f-dn').siblings('.pre').addClass('f-dn');
+});
+</script>
+</body>
+</html>

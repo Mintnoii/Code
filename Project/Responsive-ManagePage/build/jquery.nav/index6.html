@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>jQuery导航插件One-Page-Nav演示-回调函数_dowebok</title>
+<style>
+* { margin: 0; padding: 0;}
+.wrap { width: 800px; margin: 0 auto; padding-bottom: 50px; font: 14px Tahoma,Helvetica,Arial,"宋体"; color: #333;}
+#nav { position: fixed; left: 20px; top: 20px; list-style-type: none; font: 14px Tahoma,Helvetica,Arial,"宋体";}
+#nav li { margin-bottom: 2px;}
+#nav a { display: block; padding: 5px 20px; color: #666; text-align: center; background-color: #ededed; text-decoration: none;}
+#nav .current a { color: #ededed; background: #666;}
+.wrap h2 { margin-bottom: 15px; padding: 10px 2px; border-bottom: 1px solid #ccc; font: 24px Tahoma,Helvetica,Arial,"Microsoft Yahei";}
+.wrap p { line-height: 24px; margin: 15px 0;}
+.wrap ul { padding-left: 1.2em; line-height: 24px;}
+.wrap .table { width: 100%; border-spacing: 0; border-collapse: collapse;}
+.wrap th, .wrap td { padding: 8px 5px; border: 1px solid #ddd;}
+.dowebok { margin-top: 50px;}
+</style>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script>
+$(document).ready(function() {
+	$('#nav').onePageNav({
+		begin: function(){
+			alert('开始滚动');
+		},
+		end: function(){
+			alert('结束滚动');
+		},
+		scrollChange: function(){
+			alert('导航高亮切换了');
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<h1>jQuery导航插件One-Page-Nav演示-回调函数</h1>
+
+<ul id="nav">
+	<li><a href="#intro">简介</a></li>
+	<li><a href="#usage">使用</a></li>
+	<li><a href="#options">选项</a></li>
+	<li><a href="#examples">示例</a></li>
+	<li><a href="#recommend">推荐</a></li>
+</ul>
+
+<div class="wrap">
+	<div id="intro" class="dowebok">
+		<h2>简介</h2>
+		<p>电商网站的分类比较明确，比如1楼是手机通讯产品，2楼是家用电器，3楼是服装鞋包等等，旁边还会有一个固定的楼层导航，这个导航列出了所有的楼层，同时还会高亮你正在浏览的楼层，点击其他楼层按钮，又会滚动到其他楼层。这样的导航可以增加用户体验，让购物更加方便快捷。</p>
+		<p>如果你想在自己的页面上也实现这样的效果，那么可以试试 jQuery-One-Page-Nav 这款 jQuery插件，</p>
+		<p>电商网站的分类比较明确，比如1楼是手机通讯产品，2楼是家用电器，3楼是服装鞋包等等，旁边还会有一个固定的楼层导航，这个导航列出了所有的楼层，同时还会高亮你正在浏览的楼层，点击其他楼层按钮，又会滚动到其他楼层。这样的导航可以增加用户体验，让购物更加方便快捷。</p>
+		<p>如果你想在自己的页面上也实现这样的效果，那么可以试试 jQuery-One-Page-Nav 这款 jQuery插件，</p>
+		<p>电商网站的分类比较明确，比如1楼是手机通讯产品，2楼是家用电器，3楼是服装鞋包等等，旁边还会有一个固定的楼层导航，这个导航列出了所有的楼层，同时还会高亮你正在浏览的楼层，点击其他楼层按钮，又会滚动到其他楼层。这样的导航可以增加用户体验，让购物更加方便快捷。</p>
+		<p>如果你想在自己的页面上也实现这样的效果，那么可以试试 jQuery-One-Page-Nav 这款 jQuery插件，</p>
+	</div>
+	<div id="usage" class="dowebok">
+		<h2>使用</h2>
+		<p>HTML</p>
+<div class="pre">
+<pre class="pre-show prettyprint linenums">&lt;ul id="nav"&gt;
+    &lt;li&gt;&lt;a href="#intro"&gt;简介&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#usage"&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#options"&gt;选项&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#examples"&gt;示例&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#recommend"&gt;推荐&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="wrap"&gt;
+    &lt;div id="intro"&gt;
+    &lt;/div&gt;
+    &lt;div id="usage"&gt;
+    &lt;/div&gt;
+    &lt;div id="options"&gt;
+    &lt;/div&gt;
+    &lt;div id="examples"&gt;
+    &lt;/div&gt;
+    &lt;div id="recommend"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<p>JavaScript</p>
+<div class="pre">
+<pre class="pre-show prettyprint linenums">$(function(){
+    $('#nav').onePageNav();
+});</pre>
+</div>
+	</div>
+	<div id="options" class="dowebok">
+		<h2>选项</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>属性/方法</th>
+					<th width="100px">类型</th>
+					<th>默认值</th>
+					<th>说明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>currentClass</td>
+					<td>字符串</td>
+					<td>'current'</td>
+					<td>导航高亮的 class</td>
+				</tr>
+				<tr>
+					<td>changeHash</td>
+					<td>布尔值</td>
+					<td>false</td>
+					<td>URL 显示命名锚记（点击导航显示）</td>
+				</tr>
+				<tr>
+					<td>scrollSpeed</td>
+					<td>整数</td>
+					<td>750</td>
+					<td>动画持续时间，以毫秒为单位</td>
+				</tr>
+				<tr>
+					<td>scrollThreshold</td>
+					<td>整数/浮点数</td>
+					<td>0.5</td>
+					<td>下一个处于浏览器可视区域多少比例时导航切换</td>
+				</tr>
+				<tr>
+					<td>filter</td>
+					<td>字符串</td>
+					<td>''</td>
+					<td>过滤不要的项，如 filter: ':not(.external)'</td>
+				</tr>
+				<tr>
+					<td>easing</td>
+					<td>字符串</td>
+					<td>'swing'</td>
+					<td>滚动动画方式</td>
+				</tr>
+				<tr>
+					<td>begin</td>
+					<td>函数</td>
+					<td></td>
+					<td>滚动前的回调函数</td>
+				</tr>
+				<tr>
+					<td>end</td>
+					<td>函数</td>
+					<td></td>
+					<td>滚动后的回调函数</td>
+				</tr>
+				<tr>
+					<td>scrollChange</td>
+					<td>函数</td>
+					<td></td>
+					<td>导航切换后的回调函数</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="examples" class="dowebok">
+		<h2>更多示例</h2>
+		<ul>
+			<li><a href="index2.html">基本演示</a></li>
+			<li><a href="index3.html">过滤链接</a></li>
+			<li><a href="index4.html">显示命名标记</a></li>
+			<li><a href="index5.html">横向导航</a></li>
+			<li><a href="index6.html">回调函数</a></li>
+			<li><a href="index7.html">阿里巴巴</a></li>
+			<li><a href="index8.html">京东</a></li>
+			<li>撑高度</li>
+			<li>撑高度</li>
+			<li>撑高度</li>
+			<li>撑高度</li>
+			<li>撑高度</li>
+		</ul>
+	</div>
+	<div id="recommend" class="dowebok">
+		<h2>其他推荐</h2>
+		<ul>
+			<li><a href="http://www.dowebok.com/115.html">jqueryrotate制作百度红包大放送抽奖效果</a></li>
+			<li><a href="http://www.dowebok.com/77.html">jQuery全屏滚动插件fullPage.js</a></li>
+			<li><a href="http://www.dowebok.com/97.html">fullPage.js制作网易邮箱6.0介绍页面</a></li>
+			<li><a href="http://www.dowebok.com/120.html">onepage-scroll制作iPhone 5s页面</a></li>
+			<li><a href="http://www.dowebok.com/93.html">强大实用的jQuery幻灯片插件Owl Carousel</a></li>
+			<li><a href="http://www.dowebok.com/113.html">slick制作17173 ChainJoy2014幻灯片</a></li>
+			<li><a href="http://www.dowebok.com/42.html">jQuery时间轴/时光轴插件jqtimeline</a></li>
+			<li><a href="http://www.dowebok.com/118.html">onepage-scroll – jQuery单页/全屏滚动插件</a></li>
+			<li><a href="http://www.dowebok.com/48.html">jQuery响应式图片画廊插件S Gallery</a></li>
+			<li><a href="http://www.dowebok.com/92.html">iOS 7标签栏图标Tab Bar Icons iOS 7</a></li>
+			<li><a href="http://www.dowebok.com/82.html">jQuery Lightbox效果插件Boxer</a></li>
+			<li><a href="http://www.dowebok.com/106.html">Select-or-Die – jQuery下拉框美化插件</a></li>
+			<li><a href="http://www.dowebok.com/103.html">制作网易2014世界杯史话/世界杯时间轴效果</a></li>
+			<li><a href="http://www.dowebok.com/114.html">iOS7元素PSD源文件下载</a></li>
+			<li><a href="http://www.dowebok.com/112.html">47个扁平化图标PSD源文件下载</a></li>
+			<li><a href="http://www.dowebok.com/108.html">40个夏天元素图标PSD/AI源文件下载</a></li>
+			<li><a href="http://www.dowebok.com/44.html">iOS7扁平化图标PSD源文件下载</a></li>
+			<li><a href="http://www.dowebok.com/26.html">灰色风格Metro图标Metrize</a></li>
+		</ul>
+	</div>
+</div>
+
+
+<!-- 以下是统计及其他信息，与演示无关，不必理会 -->
+<style>
+* { margin: 0; padding: 0;}
+body { font-family: Consolas,arial,"宋体";}
+h1 { width: 900px; margin: 40px auto; font: 32px "Microsoft Yahei"; text-align: center;}
+.explain, .dowebok-explain { margin-top: 20px; font-size: 14px; text-align: center; color: #f50;}
+
+.vad { margin: 50px 0 5px; font-family: Consolas,arial,宋体; text-align:center;}
+.vad a { display: inline-block; height: 36px; line-height: 36px; margin: 0 5px; padding: 0 50px; font-size: 14px; text-align:center; color:#eee; text-decoration: none; background-color: #222;}
+.vad a:hover { color: #fff; background-color: #000;}
+.thead { width: 728px; height: 90px; margin: 0 auto; border-bottom: 40px solid transparent;}
+
+.code { position: relative; margin-top: 100px; padding-top: 41px;}
+.code h3 { position: absolute; top: 0; z-index: 10; width: 100px; height: 40px; font: 16px/40px "Microsoft Yahei"; text-align: center; cursor: pointer;}
+.code .cur { border: 1px solid #f0f0f0; border-bottom: 1px solid #f8f8f8; background-color: #f8f8f8;}
+.code .h31 { left: 0;}
+.code .h32 { left: 102px;}
+.code .h33 { left: 204px;}
+.code .h34 { left: 306px;}
+.code { width: 900px; margin-left: auto; margin-right: auto;}
+pre { padding: 15px 0; border: 1px solid #f0f0f0; background-color: #f8f8f8;}
+.f-dn { display: none;}
+</style>
+<link href="http://xww-global.u.qiniudn.com/prettify.css" rel="stylesheet">
+<script src="http://xww-global.u.qiniudn.com/prettify.js"></script>
+<script>
+window.prettyPrint && prettyPrint();
+$('.code h3').not(':first').next().addClass('f-dn');
+$('.code h3').click(function(){
+	$(this).addClass('cur').siblings('h3').removeClass('cur');
+	$(this).next().removeClass('f-dn').siblings('.pre').addClass('f-dn');
+});
+</script>
+</body>
+</html>

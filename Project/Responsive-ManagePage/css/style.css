@@ -1,0 +1,81 @@
+body{
+	font-family:"Microsoft YaHei UI";
+}
+.icon{
+	margin-right:10px;
+}
+.mt_15{
+	margin-top:15px;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus{
+	outline:none;
+}
+#nav .caret{
+	margin-left:5px;
+}
+#nav .navbar-nav li a:hover{
+	color:#555;
+	background-color:#e7e7e7;
+}
+/* 进度条*/
+.server p{
+	margin-bottom:5px; 
+}
+#footer{
+	padding:20px 0;
+	text-align:center;
+}
+#main .hotPosts .panel-body{
+	padding:0;
+}
+#main .hotPosts .list-group{
+	margin-bottom:0;
+}
+#main .todayVisitor .panel-body{
+	padding:0;
+}
+#main .server .progress{
+	margin-bottom:10px;
+}
+#messageBoard .media img{
+	width:64px;
+	height:64px;
+}
+textarea{
+	resize:none;
+}
+.page-header{
+	margin-top:0;
+}
+.page-header h2{
+	margin-top:0;
+}
+.nav-tabs a{
+	color:#666666;
+}
+.tab-content{
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	padding:15px;
+}
+.modal{
+	top:50px;
+}
+#tag-main input,
+#tag-main .btn{
+	height:50px;
+}
+#tag-main .btn{
+	width:100%;
+}
+#tag-main .alert{
+	display:inline-block;
+	margin-right:10px;
+}
+

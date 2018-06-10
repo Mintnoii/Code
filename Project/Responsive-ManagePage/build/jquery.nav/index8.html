@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>jQuery导航插件One-Page-Nav演示-京东_dowebok</title>
+<style>
+* { margin: 0; padding: 0;}
+#nav { display: none; position: fixed; left: 50%; bottom: 10px; width: 38px; margin-left: 607px; list-style-type: none; font: 12px Tahoma,Helvetica,Arial,"宋体";}
+#nav li { margin-top: 5px;}
+#nav a { display: block; width: 30px; height: 31px; padding: 5px 0 0 6px; border: 1px solid #dedede; line-height: 100px; color: #888; text-decoration: none; overflow: hidden; background-image: url(images/bg1.png); background-repeat: no-repeat;}
+#nav a:hover { border: 1px solid #ed5759; line-height: 13px; color: #ed5759; background-color: #fdeeee; background-image: none;}
+#nav .f2 { background-position: 0 -55px;}
+#nav .f3 { background-position: 0 -110px;}
+#nav .f4 { background-position: 0 -165px;}
+#nav .f5 { background-position: 0 -220px;}
+#nav .f6 { background-position: 0 -275px;}
+#nav .f7 { background-position: 0 -330px;}
+#nav .f8 { background-position: 0 -385px;}
+#nav .dowebok1 { background-position: -1px -498px;  background-color: #c3c3c3; color: #fff;}
+#nav .dowebok2 { background-position: -1px -553px; background-color: #c3c3c3; color: #fff;}
+#nav .current a { border: 1px solid #ed5759; line-height: 13px; color: #ed5759; background-color: #fdeeee; background-image: none;}
+#nav .dowebok:hover { border: 1px solid #aaa; color: #fff; background-color: #aaa;}
+.wrap h2 { margin-bottom: 15px; padding: 10px 2px; border-bottom: 1px solid #ccc; font: 24px Tahoma,Helvetica,Arial,"Microsoft Yahei";}
+.wrap p { line-height: 24px; margin: 15px 0;}
+.wrap ul { padding-left: 1.2em; line-height: 24px;}
+.wrap .table { width: 100%; border-spacing: 0; border-collapse: collapse;}
+.wrap th, .wrap td { padding: 8px 5px; border: 1px solid #ddd;}
+
+#f0 { height: 571px; background: url(images/jd1.jpg) 50% 0 no-repeat;}
+#f1 { height: 524px; background: url(images/jd2.jpg) 50% 0 no-repeat;}
+#f2 { height: 412px; background: url(images/jd3.jpg) 50% 0 no-repeat;}
+#f3 { height: 412px; background: url(images/jd4.jpg) 50% 0 no-repeat;}
+#f4 { height: 412px; background: url(images/jd5.jpg) 50% 0 no-repeat;}
+#f5 { height: 412px; background: url(images/jd6.jpg) 50% 0 no-repeat;}
+#f6 { height: 412px; background: url(images/jd7.jpg) 50% 0 no-repeat;}
+#f7 { height: 342px; background: url(images/jd8.jpg) 50% 0 no-repeat;}
+#f8 { height: 342px; background: url(images/jd9.jpg) 50% 0 no-repeat;}
+#f9 { height: 382px; background: url(images/jd10.jpg) 50% 0 no-repeat;}
+#f10 { height: 599px; background: url(images/jd11.jpg) 50% 0 no-repeat;}
+</style>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script>
+$(function() {
+	$('#nav').onePageNav({
+		scrollThreshold: 0.1,
+		filter: ':not(.dowebok)'
+	});
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 500){
+			$('#nav').fadeIn();
+		} else {
+			$('#nav').fadeOut();
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<ul id="nav">
+	<li><a class="f1" href="#f1">家电通讯</a></li>
+	<li><a class="f2" href="#f2">电脑数码</a></li>
+	<li><a class="f3" href="#f3">服饰鞋包</a></li>
+	<li><a class="f4" href="#f4">美容珠宝</a></li>
+	<li><a class="f5" href="#f5">居家生活</a></li>
+	<li><a class="f6" href="#f6">母婴玩具</a></li>
+	<li><a class="f7" href="#f7">食品保健</a></li>
+	<li><a class="f8" href="#f8">图书音像</a></li>
+	<li><a class="dowebok1 dowebok" href="http://www.dowebok.com/">我要反馈</a></li>
+	<li><a class="dowebok2 dowebok" href="#top">返回顶部</a></li>
+</ul>
+
+<div class="wrap">
+	<div id="f0"></div>
+	<div id="f1"></div>
+	<div id="f2"></div>
+	<div id="f3"></div>
+	<div id="f4"></div>
+	<div id="f5"></div>
+	<div id="f6"></div>
+	<div id="f7"></div>
+	<div id="f8"></div>
+	<div id="f9"></div>
+	<div id="f10"></div>
+	<div id="f11"></div>
+	<div id="f12"></div>
+	<div id="f13"></div>
+	<div id="f14"></div>
+	<div id="f15"></div>
+	<div id="f16"></div>
+	<div id="f17"></div>
+	<div id="f18"></div>
+	<div id="f19"></div>
+	<div id="f20"></div>
+	<div id="f21"></div>
+</div>
+
+
+<!-- 以下是统计及其他信息，与演示无关，不必理会 -->
+<style>
+* { margin: 0; padding: 0;}
+body { font-family: Consolas,arial,"宋体";}
+h1 { width: 900px; margin: 40px auto; font: 32px "Microsoft Yahei"; text-align: center;}
+.explain, .dowebok-explain { margin-top: 20px; font-size: 14px; text-align: center; color: #f50;}
+
+.vad { margin: 50px 0 5px; font-family: Consolas,arial,宋体; text-align:center;}
+.vad a { display: inline-block; height: 36px; line-height: 36px; margin: 0 5px; padding: 0 50px; font-size: 14px; text-align:center; color:#eee; text-decoration: none; background-color: #222;}
+.vad a:hover { color: #fff; background-color: #000;}
+.thead { width: 728px; height: 90px; margin: 0 auto; border-bottom: 40px solid transparent;}
+
+.code { position: relative; margin-top: 100px; padding-top: 41px;}
+.code h3 { position: absolute; top: 0; z-index: 10; width: 100px; height: 40px; font: 16px/40px "Microsoft Yahei"; text-align: center; cursor: pointer;}
+.code .cur { border: 1px solid #f0f0f0; border-bottom: 1px solid #f8f8f8; background-color: #f8f8f8;}
+.code .h31 { left: 0;}
+.code .h32 { left: 102px;}
+.code .h33 { left: 204px;}
+.code .h34 { left: 306px;}
+.code { width: 900px; margin-left: auto; margin-right: auto;}
+pre { padding: 15px 0; border: 1px solid #f0f0f0; background-color: #f8f8f8;}
+.f-dn { display: none;}
+</style>
+<link href="http://xww-global.u.qiniudn.com/prettify.css" rel="stylesheet">
+<script src="http://xww-global.u.qiniudn.com/prettify.js"></script>
+<script>
+window.prettyPrint && prettyPrint();
+$('.code h3').not(':first').next().addClass('f-dn');
+$('.code h3').click(function(){
+	$(this).addClass('cur').siblings('h3').removeClass('cur');
+	$(this).next().removeClass('f-dn').siblings('.pre').addClass('f-dn');
+});
+</script>
+</body>
+</html>
