@@ -1,0 +1,230 @@
+body{
+	font-family: "microsoft yahei",sans-serif;
+}
+/* 导航条样式 */
+.navbar-default{
+	background-color: #fff;
+    border: none;
+    box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);
+}
+.navbar-default .navbar-brand {
+    font-size: 30px;
+    font-weight: bold;
+    color: #66CCFF;
+    height:70px;
+    line-height:35px;
+}
+/* 分类导航列表的样式 */
+.navbar-default .navbar-nav>li>a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    /* 居中显示 */
+    height:70px;
+    line-height:35px;
+}
+/* 使小按钮居中 */
+.navbar-toggle{
+	margin-top:17px;
+}
+/* 小按钮的样式 */
+.navbar-default .navbar-toggle:hover {
+    border-color: #40d2b1;
+    background-color: #66CCFF;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #82a19a;
+}
+/*首页*/
+#home{
+	/* margin-top等于顶部的导航区域高度 */
+	margin-top:70px;
+	background:url("../img/home-bg.jpg");
+	background-size:cover;
+	color:#ffffff;
+	text-align:center;
+	width:100%;
+}
+/* 图片的滤镜层样式 */
+.imgFilter{
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.7);
+	/* 使内部的文字有上边距 */
+	padding:90px 0;
+}
+#home h1{
+	font-weight:bold;
+	margin-top:0;
+	margin-bottom:25px;
+}
+#home p{
+	font-weight:400;
+	line-height:35px;
+}
+#home img{
+	margin-top:30px;
+	display:inline-block;
+}
+/*论坛*/
+#bbs{
+	padding:80px 0;
+	text-align:center;
+}
+#bbs .col-md-4{
+	padding: 15px;
+}
+#bbs .col-md-4:hover{
+	background: #f1f1f1;
+    box-shadow: 1px 1px 4px #ccc;
+}
+#bbs a{
+	color:#212121;
+	text-decoration: none;
+}
+#bbs img{
+	margin:0 auto;
+}
+#bbs h3{
+	font-weight:bold;
+}
+/*经典日漫*/
+#manga{
+	background:#ddd;
+	padding:80px 0;
+}
+#manga h2{
+	font-weight:bold;
+	margin-top: 20px;
+    margin-bottom: 10px;
+}
+#manga p{
+	line-height:40px;
+}
+#manga .fire-icon, #cartoon .fire-icon {
+    background: #66CCFF;
+    color: #fff;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 20px;
+}
+/*国产动画*/
+#cartoon{
+	padding:80px 0;
+}
+#cartoon h2{
+	font-weight:bold;
+	margin-top: 20px;
+    margin-bottom: 10px;
+}
+#cartoon p{
+	line-height:40px;
+}
+#cartoon .fire-icon, #cartoon .fire-icon {
+    background: #66CCFF;
+    color: #fff;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 20px;
+}
+/*在线观看*/
+#movie{
+	text-align:center;
+	padding:80px 0;
+	background:#f8f8f8;
+}
+#movie h2 {
+    font-weight: bold;
+    padding-bottom: 20px;
+    margin-top:0;
+}
+#movie .col-lg-3{
+	margin-bottom: 20px;
+}
+#movie .story{
+	background-color:#fff;
+	margin-bottom:20px;
+}
+#movie .story .img-responsive{
+	text-align:center;	
+}
+#movie .btn {
+    background: transparent;
+    border: 1px solid #66CCFF;
+    border-radius: 0;
+    color: #66CCFF;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 8px 35px;
+    transition: all 0.3s;
+}
+#movie .btn:hover {
+    background: #66CCFF;
+    color: #fff;
+}
+/*移动app下载*/
+#app{
+	padding: 80px 0;
+}
+#app h2{
+	font-weight:bold;
+	padding-bottom: 40px;
+}
+#app p span{
+	display:inline-block;
+	background: #66CCFF;
+	border-color: #66CCFF;
+	border-radius: 4px;
+    margin: 20px 10px 20px 0px;
+    padding: 10px 15px;
+    color:#fff;
+    transition: all 0.3s;
+}
+#app p span:hover{
+	background:#66CCCC;
+}
+#contact{
+	background:url(../img/contact-bg.png);
+	background-size:cover;
+	width:100%;
+	color:#fff;
+}
+#contact h2{
+	margin-top:0;
+	margin-bottom: 35px;
+}
+#contact p{
+	line-height:25px;
+}
+#contact p span{
+	font-size:10px;
+}
+#contact .form-control{
+	border:none;
+	border-radius:0;
+	height:50px;
+	margin-bottom:20px;
+}
+#contact textarea.form-control{
+	height:auto;
+}
+#contact input[type="submit"]{
+	background:#40D2B1;
+	color:#fff;
+	font-weight:bold;
+}
+#contact input[type="submit"]:hover{
+	background:#31b194;
+}
+/*底部*/
+footer{
+	font-weight:400;
+	text-align:center;
+	padding:20px;
+}
