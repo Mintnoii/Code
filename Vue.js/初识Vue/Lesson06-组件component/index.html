@@ -6,7 +6,7 @@
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
-	<div id="myApp">
+	<div id="app">
 	<!-- component  定义页面的局部区域块，完成单独的页面小功能。 -->
 	<ol>
 		<game-item v-for="item in games" v-bind:game="item"></game-item>
@@ -20,7 +20,7 @@
 	});
 	/* Vue对象实例化 */
 	var myApp = new Vue({
-	  el: '#myApp',
+	  el: '#app',
 	  data: {
 	    games: [
 	      { title: '绝地求生' },
