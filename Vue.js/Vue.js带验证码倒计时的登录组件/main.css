@@ -1,0 +1,96 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+p, a, label, input, legend, select{
+  font-size: 1.1rem;
+  line-height: 2rem;
+  color: grey;
+  border: none;
+  text-decoration: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+.container {
+  width: 544px;
+  padding: 0 20px;
+}
+
+@media screen and(max-width: 544px) {
+  .container {
+    width: 100%;
+  }
+}
+
+.navbar {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+.navbar .container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .title {
+  color: #3498db;
+  font-weight: bolder;
+}
+
+.login-component {
+  display: flex;
+  justify-content: center;
+}
+
+.login-component fieldset{
+  margin: 20px 0;
+  position: relative;
+  border: none;
+}
+.login-component fieldset legend {
+  margin-left: 60px;
+  font-size: .9em;
+}
+
+.login-component .field-tel .tiny {
+  color: #9e9e9e;
+}
+
+.login-component input {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.25);
+}
+.login-component .field-tel-subfield {
+  display: flex; 
+}
+.login-component .field-tel-subfield select {
+  flex:none;
+  width:60px;
+}
+
+.login-component .field-tel-subfield input {
+  flex: 1;  
+}
+
+#authCode {
+  position: absolute;
+  top: 16px;
+  right: 0;
+  color: #3498db;
+  font-size: .9em;
+}
+
+#authCode[disabled="disabled"] {
+  color: #34495e;
+  cursor: default;
+}
