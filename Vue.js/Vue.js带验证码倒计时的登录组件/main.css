@@ -94,3 +94,9 @@ p, a, label, input, legend, select{
   color: #34495e;
   cursor: default;
 }
+
+.pwdEye {
+  position: absolute;
+  top: 16px;
+  right: 30px;
+}

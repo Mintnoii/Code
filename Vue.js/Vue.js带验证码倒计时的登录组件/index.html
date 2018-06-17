@@ -21,6 +21,13 @@
                phone: "",
                captcha:"",
                authText:'点击获取验证码',
+               password:'',
+               eyeOpen:false,
+               pwdInput:{
+                pwdType:"password",
+                open:'fa-eye',
+                close:'fa-eye-slash'
+               },
                dis:false
             }
         },
@@ -59,7 +66,8 @@
                             <a href="#" id="authCode" :disabled="dis" ref="authCode" @click.prevent="getCaptcha($event)">{{authText}}</a>
                         </fieldset>
                         <fieldset class="field-password">
-                            <input type="password" id="password" placeholder="密码（不少于6位）">
+                            <input :type="this.pwdInput.pwdType" v-model="password" id="password" placeholder="密码（不少于6位）">
+                            <a href="#" v-show="password.length>=6" class="pwdEye"  @click="changeType"><i class="fa" :class="eyeOpen?pwdInput.open:pwdInput.close"></i></a> 
                         </fieldset>
                     </form>
                 </div>
@@ -90,9 +98,8 @@
                 this.$data.dis = false;
             }
         },
-        userLogin: function (){
-            console.log(this.$refs.tel.value.match(this.$data.phoneReg))
-            if(!this.$refs.tel.value.match(this.$data.phoneReg)||this.$data.captcha===""){
+        userLogin: function (){            
+            if(!this.phoneReg||this.$data.captcha===""){
                 return
             }else{
                 fetch('https://easy-mock.com/mock/5b2385e3debe3c5977248a16/wscn/submit', {
@@ -109,6 +116,10 @@
                     console.log(data)
                 })
             }   
+        },
+        changeType: function(){
+            this.$data.pwdInput.pwdType = this.$data.pwdInput.pwdType==='password'?'text':'password';
+            this.$data.eyeOpen = !this.$data.eyeOpen
         }
     }
     })
