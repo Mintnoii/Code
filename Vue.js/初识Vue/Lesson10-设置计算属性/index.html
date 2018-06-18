@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Computed的setter</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>  
+</head>
+<body>
+  <!-- setter设置计算属性，同步更新元数据的值。-->
+  <div id="app">
+    <p>今年3月3日发卖的任天堂新一代主机Switch的价格是：{{price}}円，含税价格为：{{priceInTax}}円，折合人民币为：{{priceChinaRMB}}元。</p>
+    <button @click="btnClick(1.2)">把税率从0.8改为1.2</button>
+    <!-- 更改税率 将新的税率1.2传递给计算属性priceInRax时会触发它的set函数，执行10800 / 1.2 此时price的数值变为2148 -->
+  </div>
+<script id="jsbin-javascript">
+var myApp = new Vue({
+  el: '#app',
+	data: {
+    price: 29980,
+    taxrate: 1.08 //默认税率
+	},
+  computed: {
+    //对象，内有get和set函数
+    priceInTax: {
+      get: function(){
+        return this.price * this.taxrate;
+      },
+      set: function(value){
+        this.price = value / this.taxrate;
+      }
+    },
+    //函数
+    priceChinaRMB: function(){
+      return Math.round(this.priceInTax / 16.75);
+    },
+  },
+  methods: {
+    //改变taxrate 触发计算属性重新计算
+    btnClick: function(newTaxRate){
+      this.taxrate = newTaxRate;
+    }
+  }
+ });
+</script>
+</body>
+</html>
