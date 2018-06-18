@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>input输入值与obj对象绑定</title>
+</head>
+<body>
+  <input type="text" id="input">
+<script id="jsbin-javascript">
+let obj = {}
+let temp = {}
+
+//使用Object.defineProperty来为对象设置属性
+Object.defineProperty(obj,"name",{
+  // value:1,
+  //configurable: true, 是否可配置属性（是否可删除）
+  //writable: true, 是否可写
+  //enumberable: true, 是否可枚举
+  
+  // 注意：如果定义了set或者get方法中的任何一个，就不能再设置writable，即便false也不可以
+  get(){ // 取obj的name属性会触发
+    return temp["name"]
+  },
+  set(val){ // 设置obj的name属性会触发
+     //obj.name = val 不能这样赋值，会导致循环赋值
+    
+    temp["name"] = val//利用第三方对象来进行赋值
+    input.value = val //将值赋给输入框
+  }
+})
+let input = document.querySelector("#input")
+input.value = obj.name //页面一加载时会调用get方法将obj.name显示到input上
+
+input.addEventListener('input',function(){
+  obj.name = this.value //当值变化会调用set方法
+})
+</script>
+</body>
+</html>
