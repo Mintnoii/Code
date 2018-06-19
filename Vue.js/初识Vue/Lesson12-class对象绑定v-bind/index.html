@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Class对象的绑定</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>  
+<style id="jsbin-css">
+body{
+  font-size:24px;
+}
+.active{
+ color:red; 
+}
+.big{
+  font-weight:bolder;
+  font-size:30px;
+}
+</style>
+</head>
+<body>
+  <!-- v-bind 为html标签绑定样式class属性。-->
+  <div id="app">
+    <div v-bind:class="myClass">红色文本</div>
+    <button @click="btnClick">改变绑定的class</button>
+  </div>
+<script id="jsbin-javascript">
+var myApp = new Vue({
+        el: '#app',
+        data: {
+          //class对象
+            myClass:{
+              active: true,
+              big: false
+            }
+            
+        },
+        methods: {
+            btnClick: function(){
+                this.myClass.big = !this.myClass.big;
+            },
+        },
+    });
+
+</script>
+</body>
+</html>
