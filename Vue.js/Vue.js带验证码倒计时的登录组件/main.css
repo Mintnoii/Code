@@ -42,6 +42,7 @@ p, a, label, input, legend, select{
 
 .navbar .title {
   color: #3498db;
+  cursor: pointer;
   font-weight: bolder;
 }
 
