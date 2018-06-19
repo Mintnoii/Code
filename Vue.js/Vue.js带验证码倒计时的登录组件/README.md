@@ -16,7 +16,7 @@
 
 ## 预览
 
-[在线预览](vuelogin.jkdev.cn)
+[在线预览](http://vuelogin.jkdev.cn)
 
 ![](./code.png)
 
