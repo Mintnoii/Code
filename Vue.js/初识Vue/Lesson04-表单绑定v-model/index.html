@@ -5,12 +5,12 @@
     <title>v-model</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
-
 <body>
     <div id="app">
         <!-- v-model 它会根据控件类型自动选取正确的方法来进行数据邦定，更新元素。例如： input select textarea -->
         <p>我的名字是：{{myname}}</p>
         <input v-model="myname">
+        <!-- 绑定单选框的value -->
         <div>
             <p>我的性别： {{ sex }}</p>
             <label for="man">男</label>
@@ -18,6 +18,7 @@
             <label for="woman">女</label>
             <input type="radio" id="woman" value="woman" v-model="sex">
         </div>
+        <!-- 绑定复选框的value -->
         <div>
             <p>我喜欢的电影类型是：{{ checkedNames }}</p>
             <label for="science">科幻</label>
@@ -26,6 +27,25 @@
             <input type="checkbox" id="history" value="历史" v-model="checkedNames">
             <label for="terror">恐怖</label>
             <input type="checkbox" id="terror" value="恐怖" v-model="checkedNames">
+        </div>
+        <!-- 绑定下拉框select -->
+        <div>
+        	<p>我喜欢的影片是：{{selectedFilms}}</p>
+        	<select v-model="selectedFilms">
+        		<option>复仇者联盟</option>
+        		<option>异形</option>
+        		<option>看不见的客人</option>
+        		<option value="before SunRise">爱在黎明破晓时</option>
+    		</select>
+        </div>
+        <div>
+        	<p>我喜欢的电影明星有：{{selectedStars}}</p>
+        	<select multiple v-model="selectedStars">
+        		<option>德叔</option>
+        		<option>狗爹</option>
+        		<option>黄渤</option>
+        		<option>胡歌</option>
+    		</select>
         </div>
     </div>
 </body>
@@ -36,7 +56,9 @@
             //声明初始值
             myname:' ',
             sex:'',
-            checkedNames: []
+            checkedNames: [],
+            selectedFilms: '美国往事',
+            selectedStars: []
         }
     });
 </script>
