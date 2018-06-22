@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>props参数验证</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>身世之谜</h1>
+		<!-- 传入参数 -->
+    	<show-member-info name="koma" :age="25" :detail="{address:'earth', language:'世界语'}"></show-member-info>
+	</div>
+</body>
+<script>
+	Vue.component('show-member-info', {
+		// 为组件中接受到的变量进行逻辑验证。
+        props: {
+            name: {
+                type: String,
+                // 必填项
+                required: true,
+            },
+            age: {
+                type: Number,
+                //校验器函数
+                validator: function (value) {
+                    return value >= 0 && value <= 130;
+                }                
+            },
+            // 对象类型的参数
+            detail: {
+                type: Object,
+                //默认值函数
+                default: function() {
+                    return {
+                        address: 'US',
+                        language: 'English',
+                    };
+                }
+            },
+        },
+        template: '<div>姓名：{{this.name}}<br/>' 
+            + '年龄：{{this.age}}岁<br/>'
+            + '地址：{{this.detail.address}}<br/>'
+            + '语言：{{this.detail.language}} </div>',
+    });
+    var myApp = new Vue({
+        el: '#app', 
+    });
+</script>
+</html>
