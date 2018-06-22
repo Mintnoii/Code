@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表行组件</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+	<!-- is="string | Object" 用于动态组件且基于 DOM 内模板的限制来工作 -->
+	<div id="app">
+		<h1>2018年最期待的电影是：</h1>
+    	<table border="1">
+        	<tr>
+            	<td>编号</td>
+            	<td>电影名称</td>
+        	</tr>
+        	<!-- 这样直接使用组件会无效且被放置到表格外面 -->
+        	<!-- <my-row1></my-row1> -->
+        	<!-- <my-row2></my-row2> -->
+
+        	<!-- 正确用法 使用is -->
+        	<tr is="my-row1"></tr>
+        	<tr is="my-row2"></tr>
+        	<tr is="my-row3"></tr>
+    	</table>
+	</div>
+</body>
+<script>
+	//定义三个表单组件
+	Vue.component('my-row1', {
+        template: '<tr><td>(1)</td><td>复仇者联盟3</td></tr>'
+    });    
+    Vue.component('my-row2', {
+        template: '<tr><td>(2)</td><td>红海行动</td></tr>'
+    });    
+    Vue.component('my-row3', {
+        template: '<tr><td>(3)</td><td>惊奇队长</td></tr>'
+    });    
+    var myApp = new Vue({
+        el: '#app', 
+    });
+</script>
+</html>
