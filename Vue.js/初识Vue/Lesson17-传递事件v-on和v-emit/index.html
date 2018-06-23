@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on和v-emit</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 1、v-on (父组件上)侦听子组件的事件(add_event) -->
+		<!-- 4、当监听到子组件触发了相应的事件后再进行事件处理(getAddResult)。 -->
+		<h1>父子组件传递事件</h1>
+		<add-method :x="a" :y="b" v-on:add_event="getAddResult"></add-method>
+		<hr/>
+		<h3>{{result}}</h3>
+	</div>
+</body>
+<script>
+	 Vue.component('add-method', {
+        props: ['x', 'y'],
+        // 2、点击子组件 触发add方法
+        template: '<div><button v-on:click="add">求和</button></div>',
+        methods: {
+            add: function(){
+                var value = 0;
+                value = this.x + this.y;
+                //3、子组件将事件发送到父组件 并把数据也传递过去
+                this.$emit('add_event', {
+                    result:value
+                });
+            }
+        },
+    });
+    var myApp = new Vue({
+        el: '#app', 
+        data: {
+        	a: 5,
+        	b: 21,
+            result: 0
+        },
+        methods: {
+        	// 5、pval就是子组件发送的事件传递过来的数据参数
+            getAddResult: function(pval){
+                this.result = pval.result;
+            }
+        },
+    });
+</script>
+</html>
