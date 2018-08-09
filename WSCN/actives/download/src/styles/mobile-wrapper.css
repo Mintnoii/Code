@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background: #F2F2F2;
+}
+
+.mobile-wrapper {
+  margin: 0 auto;
+  max-width: 750px;
+  background: #FFF;
+  min-height: 100vh;
+}

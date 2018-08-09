@@ -1,0 +1,19 @@
+{
+  "extends": "standard",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "DEBUG": false,
+    "VERSION": false,
+    "CONFIG": false
+  },
+  "rules": {
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "operator-linebreak": ["error", "before"]
+  }
+}

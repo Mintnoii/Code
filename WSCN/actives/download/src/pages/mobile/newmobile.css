@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  height: auto;
+  overflow: hidden;
+}
+
+html,
+body,
+.mobile-swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "PingFang SC", "Helvetica", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.section-header {
+  height: 60px;
+  padding: 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.section-header-home-link {
+  width: 116px;
+  display: block;
+}
+
+.section-header-img {
+  width: 116px;
+}
+
+.section-header-download-link {
+  width: 100px;
+  height: 34px;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 34px;
+  border-radius: 17px;
+  text-decoration: none;
+  background-image: -webkit-linear-gradient(326deg, #28a6f7, #1478f0);
+  background-image: linear-gradient(124deg, #28a6f7, #1478f0);
+}
+
+.section-header-download-link.section-header-download-link-w {
+  color: #007aff;
+  background: #fff;
+}
+
+.section {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  position: relative;
+}
+
+.section-wz-content {
+  margin-top: 24px;
+  position: relative;
+  padding-right: 22px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.section-wz-left {
+  position: absolute;
+  padding-left: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.section-lg {
+  width: 160px;
+  margin-bottom: 15px;
+}
+
+.section-sm {
+  height: 14px;
+}
+
+.section-wz-right {
+  float: right;
+  height: 108px;
+}
+
+.section-page-content {
+  position: relative;
+}
+
+.section-phone {
+  width: 65%;
+  margin: 0 auto;
+}
+
+.point-line {
+  width: 5px;
+  position: absolute;
+  left: 25px;
+  top: 30px;
+  z-index: 4;
+}
+
+.section-point {
+  width: 12px;
+  position: absolute;
+  left: 35px;
+  z-index: 6;
+}
+
+.section1 {
+  background-image: url('./images/bg1.png');
+}
+
+.section1-lg {
+  width: 82.1%;
+  margin: 100px auto 20px;
+}
+
+.section1-sm {
+  width: 38%;
+  margin: 0 auto;
+}
+
+.section1-bottom {
+  position: relative;
+}
+
+.section1-phone {
+  width: 83.5%;
+  margin: 0 auto;
+}
+
+.section1-bottom-wz-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 80px;
+}
+
+.section1-img6 {
+  width: 66.7%;
+  margin: 0 auto 80px;
+}
+
+.section1-arrow {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 5px;
+}
+
+.section1-arrow-wz {
+  font-size: 12px;
+  line-height: 16px;
+  color: #959db8;
+  letter-spacing: 0.9px;
+  display: block;
+  text-align: center;
+}
+
+.section2 {
+  background-image: url('./images/bg2.png');
+}
+
+.point1 {
+  top: 32px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.section3 {
+  background-image: url('./images/bg3.png');
+}
+
+.point2 {
+  top: 96px;
+}
+
+.section4 {
+  background-image: url('./images/bg4.png');
+}
+
+.point3 {
+  top: 167px;
+}
+
+.section5 {
+  background-image: url('./images/bg5.png');
+}
+
+.point4 {
+  top: 236px;
+}
+
+.section6 {
+  background-image: url('./images/bg6.png');
+}
+
+.point5 {
+  top: 306px;
+}
+
+.section-last {
+  background-image: url('./images/bg7.png');
+}
+
+.section-last-lg {
+  width: 82.1%;
+  margin: 90px auto 20px;
+}
+
+.section-last-sm {
+  width: 70%;
+  margin: 0 auto 30px;
+}
+
+.download-img-btn {
+  width: 84%;
+  margin: 0 auto 0;
+  display: block;
+  margin-top: -15px;
+}
+
+.download-img-btn>img {
+  width: 100%;
+}
+
+.qrcode-img {
+  width: 150px;
+  margin: 0 auto;
+}
+
+@media (max-width: 370px) {
+  .section1-sm {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 370px) {
+  .section1-sm {
+    margin-bottom: 30px;
+  }
+  .section1-bottom-wz-content {
+    top: 60px;
+  }
+  .section1-img6 {
+    margin-bottom: 60px;
+  }
+}
