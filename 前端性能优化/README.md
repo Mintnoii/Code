@@ -213,7 +213,7 @@
     - 对于动画新建图层
     - 启用GPU硬件加速
 ## 浏览器存储
-### cookies
+### 1. cookies
 - 为什么需要cookies
     - 浏览器端和服务器端的交互，因为HTTP请求无状态，需要cookie维持客户端状态(设计初衷)
     - 客户端自身数据的存储
@@ -238,7 +238,7 @@ document.cookie = "age=18";
 console.log(document.cookie);//username=jerry; age=18; 
 ```
 注意：在谷歌浏览器chrome中调试居然不生效！！！不管是使用jquery的cookie插件，还是js原生态的cookie方法都不生效！！！什么原因呢？原因在于chrome不支持js在本地操作cookie!
-### LocalStorage
+### 2. LocalStorage
 - 特点：
     - HTML5设计出来专门用于浏览器存储的
     - 大小5M左右
@@ -256,7 +256,7 @@ if (window.localStorage){
     console.log(localStorage.getItem('age'));
 }
 ```
-### SessionStorage
+### 3. SessionStorage
 - 特点：
     - 会话级别的浏览器存储
     - 大小5M左右
@@ -274,9 +274,9 @@ if (window.sessionStorage){
     console.log(sessionStorage.getItem('score'));
 }
 ```
-### IndexDB 
+### 4. IndexDB 
 IndexDB是一种低级API，用户客户端存储大量结构化数据。该API使用索引来实现对该数据的高性能搜索。虽然Web Storage对于存储较少量的数据很有用，但对于存储大量的结构化数据来说，这种方法不太适用，IndexDB提供了一个解决方案
-### Service Workers
+### 5. Service Workers
 - 什么是Service Workers
  - Service Worker是一个脚本，浏览器独立于当前网页，将其在后台运行,为实现一些不依赖页面或者用户交互的特性打开了一扇大门。在未来这些特性将包括推送消息,背景后台同步， geofencing（地理围栏定位），但它将推出的第一个首要特性，就是拦截和处理网络请求的能力，包括以编程方式来管理被缓存的响应。
 - chrome://serviceworker-internals/运行过的Service Workers
@@ -284,7 +284,7 @@ IndexDB是一种低级API，用户客户端存储大量结构化数据。该API�
 - 生命周期
 
 ![Service Workers生命周期](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/3A42973E48174043BA1849D2EF3F68F6/17836)
-### PWA
+### 6. PWA
 - 什么是PWA
     - PWA（Progressive Web Apps）是一种Web App新模型，并不是具体指某一种前沿的技术或者某一个单一的知识点，我们从英文缩写来看就能看出来，这是一个渐进式的Web App,是通过一系列新的Web特性，配合优秀的UI交互设计，逐步增强Web App的用户体验。
 - PWA的三个方向
