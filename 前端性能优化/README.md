@@ -327,30 +327,6 @@ IndexDB是一种低级API，用户客户端存储大量结构化数据。该API�
 #### 遇到的问题
 在用node配置环境测试缓存时，一启动服务就报 `Cannot find module 'mime'`,mime是我自定义的js文件，然后将它在app.js中用require引用：`mime   = require('mime');`，感觉哪都没错呀，为什么报这个错误呢？仔细过了遍代码发现mine的引用前少了./，将代码改为`mime   = require('./mime');`后，程序运行完美。
 ## SSR（服务端渲染）
-###
-## 传说中的彩蛋：
-
-- MAC OSX右键菜单能否添加类似于“在终端中打开当前目录”的快捷方式？
-
-系统偏好设置 -> 键盘 -> 快捷键 -> 服务，勾选「新建位于文件夹位置的终端窗口」（后面的键盘快捷键可以不选），然后在 Finder 里面选中文件夹右键菜单的「服务」下面就会有「新建位于文件夹位置的终端窗口」这一子菜单了。
-- MAC OS快速打开spotlight
-```
-Control 键+空格
-```
-Command+B立刻打开网页在搜索引擎中搜索你键入OS快速打开spotlight的内容。
-- 使用VSCode编辑markdown使用到的插件
-    - [Markdown Preview Mermaid Support](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/) 显示流程图用，Markdown Preview Enhanced 使用 mermaid 来渲染流程图和时序图。
-    - Markdown Preview Enhanced  是一款为 Atom 以及 Visual Studio Code 编辑器编写的超级强大的 Markdown 插件
-- diff语法,版本控制的系统中都少不了diff的功能，即展示一个文件内容的增加与删除,使用绿色表示新增，红色表示删除。其语法与代码高亮类似，只是在三个反引号后面写diff， 并且其内容中，以 +开头表示新增，-开头表示删除。
-```diff
-+ test
-- test
-```
-- [git commit时使用Emoji](https://gitmoji.carloscuesta.me/)
-使用方法：直接复制上述网址中所需图片下面黑色粗体文字到commit的描述中即可
-```
-git commit -m ':art:格式化代码'
-```
 ## 相关技术和工具
 - 少量Vue.js
 - 版本控制：git
@@ -358,16 +334,3 @@ git commit -m ':art:格式化代码'
 - 调试工具：Chrome
     - performance
     - layers
-## 下载源码
-```
-git clone https://github.com/fangfeiyue/Web_Performance_Optimization.git
-```
-## 运行项目
-```
-npm install
-npm run dev
-```
-## 说明
-如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
-
-或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
