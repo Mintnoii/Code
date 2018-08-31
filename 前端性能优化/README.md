@@ -326,11 +326,4 @@ IndexDB是一种低级API，用户客户端存储大量结构化数据。该API�
 
 #### 遇到的问题
 在用node配置环境测试缓存时，一启动服务就报 `Cannot find module 'mime'`,mime是我自定义的js文件，然后将它在app.js中用require引用：`mime   = require('mime');`，感觉哪都没错呀，为什么报这个错误呢？仔细过了遍代码发现mine的引用前少了./，将代码改为`mime   = require('./mime');`后，程序运行完美。
-## SSR（服务端渲染）
-## 相关技术和工具
-- 少量Vue.js
-- 版本控制：git
-- 开发工具：VSCode
-- 调试工具：Chrome
-    - performance
-    - layers
+## SSR（服务端渲染）(todo)
