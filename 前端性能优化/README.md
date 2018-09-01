@@ -96,9 +96,10 @@
 - 在安卓下使用webp,常用制作webp的网站：[智图](http://zhitu.isux.us/)
 
 ## css和js的装载与执行
-### 1. 页面在浏览器端加载渲染的过程
+### 页面在浏览器端加载渲染的过程
 ![页面加载渲染的过程](http://owoccema2.bkt.clouddn.com/Readme/frontEndOptimize/render.png)
-**渲染过程中的特点**
+
+### 渲染过程中的特点
 
 1. 顺序执行，并发加载
 
@@ -326,4 +327,5 @@ IndexDB是一种低级API，用户客户端存储大量结构化数据。该API�
 
 #### 遇到的问题
 在用node配置环境测试缓存时，一启动服务就报 `Cannot find module 'mime'`,mime是我自定义的js文件，然后将它在app.js中用require引用：`mime   = require('mime');`，感觉哪都没错呀，为什么报这个错误呢？仔细过了遍代码发现mine的引用前少了./，将代码改为`mime   = require('./mime');`后，程序运行完美。
+
 ## SSR（服务端渲染）(todo)
