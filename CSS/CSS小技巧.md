@@ -78,3 +78,24 @@ li:hover .bd {
 }
 ```
 
+### :empty选择器
+
+```html
+<ul>
+  <li>这里有文字</li>
+  <li></li>
+  <li>asdfasdf</li>
+</ul>
+```
+
+写网页的时候经常有这种情况：有的标签里面文字为空，但是这个标签被应用上特定的样式，即便内容为空还是会展现出来。如果想要避免这种情况。你可以尝试使用`CSS3`的选择器`:empty`
+
+```css
+li {
+  padding: 20px;
+  background-color: #ccc;
+}
+li:empty {
+  display: none;
+}
+```
