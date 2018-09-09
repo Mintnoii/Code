@@ -26,3 +26,23 @@ console.log(cleanObject); // {el1: '1', el2: '2', el3: '3'}
 ```
 
 上面的代码里，如果希望删除_internal和tooBig参数，我们可以把它们赋值给internal和tooBig变量，然后在cleanObject中存储剩下的属性以备后用即可。
+
+### 2. 在函数参数中解构嵌套对象
+
+在下面的代码中，engine是对象car中嵌套的一个对象。如果我们对engine的vin属性感兴趣，使用解构赋值可以很轻松地得到它。
+
+```javascript
+var car = {
+ model: 'bmw 2018',
+ engine: {
+   v6: true,
+   turbo: true,
+   vin: 12345  
+ } 
+}
+const modelAndVIN = ({model, engine: {vin}}) => {
+ console.log(`model: ${model} vin: ${vin}`);
+} 
+modelAndVIN(car); // => model: bmw 2018  vin: 12345
+```
+
