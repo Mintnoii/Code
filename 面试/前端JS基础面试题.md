@@ -115,6 +115,20 @@ p.printName() // zhangsan
 p.alertName() // zhangsan
 ```
 
+**补充：循环对象自身的属性**
+
+```javascript
+var item
+for (item in p) {
+    // 高级浏览器已经在 for in 中屏蔽了来自原型的属性
+    // 但是这里建议大家还是加上这个判断，以保证程序的健壮性
+    if (p.hasOwnProperty(item)) {
+        console.log(item)
+    }
+}
+// 输出p的name printName两个属性
+```
+
 ### 2. 作用域、闭包
 
 ### 3. 异步、单线程
