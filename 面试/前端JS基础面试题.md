@@ -2,10 +2,52 @@
 
 通过学习本系列的面试题，你可以学会前端JS基础知识以及知识体系，掌握如何应对面试题和一些面试技巧。
 
-**几个简单的面试题**
+##热身练习
+
+**问题3：window.onload和DOMContentLoaded的区别？**
 
 ```javascript
-// 问题： JS中使用typeof 能得到的哪些类型?
+// 浏览器渲染过程
+```
+
+**问题4：用JS创建10个<a>标签，点击的时候弹出来对应的序号？**
+
+```javascript
+// 作用域
+```
+
+**问题5：简述如何实现一个模块加载器，实现类似require.js的基本功能？**
+
+```javascript
+// JS模块化
+```
+
+**问题6：实现数组的随机排序？**
+
+```javascript
+// JS基础算法
+```
+
+
+
+## 1. JS基础
+
+### 1. 变量类型和计算
+
+#### 题目
+
+1. JS中使用typeof 能得到的哪些类型？
+2. 何时使用 == ，何时使用 === ？
+3. JS中有哪些内置函数？
+4. JS变量按照存储方式区分为哪些类型，并描述其特点？
+5. 如何理解JSON ?
+
+#### 知识点
+
+**变量类型**
+
+```javascript
+// 问题1：使用typeof运算符查看JS变量类型
 console.log(typeof undefined);      //undefined
 console.log(typeof 'abc');  //string
 console.log(typeof 123);    //number
@@ -17,18 +59,102 @@ console.log(typeof console.log);    //function
 ```
 
 ```javascript
-//问题： 何时使用 === 何时使用 ==
+// 问题4：按照存储方式区分:值类型 VS 引用类型
 
+//值类型
+var a = 10
+var b = a
+a = 11
+console.log(b) // 10
+
+//引用类型: 对象、数组、函数
+var a = { age : 19}
+var b = a
+b.age = 20
+console.log(a.age) // 20
+```
+
+**变量计算**
+
+会发生类型转换的几种情况：
+
+1. 字符串拼接
+
+   ```javascript
+   var a = 100 + 10 // 110
+   var b = 100 + '10' // '10010'
+   ```
+
+2. == 运算符
+
+   ```javascript
+   100 == '100' // true
+   0 == '' // true
+   null == undefined // true
+   ```
+
+3. if 语句
+
+   ```javascript
+   var a = true
+   if (a) {
+   	// ...
+   }
+   var b = 100
+   if (b) {
+       // ...
+   }
+   // 会被判断为false的6种情况： 0、''、NaN、null、undefined、false
+   ```
+
+4. 逻辑运算
+
+   ```javascript
+   console.log(10 && 0) // 0 与
+   console.log(''|| 'abc') // 'abc' 或
+   console.log(!window.abc) // true 非
+   
+   // 使用！！来查看在if()中判断一个变量会被当做true 还是 false
+   var b = 100
+   console.log(!!b)
+   ```
+
+```javascript
+// 问题2：何时使用 == ，何时使用 === ？
+// 一般全都使用 === 全等运算符
+// 除了要用在判断对象的属性时，可以使用下面的写法
 if(obj.a == null){
     //这里相当于 obj.a === null || obj.a === undefined, 简写形式
     //这是 jquery 源码中推荐写法
-
 }
 ```
 
-## 1. JS基础
+```javascript
+// 问题3：JS中有哪些内置函数？ —— 数据封装类对象
+Object
+Array
+Boolean
+Number
+String
+Function
+Date
+RegExp
+Error
+```
 
-### 1. 原型、原型链
+```javascript
+问题5：如何理解JSON？
+// JSON是一种数据格式，但单纯从JS语法来看它只不过是一个JS内置对象而已(类似于Math)
+
+//把对象变成字符串
+JSON.stringify({ a : 10, b : 20})
+//把字符串变成json对象
+JSON.parse('{"a" : 10, "b" : 20}')
+```
+
+
+
+### 2. 原型、原型链
 
 #### 题目
 
@@ -129,9 +255,9 @@ for (item in p) {
 // 输出p的name printName两个属性
 ```
 
-### 2. 作用域、闭包
+### 3. 作用域、闭包
 
-### 3. 异步、单线程
+### 4. 异步、单线程
 
 ## 2. JS-WEB-API
 
