@@ -12,7 +12,7 @@ html {    
 }
 ```
 
-## 实现带背景遮罩的弹窗
+## 实现带背景遮罩的弹窗写法
 
 ```css
 /*class为black_overlay遮罩层div*/
