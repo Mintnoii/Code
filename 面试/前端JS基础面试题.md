@@ -28,8 +28,6 @@
 // JS基础算法
 ```
 
-
-
 ## 1. JS基础
 
 ### 1. 变量类型和计算
@@ -143,7 +141,7 @@ Error
 ```
 
 ```javascript
-问题5：如何理解JSON？
+// 问题5：如何理解JSON？
 // JSON是一种数据格式，但单纯从JS语法来看它只不过是一个JS内置对象而已(类似于Math)
 
 //把对象变成字符串
@@ -152,20 +150,9 @@ JSON.stringify({ a : 10, b : 20})
 JSON.parse('{"a" : 10, "b" : 20}')
 ```
 
-
-
 ### 2. 原型、原型链
 
-#### 题目
-
-1. 如何准确判断一个变量是数组类型
-2. 写一个原型链继承的例子
-3. 描述new一个对象的过程
-4. zepto(或其他框架)源码中如何使用原型链
-
-#### 知识点
-
-**构造函数**
+#### 构造函数
 
 ```javascript
 function Foo(name,age) { // 习惯将构造函数首字母大写
@@ -179,13 +166,13 @@ var p = new Foo('zhangsan', 20)
 console.log(p.name) // zhangsan
 ```
 
-> new一个构造函数返回对象的过程：
+> 题目：new一个构造函数返回对象的过程：
 >
 > - 构造函数执行时，函数内部的this会先变成一个空对象。
 > - 然后函数根据参数列表，对this进行属性的赋值。
 > - 最后默认将this对象return出去赋值给变量(p、p1)。
 
-**构造函数—扩展**
+#### 构造函数—扩展
 
 - var a = {} 其实是 var a = new Object() 的语法糖
 
@@ -195,11 +182,11 @@ console.log(p.name) // zhangsan
 
 - 使用`instanceof`判断一个函数是否是一个变量的构造函数
 
-  > 题目1：判断一个变量是否为“数组”：
+  > 题目：判断一个变量是否为“数组”：
   >
   > 变量 instanceof Array
 
-**5条原型规则及实例**
+#### 5条原型规则及示例
 
 1. 所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（除了“null”以外）。
 2. 所有的引用类型（数组、对象、函数），都有一个`_proto_`属性（隐式原型），属性值是一个普通的对象。
@@ -232,28 +219,109 @@ Foo.prototype.alertName = function () {
     alert(this.name)
 }
 // 创建实例
-var p = new Foo('zhangsan')
-p.printName = function () {
+var f = new Foo('zhangsan')
+f.printName = function () {
     console.log(this.name)
 }
 // 测试
-p.printName() // zhangsan
-p.alertName() // zhangsan
+f.printName() // zhangsan
+f.alertName() // zhangsan
 ```
 
 **补充：循环对象自身的属性**
 
 ```javascript
 var item
-for (item in p) {
+for (item in f) {
     // 高级浏览器已经在 for in 中屏蔽了来自原型的属性
     // 但是这里建议大家还是加上这个判断，以保证程序的健壮性
-    if (p.hasOwnProperty(item)) {
+    if (f.hasOwnProperty(item)) {
         console.log(item)
     }
 }
 // 输出p的name printName两个属性
 ```
+
+#### 原型链
+
+![原型模式](http://owoccema2.bkt.clouddn.com/Readme/Code/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.jpg)
+
+> **图中矩形代表函数，带圆角的矩形代表对象，再结合上面的5条原型规则：**
+>
+> **如果调用上面构造函数Foo创建的实例 f 的 toString()方法，当 p 这个实例对象没有这个属性方法时，它会去自身的隐式原型`f._proto_`中去找（规则2、5），也就是它自身构造函数的显式原型`Foo.prototype`（规则3、4）。**
+>
+> **Foo.prototype也是一个对象（规则3）,而且这个对象中也没有toString这个方法，所以这个对象会继续向自身隐式原型_proto_指向的构造函数Object的显式原型Object.prototype中去找。**
+>
+> **也就是最后要去`f._proto_._proto_`中找toSting方法。**
+>
+> **补充：Object.prototype对象的隐式原型_proto_指向的是null，这里是JS原型链的终点。**
+
+**扩展**
+
+`instanceof`：用于判断引用类型属于哪个构造函数的方法
+
+`f instanceof Foo`的判断逻辑是：
+
+-  f 的`__proto__`一层一层往上，能否对应到`Foo.prototype`
+- 再试着判断`f instance Object`
+
+#### 面试题
+
+1. 如何准确判断一个变量是否是数组类型？
+
+   ```javascript
+   var arr = []
+   arr instance Array //true
+   typeof arr //object,typeof是无法判断是否是数组的
+   ```
+
+2. 写一个原型链继承的例子
+
+   ```javascript
+   // 动物
+   function Animal(){ 
+       this.eat = function(){ 
+           console.log('Animal eat')
+       }
+   }
+   // 狗
+   function Dog(){ 
+       this.bark = function(){ 
+           console.log("dog bark")
+       }
+   }
+   Dog.prototype = new Animal()
+   // 哈士奇
+   var hashiqi = new Dog()
+   hashiqi.eat() // "Animal eat"
+   ```
+
+   ```javascript
+   // 写一个封装DOM查询的例子
+   function Elem (id){ 
+       this.elem = document.getElementById(id)
+   }
+   // 在构造函数的原型上增加返回方法
+   Elem.prototype.html = function(val){ 
+       var elem = this.elem
+       if(val){ 
+           elem.innerHtml = val
+           return this;   //链式操作
+       }else{ 
+           return elem.innerHtml
+       }
+   } 
+   
+   Elem.prototype.on = function(type,fn){
+       var elem = this.elem
+       elem.addEventListener(type,fn)
+   }
+   
+   var div1 = new Elem('content_wrapper')
+   div1.html('<p>hello</p>').on('click',function(){
+       alert('clicked')
+   }).html('<p>world</p>')
+   ```
 
 ### 3. 作用域、闭包
 
