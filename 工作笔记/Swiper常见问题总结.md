@@ -40,3 +40,22 @@
 
  可以使用自带的 lazyload 方法
 
+```javascript
+设为true开启图片延迟加载默认值，使preloadImages无效。或者设置延迟加载选项。
+
+图片延迟加载：需要将图片img标签的src改写成data-src，并且增加类名swiper-lazy。
+背景图延迟加载：载体增加属性data-background，并且增加类名swiper-lazy。
+
+还可以加一个预加载，<div class="swiper-lazy-preloader"></div>
+或者白色的<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+
+当你设置了slidesPerView:'auto' 或者 slidesPerView > 1，还需要开启watchSlidesVisibility。
+
+
+var mySwiper = new Swiper('.swiper-container', {
+  lazy: {
+    loadPrevNext: true,
+  },
+})
+```
+
