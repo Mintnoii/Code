@@ -59,3 +59,8 @@ var mySwiper = new Swiper('.swiper-container', {
 })
 ```
 
+### 3. 取消拖动最后一页或者第一页时的留白状态
+
+[resistanceRatio](http://www.swiper.com.cn/api/touch/2015/0308/205.html)
+
+抵抗率。边缘抵抗力的大小比例。值越小抵抗越大越难将slide拖离边缘，0时完全无法拖离。
