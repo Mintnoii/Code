@@ -1,6 +1,6 @@
 # 写一个Vue活动信息卡片组件
 
-![设计稿](http://owoccema2.bkt.clouddn.com/Readme/Code/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/card.png)
+![设计稿](http://owoccema2.bkt.clouddn.com/Readme/Code/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/vuecard.png)
 
 要为公司的移动端加一个页面，看了看设计稿有很多样式相同的卡片，那肯定是要撸一个组件了。
 
@@ -104,7 +104,6 @@
   }
   .time{
     display: inline-block;
-    font-family: '思源黑体 light';
     color: #000;
     font-size: 17px;
   }
@@ -121,7 +120,6 @@
     padding-bottom: 22px;
   }
   .activityTitle{
-    font-family: '思源黑体 bold';
     font-size: 21px;
     letter-spacing: 1.1px;
     color: #2f2f2f;
@@ -129,7 +127,6 @@
     margin-bottom: 12px;
   }
   .description{
-    font-family: '思源黑体 regular';
     font-size: 16px;
     color: rgb(128, 128, 128);
     letter-spacing: 0.8px;
