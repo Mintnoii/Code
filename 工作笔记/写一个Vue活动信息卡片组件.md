@@ -11,6 +11,7 @@
       <a :href="link"><img :src="imgUrl" alt="" class="titleImg"></a>
       <div class="content">
         <div class="contentwrapper">
+          <!--后端返回的活动数据state不同 加载不同的图片样式-->
           <span class="state" :class='"state"+status'></span>
           <div class="info">
             <div class="location">
@@ -35,6 +36,7 @@
 </template>
 <script>
   export default {
+    /* 这么多其实也可以通过一个对象传递进来*/
     props: ['imgUrl', 'status', 'location', 'time', 'activityTitle', 'description', 'updatetime', 'link']
   }
 </script>
@@ -51,6 +53,7 @@
     width: 100%;
     height: 225px;
   }
+   /*方便对图片下面的活动信息进行从上到下的摆放*/
   .content{
     margin-top: -5px;
     padding: 18px 18px 25px 18px;
@@ -90,7 +93,6 @@
     font-size: 15px;
   }
   .location {
-    font-family: '思源黑体 light';
     color: #000;
     font-size: 17px;
     display: inline-block;
