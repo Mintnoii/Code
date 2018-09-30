@@ -301,17 +301,150 @@ for (item in f) {
 
 #### 执行上下文
 
+js 是解释型语言不是编译型语言，所以有些错误在编写程序时不会报错，什么时候执行什么时候报错。
+
 - 范围：一段<script>或者一个函数
-- 全局
-- 函数
+- 全局环境内：变量定义(var x)、函数声明(function fn)
+- 函数环境内：变量定义、函数声明、this、arguments 
+- 注意：‘函数声明’和‘函数表达式’的区别
+
+```javascript
+console.log(a)//undefined    
+var a=100    
+
+fn('zhangsan') //'zhangsan' 20    
+function fn(name){   
+	age=20       
+    console.log(name,age)       
+    var age    
+}
+```
 
 #### this
 
+**this要在执行时才能确认值，定义时无法确认**
+
+```javascript
+var a={       
+	name:"A",       
+	fn:function(){           					     	console.log(this.name)       
+	}
+}    
+a.fn()  // this===a    
+a.fn.call({name:B}) // this==={name:'B'}    
+var fn1=a.fn;    
+fn1() // this===window
+```
+
+**this的几种使用场景：**
+
+- 作为构造函数执
+
+  ```javascript
+  function Foo(name){
+  	//this={}
+  	this.name=name;
+  	//return this
+  }
+  var f=new Foo('zhangsan')
+  ```
+
+- 作为对象属性执行
+
+  ```javascript
+  var obj={           
+      name:'A',            
+      printName:function(){                			console.log(this.name)
+  	} 
+  }
+  obj.printName()
+  ```
+
+- 作为普通函数执行
+
+  ```javascript
+  function fn(){
+  	console.log(this)
+      //this===window
+  }
+  fn()
+  ```
+
+- call、apply、bind
+
+  ```javascript
+  function fn1 (name,age){          
+      alert(name)
+      console.log(this)  //this===window       }       
+  fn1.call({x:100},'zhangsan',20)       fn1.apply({x:100},['zhangsan',20])
+      
+  var fn2 = function(name,age){          alert(name)
+   console.log(this)  //this==={x:100}       }.bind({x:100}) 
+  //bind只能用函数表达式，函数声明不可用，会报错       
+  fn2('zhangsan',200)
+  ```
+
 #### 作用域
+
+- 没有块级作用域 (不考虑let)
+
+```javascript
+if(true){ 
+    var name='zhangsan'
+}
+console.log(name)//'zhangsan'
+```
+
+- 只有全局和函数作用域
+
+```javascript
+var a=100
+function fn(){
+    var a=200
+    console.log('fn',a)
+}            
+console.log('global',a) // global 100
+fn() // fn 200
+```
 
 #### 作用域链
 
+- 寻找一个自由变量时会从当前作用域开始一直不断的往父级作用域去找，然后形成一个链式结构。
+
+```javascript
+var a=100
+function F1(){
+  var b=200 
+  function F2(){
+      var c=300
+      console.log(a) //a是自由变量
+      console.log(b) //b是自由变量
+      console.log(c) 
+	}          
+   F2()       
+}
+F1()
+```
+
 #### 闭包
+
+**一个函数的父级作用域是它定义时的作用域，而不是执行时的作用域。**
+
+```javascript
+function F1(){
+    var a=100
+    //返回一个函数(函数作为返回值)
+    return function(){
+        console.log(a) //自由变量，父作用域寻找
+    }
+}     
+//f1得到一个函数     
+var f1=F1()
+var a=200
+f1() // 100 此时执行f1打印的仍然是这个函数定义时的父级作用域F1()函数内的a 等于100
+```
+
+**
 
 ### 1.4 异步、单线程
 
