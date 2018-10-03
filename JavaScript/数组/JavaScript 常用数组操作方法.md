@@ -16,3 +16,17 @@ console.log(arr3) // [1, 2, 3, 4, 5]
 
 ## 2. join()
 
+`join()` 方法用于把数组中的所有元素放入一个字符串。
+
+元素是通过指定的分隔符进行分隔的，默认使用逗号`','`分割，不改变原数组。
+
+```javascript
+var arr = [2, 3, 4]
+console.log(arr.join()) // "2,3,4"
+console.log(arr) //[2, 3, 4]
+// 也可以给join()传入其他字符作为分隔符
+console.log(arr.join('-')) // "2-3-4"
+```
+
+
+
