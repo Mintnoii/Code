@@ -28,5 +28,31 @@ console.log(arr) //[2, 3, 4]
 console.log(arr.join('-')) // "2-3-4"
 ```
 
+## 3. push()
+
+`push()` 方法可向数组的末尾添加一个或多个元素，并返回新的长度。
+
+末尾添加，返回的是长度，会改变原数组。
+
+```javascript 
+var arr = [2, 3, 4]
+var result = arr.push(5)
+console.log(arr) // [2, 3, 4, 5]
+console.log(result) // 4
+```
+
+## 4. pop()
+
+`pop()` 方法用于删除并返回数组的最后一个元素。
+
+返回最后一个元素，会改变原数组。
+
+```javascript
+var arr = [2, 3, 4]
+var result = arr.pop()
+console.log(arr) // [2, 3]
+console.log(result) // 4
+```
+
 
 
