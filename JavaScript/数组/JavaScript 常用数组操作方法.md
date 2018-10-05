@@ -54,5 +54,29 @@ console.log(arr) // [2, 3]
 console.log(result) // 4
 ```
 
+## 5. shift()
 
+`shift()` 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
+
+返回第一个元素，改变原数组。
+
+```javascript
+var arr = [2, 3, 4]
+var result = arr.shift()
+console.log(arr) // [3, 4]
+console.log(result) // 2
+```
+
+## 6. unshift()
+
+`unshift()` 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+
+返回新长度，改变原数组。
+
+```javascript
+var arr = [2, 3, 4]
+var result = arr.unshift(1,6)
+console.log(arr) // [1, 6, 2, 3, 4]
+console.log(result) // 5
+```
 
