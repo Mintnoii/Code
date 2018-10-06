@@ -80,3 +80,18 @@ console.log(arr) // [1, 6, 2, 3, 4]
 console.log(result) // 5
 ```
 
+## 7. slice()
+
+`slice()`方法返回一个新的数组，包含从 start 到 end （不包括返回选定的元素，该方法不会修改原数组。该元素）的 arrayObject 中的元素。
+
+返回选定的元素，该方法不会修改原数组。
+
+```javascript
+var arr = [2, 3, 4, 5]
+var result = arr.slice(1,3)
+console.log(result) // [3, 4]
+console.log(arr) // [2, 3, 4, 5]
+```
+
+
+
