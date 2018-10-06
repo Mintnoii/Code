@@ -93,5 +93,26 @@ console.log(result) // [3, 4]
 console.log(arr) // [2, 3, 4, 5]
 ```
 
+## 8. splice()
+
+`splice(index,howmany,item1,.....,itemX)` 方法可删除从 index 处开始的零个或多个(howmany)元素，使用负数可从数组结尾处规定位置。并且用参数列表中声明的一个或多个值(item)来替换那些被删除的元素。
+
+如果从 arrayObject 中删除了元素，则返回的是含有被删除的元素的数组。
+
+splice() 方法会直接对数组进行修改。
+
+```javascript
+// 添加元素的情况
+var arr1 = [2, 3, 4, 5]
+console.log(arr1.splice(1, 0, 8)) // [2, 8, 3, 4, 5]
+console.log(arr1) // [2, 8, 3, 4, 5]
+// 删除元素的情况
+var arr2 = [6, 7, 8, 9]
+console.log(arr2.splice(1, 2, 3)) // [7, 8]
+console.log(arr2) // [6, 3, 9]
+```
+
+
+
 
 
