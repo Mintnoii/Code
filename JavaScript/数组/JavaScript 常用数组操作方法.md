@@ -112,6 +112,32 @@ console.log(arr2.splice(1, 2, 3)) // [7, 8]
 console.log(arr2) // [6, 3, 9]
 ```
 
+## 9. substring() 和 substr()
+
+相同点：如果只是写一个参数
+
+- substr(startIndex)
+- substring(startIndex)
+
+两者的作用都一样：都是是截取字符串从当前下标以后直到字符串最后的字符串片段。
+
+```javascript
+var str = '123456789'
+console.log(str.substr(2)) // '3456789'
+console.log(str.substring(2)) // '3456789'
+```
+
+不同点：第二个参数
+
+- substr（startIndex,lenth）： 第二个参数是截取字符串的长度（从起始点截取某个长度的字符串）
+- substring（startIndex, endIndex）： 第二个参数是截取字符串最终的下标 （截取2个位置之间的字符串,‘含头不含尾’）
+
+```javascript
+var str = '123456789'
+console.log(str.substr(2,5)) // '34567'
+console.log(str.substring(2,5)) // '345'
+```
+
 
 
 
