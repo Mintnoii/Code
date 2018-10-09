@@ -338,7 +338,7 @@ fn1() // this===window
 
 **this的几种使用场景：**
 
-- 作为构造函数执
+- 作为构造函数执行
 
   ```javascript
   function Foo(name){
@@ -444,9 +444,160 @@ var a=200
 f1() // 100 此时执行f1打印的仍然是这个函数定义时的父级作用域F1()函数内的a 等于100
 ```
 
-**
+**闭包的使用场景：**
+
+- 函数作为返回值（上面的示例代码）
+
+- 函数作为参数传递(函数自由变量要到父级作用域中找)
+
+  ```javascript
+  function F2(fn){
+  	var a=200
+  	fn() // (自由变量要到声明定义时的父作用域中找，和执行的作用域没有关系)
+  }
+  F2(f1) // 100 在F2内执f1()方法，去f1定义的作用域内找到a=100
+  ```
+
+#### 面试题
+
+1. 对变量提升的理解？
+
+   > 变量的定义
+   >
+   > 函数的声明（注意和函数表达式的区别）
+
+2. 说明this的几种不同使用场景？
+
+   > 参考上文的this知识点
+
+3. 创建10个`<a>`标签，点击的时候弹出来对应的序号？
+
+   ```javascript
+   var i
+   for(i=0;i<10;i++){
+   	(function(i){
+   	var a=document.createElement('a')
+       a.innerHTML=i+'<br>'
+       a.addEventListener('click',function(e){		   							e.preventDefault()
+      		alert(i)
+      	})
+      	document.body.appendChild(a)
+   	})(i)//相当于创建了10个函数 每个函数内的i都不同
+   }
+   ```
+
+4. 如何理解作用域？
+
+   > 自由变量
+   >
+   > 作用域链，即自由变量的查找
+   >
+   > 闭包的使用场景
+
+5. 实际开发中闭包的应用？
+
+   ```javascript
+   //闭包实际应用中主要用于封装变量，收敛权限
+   function isFirstLoad(){
+   	var _list=[] //  不想暴露出去的私有数组
+   	return function(id){
+       	if(_list.indexOf(id)>=0){
+   			return false
+       	}else{
+       		_list.push(id)
+           	return true
+       	}
+       }
+   }
+   //使用：判读是否是第一次加载
+   var firstLoad=isFirstLoad()
+   firstLoad(10) // true
+   firstLoad(10) // false
+   firstLoad(20) // true
+   ```
 
 ### 1.4 异步、单线程
+
+#### 什么是异步
+
+```javascript
+console.log(100) 
+setTimeout(function(){ 
+console.log(200) 
+},1000) 
+console.log(300) //100 300 200
+// 先打印100 再打印300 1s后打印200
+// 而不是先打印100 堵塞等待1s后打印200 最后打印300
+// 这就是异步
+```
+
+#### 前端使用异步的场景
+
+可能发生等待的情况下，等待过程不能像alert一样阻塞程序运行。
+
+1. 定时任务：setTimeout、setInterval
+2. 网络请求：ajax请求，动态img加载
+3. 事件绑定
+
+**异步示例：**
+
+```javascript
+console.log('start')
+$.get('./data1.json',function(data1){
+	console.log(data1)
+})
+console.log('end') // 'start'  'end'   data1
+ 
+ 
+console.log('start')
+var img=document.createElement('img')
+img.onload=function(){
+	console.log('loaded')
+} // 图片加载完执行
+img.src='/xx.png'
+console.log('end')// 'start' 'end' 'loaded'
+ 
+
+console.log('start')
+document.getElementById('btn1').addEventListener('click',function(){
+       alert('clicked')
+}) // 点击时才会执行
+console.log('end') // 'start' 'clicked' 'end'
+```
+
+#### 异步和单线程
+
+js 是单线程的语言，所以需要异步。
+
+上述定时器的异步代码的**执行过程**如下（其他异步函数也类似）：
+
+1. 执行第一行，打印100
+2. 执行setTimeout后，传入setTimeout的函数会被暂存起来，不会立即执行（单线程的特点，不能同时干两件事）
+3.  执行最后一行，打印 300
+4. 待所有程序执行完，处于空闲状态时，会立马看有没有暂存起来的函数要执行
+5. 发现暂存起来的setTimeout中的函数，在指定的时间后执行
+
+#### 面试题
+
+1. 同步和异步的区别是什么？分别举一个同步和异步的例子 
+
+   > 同步会阻塞代码执行，而异步不会 
+   > alert是同步，setTimeout是异步
+
+2. 一个关于setTimeout的笔试题?
+
+   ```javascript
+   console.log(1) 
+   setTimeout(function(){ 
+   console.log(2) 
+   },0) 
+   console.log(3) 
+   setTimeout(function(){ 
+   console.log(4) 
+   },1000) 
+   console.log(5) 
+   //1 3 5 2 4
+   ```
 
 ## 2. JS-WEB-API
 
