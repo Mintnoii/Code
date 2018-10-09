@@ -557,7 +557,7 @@ img.onload=function(){
 img.src='/xx.png'
 console.log('end')// 'start' 'end' 'loaded'
  
-
+ 
 console.log('start')
 document.getElementById('btn1').addEventListener('click',function(){
        alert('clicked')
@@ -597,6 +597,122 @@ js 是单线程的语言，所以需要异步。
    },1000) 
    console.log(5) 
    //1 3 5 2 4
+   ```
+
+### 1.5 补充知识
+
+#### 日期
+
+```javascript
+Date.now()  // 获取当前时间毫秒数 
+var dt=new Date() 
+dt.getTime()   // 获取毫秒数 
+dt.getFullYear()   // 年
+dt.getMonth()  // 月 (0-11)
+dt.getDate() // 日 (0-31)
+dt.getHours()   // 小时 (0-23) 
+dt.getMinutes() // 分钟 (0-59) 
+dt.getSeconds() // 秒 (0-59)
+```
+
+#### Math
+
+```javascript
+Math.random()
+// random 在实际中的应用有清除缓存的作用，是每次访问到的都不是缓存
+```
+
+#### 数组API
+
+- forEach  遍历所有元素
+- sort  数组排序
+- every  判断所有元素是否都符合条件 返回值为true或false
+- some  判断是否至少一个元素符合条件 返回值为true或false
+- filter 过滤符合条件的元素
+- map  对元素重新组装，生成新数组
+
+#### 对象API
+
+```javascript
+var obj={
+	x:100,
+	y:200,
+	z:300
+}
+var key
+for(key in obj){
+	// 注意这里的hasOwnProperty,在讲原型链时讲过
+	if(obj.hasOwnProperty(key)){
+		console.log(key,obj[key])
+	}
+}
+```
+
+#### 面试题
+
+1. 获取2017-06-10格式的日期 ？
+
+   ```javascript
+   function formatDate(dt){
+   	if(!dt){
+   		dt=new Date()
+       }
+       var year=dt.getFullYear()
+       var month=dt.getMonth()+1
+       var date=dt.getDate()
+       if(month<10){
+       	// 强制类型转换
+       	month="0"+month
+       }
+       if(date<10){
+       	//强制类型转换
+       	date="0"+month
+        }
+        return year+"-"+month+"-"+date
+   }
+   var dt=new Date()
+   var formatDate=formatDate(dt)
+   console.log(formatDate)
+   ```
+
+2. 获取随机数，要求是长度一致的字符串格式？
+
+   ```javascript
+   var random=Math.random()
+   var random=random + '0000000000'   //后面加上10个零 
+   var random=random.slice(0,10) // 获取到的随机数长度都为10
+   console.log(random)
+   ```
+
+3. 写一个能遍历对象和数组的通用forEach函数？
+
+   ```javascript
+   function myForEach(obj,fn){
+   	var key
+       // 准确判断是不是数组
+      	if(obj instanceof Array){
+           // 数组的foreach方面默认参数顺序就是(item、index)
+       	obj.forEach(function(item,index){
+       		fn(item,index)
+       	})
+     	}else{
+       	// 不是数组就是对象
+           for(key in obj){
+           	fn(key,obj[key])
+           }
+       }
+   }
+   // 测试 
+   var arr=['a','b','c']
+   myForEach(arr,function(item,index){
+       //注意，这里参数的顺序换了，为了和对象遍历出来的格式一致
+   	console.log(index,item)
+   })
+    
+   var obj={x:100,y:200}
+   myForEach(obj,function(key,value){
+   	console.log(key,value)
+   })
    ```
 
 ## 2. JS-WEB-API
