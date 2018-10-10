@@ -112,7 +112,7 @@ console.log(arr2.splice(1, 2, 3)) // [7, 8]
 console.log(arr2) // [6, 3, 9]
 ```
 
-## 9. substring() 和 substr()
+## 9.  substr()和substring()
 
 相同点：如果只是写一个参数
 
@@ -138,7 +138,30 @@ console.log(str.substr(2,5)) // '34567'
 console.log(str.substring(2,5)) // '345'
 ```
 
+## 10. sort()
 
+按照 Unicode code 位置排序，默认升序：
+
+```javascript
+var fruit = ['cherries', 'apples', 'bananas']
+fruits.sort() // ['apples', 'bananas', 'cherries']
+
+var scores = [1, 10, 21, 2]
+scores.sort() // [1, 10, 2, 21]
+```
+
+## 11. reverse()
+
+`reverse()` 方法用于颠倒数组中元素的顺序。
+
+返回的是颠倒后的数组，会改变原数组。
+
+```javascript
+var arr = [2, 3, 4]
+var result = arr.reverse()
+console.log(result) // [4, 3, 2]
+console.log(arr) // [4, 3, 2]
+```
 
 
 
