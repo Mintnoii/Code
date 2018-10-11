@@ -717,11 +717,374 @@ for(key in obj){
 
 ## 2. JS-WEB-API
 
-### 1. DOM操作
+**常说的JS(浏览器执行的JS)包括两部分：**
 
-### 2. Ajax
+- JS基础知识：ECMA 262标准
+- JS-WEB-API：W3C标准，它不参与规定任何JS基础相关的东西，不管什么变量类型、原型、作用域和异步，只管定义用于浏览器JS操作页面的API和全局变量
 
-### 3. 事件绑定
+所以全面的考虑，JS内置的全局函数和对象有哪些？
+
+- Object、 Array 、RegExp 、Function、 Error、 Date 、Number、 Boolean、 String、Math、JSON
+- 以及window、document、navigator...
+
+### 2.1 DOM操作
+
+#### DOM的本质
+
+Document  Object  Model文档对象模型可以理解为：
+浏览器把拿到的html代码，将其结构化成为一个浏览器能识别，并且js可操作的一个模型而已。
+
+#### 获取DOM节点
+
+```javascript
+var div1 = document.getElementById('div1') // 元素 
+var divList = document.getElementsByTagName('div') // 集合 
+console.log(divList.length) 
+console.log(divList[0])
+ 
+var containerList = document.getElementsByClassName('.contaner') // 集合 
+var pList = document.querySelectorAll('p') // 集合 
+```
+
+#### DOM节点的操作
+**property**
+
+```javascript
+// 获取到的DOM节点都是JS可操作的js对象,所以浏览器对它的property有一些规定的可以扩展的属性
+var pList = document.querySelectorAll('all')
+var p = pList[0]
+console.log(p.style.width) // style属性获取样式
+p.style.width = '100px' // 修改样式
+console.log(p.className) // 获取class
+p.className = 'p1'
+
+// 获取nodeName和nodeType 
+console.log(p.nodeName) 
+console.log(p.nodeType) 
+```
+
+**Attribute**
+
+```javascript
+// 获取到的DOM节点是一个可扩展属性的JS对象，但同时它指向的html元素也有一些可以设置的Attribute属性
+var pList = document.querySelectorAll('all')
+var p = pList[0]
+p.getAttribute('data-name')
+p.setAttribute('data-name', 'theP')
+p.getAttribute('style')
+p.setAttribute('style', 'font-size:30px')
+```
+
+#### DOM结构的操作
+
+- 新增节点
+
+  ```javascript
+  var div1 = document.getElementById('div1')
+  // 添加新节点
+  var p1 = document.creatElement('p')
+  p1.innerHtml = 'this is p1'
+  div1.appendChild(p1) // 添加新创建的元素
+  // 移动已有节点
+  var p2 = document.getElementById('p2')
+  div1.appendChild(p2)
+  ```
+
+- 查询子节点
+
+  ```javascript
+  var parent = div1.parentElement
+  ```
+
+- 查询父节点
+
+  ```javascript
+  var child = div1.childNodes
+  ```
+
+- 删除节点
+
+  ```javascript
+  div1.removeChild(child[0])
+  ```
+
+#### 面试题
+
+1. dom是哪种基本的数据结构？
+
+   > - 树
+
+2. Dom操作的常用API有哪些？
+
+   > 1. 获取DOM节点，以及节点的property和Attribute 
+   > 2. 获取父节点，获取子节点  childNodes/ parentNode
+   > 3. 新增节点，删除节点
+
+3. Dom节点的Attribute和Property有和区别？ 
+
+   > 1. property只是一个JS对象的属性的修改 
+   > 2. Attribute是对html标签属性的修改
+
+### 2.2 BOM操作
+
+#### BOM的本质
+
+Browser  Object  Model浏览器对象模型可以理解为：
+通过浏览器对象可以获取页面加载的元素之外的那些关于浏览器的信息。
+
+####  navigator
+
+```javascript
+var ua = navigator.userAgent // 或者通过window.navigator来访问，下同
+var isChrome = ua.indexOf(‘Chrome’) 
+console.log(isChrome) 
+```
+
+#### screen
+
+```javascript
+window.screen.width // 屏幕的像素宽度
+screen.top // 屏幕距上边的距离
+```
+
+#### location
+
+```javascript
+location.href // 设置或返回完整的完整的URL 'https://www.test.com:1234/video/av32033435/?p=38'
+location.protocol // 设置或返回当前 URL 的协议 'https:'
+location.host // 设置或返回主机名和当前 URL 的端口号 'www.test.com:1234'
+location.hostname // 设置或返回当前 URL 的主机名 'www.test.com'
+location.port // 设置或返回当前 URL 的端口号 '1234'
+location.pathname // 设置或返回当前 URL 的路径部分  '/video/av32033435/'
+location.search // 设置或返回从问号 (?) 开始的 URL（查询部分）'?p=38'
+location.hash = '#demo' // 设置或返回从井号 (#) 开始的 URL（锚）
+```
+
+#### history
+
+```javascript
+histort.forward()
+history.back() 
+history.go(-1)
+```
+
+### 2.3 事件
+
+#### 事件冒泡
+
+在父级 div 中定义的事件，会在子级的事件执行之后冒泡上来执行
+
+- 阻止事件冒泡 e.stopPropagation()
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div1">
+      <p id="p1">激活</p>
+      <p id="p2">取消</p>
+      <p id="p3">取消</p>
+      <p id="p4">取消</p>
+    </div>
+    <div id="div2">
+      <p id="p5">取消</p>
+      <p id="p6">取消</p>
+    </div>
+ 
+ 
+    <script type="text/javascript">
+    // 利用阻止冒泡的机制实现：只点击 p1 的时候弹窗激活
+      function bindEvent(elem,type,func) {
+        elem.addEventListener(type,func)
+      }
+      var p1 = document.getElementById('p1')
+      bindEvent(p1,'click',function(e){
+        e.stopPropagation()
+        alert('激活')
+      })
+      bindEvent(body,'click',function (e) {
+        alert('取消')
+      })
+    </script>
+  </body>
+</html>
+```
+
+#### 事件代理
+
+利用事件冒泡和事件监听来实现事件代理(事件委托)：使代码简洁，减少浏览器内存占用
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <ul id="list">
+  		<li id="item1">项目1</li>
+  		<li id="item2">项目2</li>
+  		<li id="item3">项目3</li>
+        <!-- 随时会新增更多的 li 标签 -->
+	</ul>
+    <script type="text/javascript">
+      // 要求用代理的方式实现 动态事件绑定，绑定 div1 中的所有 a 标签
+      var list = document.getElementById('list')
+      function bindEvent(elem,type,func) {
+        elem.addEventListener(type,func)
+      }
+        
+      bindEvent(list,'click',function(e){
+        console.log(e) // MouseEvent
+        console.log(e.target) //  完整的li标签对象
+        console.log(e.target.nodeName) // 都是大写
+        if(e.target && e.target.nodeName == "LI"){
+          alert(e.target.id + e.target.innerHTML)
+        }
+      })
+    </script>
+  </body>
+</html>
+```
+
+#### 通用的事件绑定
+
+```javascript
+function bindEvent(elem, type, selector, fn) {
+    if (fn == null) {
+        fn = selector
+        selector = null
+    }
+    elem.addEventListener(type, function(e){
+        var target
+        if (selector) {
+            // 代理
+            target = e.target
+            // 使用Element.matches 精确匹配 需要 IE9 及以上的现代化浏览器版本
+            if (target.matches(selector)) {
+                fn.call(target, e)
+            }
+        } else {
+            // 非代理
+            fn(e)
+        }
+    })
+}
+```
+
+```javascript
+// 使用代理
+var list = document.getElementById('list')
+bindEvent(list, 'click', 'list.test', function (e) {
+    console.log(this.innerHTML)
+})
+
+// 不使用代理
+var a = document.getElementById('a1')
+bindEvent(a, 'click', function (e) {
+    console.log(a,innerHTML)
+})
+```
+
+### 2.4 Ajax、跨域
+
+#### XMLHttpRequest
+
+```javascript
+// 指定了请求目标，也明确了如何处理之后，就可以发送请求了
+var request = new XMLHttpRequest() 
+request.open('GET',url,true) // 指定请求目标，三个参数，1.GET or POST 2.请求路径 3.是否异步 （默认true，可以不写）
+request.onreadystatechange() = function(){
+ 
+    if(request.readyState === 4){
+        // 请求完成
+        if(request.status === 200){
+            // 请求成功，获得一个成功的响应,此后可以开始请求成功后的处理
+            console.log(request.responseText)//responseText 保存文本字符串格式
+            request.responseXML//responseXML 保存 Content-Type 头部中指定为 "text/html" 的数据
+        }else{
+            // 请求失败，根据响应码判断失败原因
+            console.log('error,status:'+request.status)
+        }
+    }else{
+        // 请求还在继续
+    }
+}
+```
+
+- IE低版本使用 ActiveXObject，和W3C标准不一样
+
+#### 状态码
+
+```javascript
+0 -（未初始化）还没有调用send()方法 
+1 -（载入）已调用send()方法，正在发送请求 
+2 -（载入完成）send()方法执行完成，已经接收得到全部响应内容 
+3 - (交互)正在解析响应内容 
+4 -（完成）响应内容解析完成，可以在客户端调用了
+ 
+2xx - 表示成功处理请求。如200 
+3xx - 需要重定向，浏览器直接跳转 
+4xx - 客户端请求错误，如404 
+5xx - 服务器端错误，如500
+```
+
+#### 跨域
+
+- 浏览器有同源策略，不允许ajax访问其他域接口
+
+- 跨域条件：协议、域名、端口，有一个不同就算跨域
+
+- 所有的跨域请求都必须经过信息提供方允许
+
+- 但是有三个标签允许跨域加载资源
+
+  ```html
+  <img src="xxx">
+  <link href="xxx">
+  <script src="xxx">
+  ```
+
+- 三个标签的使用场景
+
+  > img 用于打点统计，统计网站可能是其他域
+  >
+  > link、script 可以使用CDN，CDN的也是其他域
+  >
+  > script 可以用于JSONP
+
+- **JSONP实现原理**
+
+  1. 提前定义好跨域请求的接口要返回的函数
+  2. 通过script跨域加载js文件，绕过浏览器的同源策略
+  3. 加载请求的js文件，同时执行callback函数 得到请求的数据
+
+  ```javascript
+  <script>
+  window.callback = function (data) {
+      // 这是执行请求得到的信息
+      console.log(data)
+  }
+  <script/>
+  <script src = "http://demo.com/api.js"><script/>
+  // 该接口讲返回 callback({x:10, y:20})
+  ```
+
+- 服务端设置 http header 也可以解决跨域问题
+
+  ```javascript
+  // 不同的后端语言会有不同
+  response.setHeader("Access-Control-Allow-Origin", "http://test.com") // 不建议直接写 '*'
+  ```
+
+### 2.5 存储
+
+
 
 ## 3. JS开发环境
 
