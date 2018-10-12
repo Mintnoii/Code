@@ -1084,20 +1084,288 @@ request.onreadystatechange() = function(){
 
 ### 2.5 存储
 
+#### cookie
 
+- 本身用于客户端和服务端通信
+- 但是它有本地存储的功能，于是就被 ”借用“
+- 使用 document.cookie = ... 获取和修改即可
+
+缺点：
+
+- 数据存储量太小，只有4kb
+- 所有http请求都带着，会影响获取资源的效率
+- API简单，需要封装才能用
+
+#### localStorage、sessionStorage
+
+- HTML5专门为存储而设计，最大容量 5M
+- API简单易用：localStorage.setItem( key, val )   localStorage.getItem( key )
+- sessionStorage保存的数据会在浏览器或会话关闭后被清除，而localStorage不会，所以更常用localStorage
+- IOS safari 隐藏模式下，localStorage.getItem 会报错，建议统一使用 try-catch 封装 
+
+#### 区别
+
+- 容量 4kb VS 5M
+- 是否会携带到ajax请求中
+- API易用性
 
 ## 3. JS开发环境
 
 ### 开发环境：
 
-### 1. 版本管理
+### 3.1 版本管理
 
-### 2. 模块化
+```bash
+git add . /*添加所有的修改*/
+git checkout xxx /*切换到某个版本*/
+git commit -m 'xxx' /*将添加的修改文件提交到本地暂存区，并为提交记录添加备注*/
+git push origin master /*将修改提交到远程代码库*/
+git pull origin master /*拉取远程仓库的更新*/
 
-### 3. 打包工具
+git branch xxx /*查看或切换到某个分支*/
+git checkout -b xxx /*新建并切换到某个分支*/
+git merge xxx /*将xxx分支的修改合并到当前分支*/
+```
+
+### 3.2 模块化
+
+#### 不使用模块化的情况
+
+- 工具函数库util.js 里的 getFormatDate 基础底层函数
+- 自定义的工具函数文件a-util.js里的 aGetFormatDate 函数要依赖于 getFormatDate 底层函数
+- 在a.js文件中使用自定义的 aGetFormatDate
+
+```javascript
+// util.js 
+function getFormatDate(date, type) {
+    // type === 1 返回 2018-10-12
+    // type === 2 返回 2018年10月12日
+    // ...
+}
+// a-util.js 
+function aGetFormatDate(date) {
+    // 要求返回 2018年10月12日 格式
+    return getFormatDate(date, 2)
+}
+// a.js
+var dt = new Date()
+console.log(aGetFormatDate(dt))
+```
+
+```html
+<script src="util.js"></script>
+<script src="a-util.js"></script>
+<script src="a.js"></script>
+
+<!-- 1.除了各文件加载顺序的问题，这些代码中的函数还必须是全局变量，才能暴露给使用方。全局变量污染-->
+<!-- 2.a.js知道要引用 a-util.js,但是不知道它还需要依赖于util.js或其他文件-->
+```
+
+#### 使用模块化
+
+```javascript
+// util.js 将其中的getFormatDate函数导出
+export {
+	getFormatDate: function (date, type) {
+    	// type === 1 返回 2018-10-12
+    	// type === 2 返回 2018年10月12日
+    	// ...
+	}
+}
+// a-util.js 引入依赖的util.js并将自己的aGetFormatDate函数导出
+var getFormatDate = require('util.js')
+export {
+	aGetFormatDate: function (date) {
+    	// 要求返回 2018年10月12日 格式
+    	return getFormatDate(date, 2)
+	}
+}
+// a.js 引入需要的a-util.js 使用其导出的方法
+var aGetFormatDate = require('a-util.js')
+var dt = new Date()
+console.log(aGetFormatDate(dt))
+```
+
+- 使用时可以直接只加载a.js，其他的文件会根据依赖关系自动引用
+- 工具函数中的两个函数，没必要写成全局变量，不会带来污染和覆盖
+
+#### AMD
+
+- require.js 遵循AMD模块化加载规范
+- 全局 define 函数定义引用文件
+- 全局 require 函数用来引用文件
+- 依赖的JS文件会自动 异步加载
+
+**使用require.js:**
+
+```javascript
+// 首先定义入口文件main.js
+require(['./a.js'], function(a) {
+    // 引入a.js文件并把它返回的对象作为参数a传递进来
+    var dt = new Date()
+	console.log(aGetFormatDate(dt))
+})
+
+// a.js
+define(['./a-util.js'], function(aUtil) {
+    // 只有define的函数才可以被require
+    return {
+        printDate: function (date) {
+            console.log(aUtil.aGetFormatDate(date))
+        }
+    }
+})
+// a-util.js
+define(['./util.js'], function (util) {
+    return {
+        aGetFormatDate: function (date) {
+    	return getFormatDate(date, 2)
+		}
+    }
+})
+// util.js
+define(function(){
+    // 底层工具函数，没有要引入依赖的文件
+    return {
+        getFormatDate: function (date, type) {
+    		// type === 1 返回 2018-10-12
+    		// type === 2 返回 2018年10月12日
+    		// ...
+		}
+    }
+})
+```
+
+```html
+<script src="/require.min.js" data-main="./main.js"></script> 
+<!--在html中引入require.js同时使用data-main属性加载入口文件main.js-->
+<!--一个页面只能引用一次requirejs，只能有一个入口文件，如强行引用多个requirejs与入口文件，则只会加载顺序最前面的那个。-->
+```
+
+#### CommonJS
+
+- nodejs 模块化规范，现在被大量的在前端使用
+- 前端开发依赖的插件和库，都可以从npm中获取
+- 构建工具的高度自动化，使得使用npm的成本非常低
+- CommonJS 不会异步加载JS，而是同步一次性加载出来
+
+**使用CommonJS：**
+
+配合打包工具webpack一起使用
+
+```javascript
+// util.js
+module.exports = {
+    getFormatDate: function (date, type) {
+        // ...
+    }
+}
+// a-util.js
+var util = require('util.js')
+module.exports = {
+    aGetFormatDate: function (date) {
+        return util.getFormatDate(date)
+    }
+}
+```
+
+### 3.3 打包工具
+
+#### webpack
+
+**遵循CommonJS规范使用构建打包工具webpack实现模块化：**
+
+- 安装node 与 npm后(可npm全局安装http-server模块，开启一个本地服务)，新建项目demo
+
+- 进入项目文件夹demo，`npm init` 初始化项目的npm环境，填写项目信息，生成package.json文件
+
+- `npm install webpcak --save-dev`安装开发环境下的webpack
+
+- `npm install jquery --save` 为项目安装jQuery
+
+- 在项目中新建一个 webpack.config.js 文件 和 src 文件夹
+
+  ```javascript
+  const path = require('path')
+  const webpack = require('webpack')
+  
+  module.exports = {
+      context: path.resolve(__dirname, './src'), // __dirname 代表项目目录
+      entry: {
+      	app: './app.js' // 入口文件为src下的app.js
+  	},
+      output: {
+          path: path.resolve(__dirname, './dist')
+          filename: 'bundle.js'  // 处理之后输出的文件
+      }
+  }
+  ```
+
+- 在 package.json 文件的 scripts 对象里加一行代码
+
+  ```javascript
+  "start": "webpack"
+  ```
+
+- 在终端执行 `npm start` 启动webpack，可以在项目中新生成的dist 文件夹内发现打包后的bundle.js文件
+
+- 在项目根目录下的index.html文件中引入打包后的bundle.js
+
+  ```html
+  <body>
+      <div id="test"></div>
+      
+      <script src="dist/bundle.js"></script>
+  </body>
+  ```
+
+- 接下来的开发，可以直接在app.js 中引入并使用 a-util.js (自己编写的代码都在src文件夹下) 或 jQuery
+
+  ```javascript
+  var $ = require('jquery')
+  var $testDiv = $('#test')
+  $testDiv.html('<p>这是 jQuery 插入的文字 </p>')
+  
+  var aUtil = require('a-util.js')
+  var dt = new Date()
+  console.log(aUtil.aGetFormatDate(dt))
+  ```
+
+**使用webpack压缩JS代码:**
+
+- 如果进行代码压缩，只需要在 webpack.config.js 文件中配置 plugins
+
+  ```javascript
+  plugins: {
+      new webpack.optimize.UglifyJSPlugin() // 压缩js
+      // 具体配置压缩规则(压缩html、css等)请看官网文档
+  }
+  ```
+
+#### linux基础命令
+
+```bash
+1. mkdir a      // 在当前目录中创建一个空文件夹'a'
+2. ls           // 查看当前目录下的文件
+3. ll           // ls -l 的简写
+4. cd a         // 进入当前目录下的 a 目录
+5. pwd          // 查看当前目录的路径
+6. cd ..        // 返回上层目录
+7. rm -rf a     // 删除文件夹 a
+8. vi a.js      // 或者 vim ；编辑 a.js 文件，写入新的内容并保存则会创建；键入 i 进入插入模式，ESC 返回刚刚的模式 :w 保存 :q 退出 :wq 保存并退出
+9. cp a.js a1.js  // 拷贝 a.js 存入 a1.js 
+10. mv a1.js <new dir>  // 将 a1.js 移动到新的文件夹下
+11. rm a.js         // 删除 a.js
+12. cat a.js    // 查看 a.js 
+13. head a.js   // 查看头部内容
+14. tail a.js   // 查看尾部内容
+15. head -n 1 a.js   // 查看第一行
+16. tail -n 2 a.js   // 查看后两行
+16. grep '2' a.js    // 搜索 包含 '2'
+```
 
 ### 运行环境：
 
-### 1. 页面渲染
+### 3.4 页面渲染
 
-### 2. 性能优化
+### 3.5 性能优化
