@@ -163,5 +163,34 @@ console.log(result) // [4, 3, 2]
 console.log(arr) // [4, 3, 2]
 ```
 
+## 12. indexOf()和lastIndexOf()
 
+都接受两个参数：查找的值、查找起始位置。
+
+不存在，返回 -1 ；存在，返回位置。
+
+indexOf 是从前往后查找， lastIndexOf 是从后往前查找。
+
+**indexOf：**
+
+```javascript
+var arr = [2, 5, 8]
+arr.indexOf(5) // 1
+arr.indexOf(3) // -1
+
+if (arr.indexOf(7) === -1) {
+    // element doesn't exist in array
+}
+```
+
+**lastIndexOf：**
+
+```javascript
+var arr = [2, 5, 7, 2]
+arr.lastIndexOf(2) // 3
+arr.lastIndexOf(6) // -1
+arr.lastIndexOf(5, 3) // 从位置3开始向前查找，返回匹配元素的下标 1
+arr.lastIndexOf(2, 2) // 0
+arr.lastIndexOf(2, -1) // 3
+```
 
