@@ -194,3 +194,41 @@ arr.lastIndexOf(2, 2) // 0
 arr.lastIndexOf(2, -1) // 3
 ```
 
+## 13. forEach()
+
+遍历数组的每一项，为每个数组元素执行callback函数。
+
+没有返回值，对原数组也没有影响。
+
+```javascript
+const arr = [2, 4, 6]
+const copy = []
+
+arr.forEach(item => {
+    copy.push(item)
+})
+```
+
+## 14. every()
+
+对数组的每一项都运行给定的函数，每一项都返回 ture，则返回 true。
+
+```javascript
+[2, 5, 8, 4].every((element, index, array) => {
+    return element < 10
+}) // true
+```
+
+## 15. some()
+
+对数组的每一项都运行给定的函数，任意一项都返回 ture，则返回 true。
+
+```javascript
+function compare(element, index, array) {
+    return element > 10
+} // true
+
+[2, 4, 5, 3, 8].some(compare) // false
+[3, 14, 7, 5].some(compare) // true
+```
+
