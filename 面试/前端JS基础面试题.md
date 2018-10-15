@@ -20,14 +20,14 @@
 
 ```javascript
 // 问题1：使用typeof运算符查看JS变量类型
-console.log(typeof undefined);      //undefined
-console.log(typeof 'abc');  //string
-console.log(typeof 123);    //number
-console.log(typeof true);   //boolean
-console.log(typeof {});     //object
-console.log(typeof []);     //object
-console.log(typeof null);       //object
-console.log(typeof console.log);    //function
+console.log(typeof undefined)      // undefined
+console.log(typeof 'abc')  // string
+console.log(typeof 123)   // number
+console.log(typeof true)   // boolean
+console.log(typeof {})    // object
+console.log(typeof [])    // object
+console.log(typeof null)       // object
+console.log(typeof console.log)    //function
 ```
 
 ```javascript
@@ -168,14 +168,14 @@ console.log(p.name) // zhangsan
 4. 所有的引用类型（数组、对象、函数），`_proto_`属性值指向**它的构造函数的**`“prototype”`属性值。
 
 ```javascript
-var obj = {}; obj.a = 100;
-var arr = []; arr.a = 100;
+var obj = {}; obj.a = 100
+var arr = []; arr.a = 100
 function fn() {}
-fn.a = 100;
+fn.a = 100
 
-console.log(obj._proto_);
-console.log(arr._proto_);
-console.log(fn._proto_);
+console.log(obj._proto_)
+console.log(arr._proto_)
+console.log(fn._proto_)
 
 console.log(fn.prototype)
 
@@ -1368,4 +1368,109 @@ module.exports = {
 
 ### 3.4 页面渲染
 
+#### 加载资源的形式
+
+- 输入 url (或跳转页面) 加载 html
+- 加载 html 中的静态资源 `<img>` `<script>` `<video>` CSS等
+
+#### 加载一个资源的过程
+
+- 浏览器根据 DNS 服务器得到域名的 IP 地址
+- 向这个 IP 的服务器发送 http 请求
+- 服务器收到请求，处理并返回 http 请求
+- 浏览器得到返回内容
+
+#### 浏览器渲染页面的过程
+
+- 根据 HTML 结构生成 DOM Tree
+- 根据 CSS 生成 CSSOM
+- 将 DOM 和 CSSOM 整合形成 RenderTree
+- 浏览器根据 RenderTree开始渲染和展示
+- 遇到`<script>` 时，会执行并阻塞渲染，因为JS有可能改变DOM树结构
+- 而 img、 video则是异步加载，不会阻塞渲染
+
+**window.onload 和 DOMContentLoaded**
+
+```javascript
+window.addEventListener('load', function () {
+    // 页面的全部资源加载完才会执行，包括图片、视频等
+})
+
+document.addEventListener('DOMContentLoaded', function () {
+    // DOM 渲染完即可执行，此时图片、视频可能还没有加载完
+})
+```
+
 ### 3.5 性能优化
+
+#### 优化原则
+
+- 多使用内存、缓存或者其他方法
+- 减少 CPU 计算、减少网络请求
+
+#### 优化方向
+
+1. 加载资源优化
+
+   - 静态资源的压缩合并
+   - 静态资源缓存（通过控制请求的文件名称）
+   - 使用 CDN 让资源加载更快
+   - 使用 SSR 后端渲染，数据直接输出到 HTML 中
+
+2. 渲染优化
+
+   - CSS 放前面，JS 放后面
+
+   - 懒加载（图片懒加载、下拉加载更多）
+
+     ```html
+     <!--先在页面中使用一张体积比较小或缓存中的图片 preview.png-->
+     <img id="img1" src="preview.png" data-realsrc="abc.png"/>
+     <!-- 把图片资源请求过来之后再替换标签的src地址-->
+     <script>
+         var img1 = document.getElementById('img1')
+         img1.src = img1.getAttribute('data-realsrc')
+     </script>
+     ```
+
+   - 减少DOM 查询，对 DOM 查询做缓存
+
+   - 减少DOM 操作，多个操作（查询、插入）尽量合并在一起执行
+
+   - 事件节流（监听键盘、鼠标的事件时设置触发条件）
+
+     ```javascript
+     var textarea = document.getElementById('text')
+     var timeoutId 
+     textarea.addEventListener('keyup', function () {
+         if(timeoutId) {
+             clearTimeout(timeoutId)
+         }
+         timeoutId = setTimeout(function () {
+             // 触发change事件
+         },1000)
+     })
+     ```
+
+   - 尽早执行操作（如 DOMContentLoaded ）
+
+### 3.6 安全性
+
+#### XSS(Cross Site Scripting) 跨站请求攻击
+
+- 在页面中偷偷插入一段 script 代码
+- 在攻击代码中，获取页面查看者的cookie，发送到攻击者的服务器
+
+**防范：**
+
+- 前端替换关键字，例如替换 < 为 `&lt;` 等
+- 更好的方案是后端替换
+
+#### XSRF （Cross-site request forgery） 跨站请求伪造
+
+- 登录一个购物网站浏览商品，而该网站的付费购买接口是xxx.com/pay?id=10
+- 然后可能会收到邮件，其中隐藏着对购物网站（已登录）没有任何验证的购买请求`<img src = "xxx.com/pay?id=10">`
+
+**防范：**
+
+- 增加验证流程，如指纹、密码、短信验证码
