@@ -232,3 +232,27 @@ function compare(element, index, array) {
 [3, 14, 7, 5].some(compare) // true
 ```
 
+## 16. filter()
+
+对数组的每一项都运行给定的函数，返回结果为 ture 的项组成的数组。
+
+```javascript
+var arr = ['apple', 'pear', 'banana', 'watermelon', 'grapefruit']
+var res = arr.filter(function (fruit) {
+    fruit.length < 6
+})
+console.log(res) // ['apple', 'pear']
+```
+
+## 17. map()
+
+对数组的每一项都运行给定的函数，返回每次函数调用的结果组成一个新数组。
+
+```javascript
+var arr = [2, 4, 6]
+var res = arr.map(function (item) {
+    return item * 2
+})
+console.log(res) // [4, 8, 12]
+```
+
