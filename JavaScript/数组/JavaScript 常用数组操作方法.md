@@ -1,5 +1,7 @@
 # JavaScript 常用数组操作方法
 
+## ES5数组操作方法
+
 ## 1. concat()
 
 `concat()` 方法用于连接两个或多个数组。
@@ -254,5 +256,25 @@ var res = arr.map(function (item) {
     return item * 2
 })
 console.log(res) // [4, 8, 12]
+```
+
+## ES6新增新操作数组的方法
+
+## 1. find()
+
+传入一个回调函数，找到数组中符合当前搜索规则的第一个元素，返回它，并且终止搜索。
+
+```javascript
+let arr = [1, '2', 3, '3', '2']
+console.log(arr.find(n => typeof n === "number")) // 1
+```
+
+## 2. findIndex()
+
+传入一个回调函数，找到数组中符合当前搜索规则的第一个元素，返回它的下标，终止搜索。
+
+```javascript
+let arr = [1, '2', 3, '3', '2']
+console.log(arr.find(n => typeof n === "number")) // 0
 ```
 
