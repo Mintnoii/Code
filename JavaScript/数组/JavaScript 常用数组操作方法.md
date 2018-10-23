@@ -278,3 +278,30 @@ let arr = [1, '2', 3, '3', '2']
 console.log(arr.find(n => typeof n === "number")) // 0
 ```
 
+## 3. fill()
+
+`fill(value, start, end)`用新元素替换掉数组内的元素，可以指定替换下标范围。
+
+```javascript
+let arr = [1, 2, 3, 4]
+console.log(array1.fill(0, 2, 4) // [1, 2, 0, 0]
+console.log(array1.fill(5, 1)) // [1, 5, 5, 5]
+console.log(array1.fill(6)) // [6, 6, 6, 6]
+```
+
+## 4. copyWithin()
+
+`copyWithin(target, start, end)`选择数组的某个下标，从该位置开始复制数组元素，默认从0开始复制。
+
+也可以指定要复制的元素范围。
+
+```javascript
+let arr = [1, 2, 3, 4, 5]
+console.log(arr.copyWithin(3))
+// [1,2,3,1,2] 从下标为3的元素开始，复制数组，所以4, 5被替换成1, 2
+console.log(arr.copyWithin(3, 1))
+// [1,2,3,2,3] 从下标为3的元素开始，复制数组，指定复制的第一个元素下标为1，所以4, 5被替换成2, 3
+console.log(arr.copyWithin(3, 1, 2))
+// [1,2,3,2,5] 从下标为3的元素开始，复制数组，指定复制的第一个元素下标为1，结束位置为2，所以4被替换成2
+```
+
