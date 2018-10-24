@@ -305,3 +305,31 @@ console.log(arr.copyWithin(3, 1, 2))
 // [1,2,3,2,5] 从下标为3的元素开始，复制数组，指定复制的第一个元素下标为1，结束位置为2，所以4被替换成2
 ```
 
+## 5. from()
+
+将类似数组的对象（array-like object）和可遍历（iterable）的对象转为真正的数组。
+
+```javascript
+const bar = ['a', 'b', 'c']
+console.log(Array.from(bar)) // ['a', 'b', 'c']
+Array.from('abc') // ['a', 'b', 'c']
+```
+
+## 6. of()
+
+用于将一组值，转换为数组。
+
+这个方法的主要目的，是弥补数组构造函数 Array() 的不足。
+
+因为参数个数的不同，会导致 Array() 的行为有差异。
+
+```javascript
+Array() // []
+Array(3) // [, , ,]
+Array(3, 11, 8) // [3, 11, 8]
+
+Array.of(3) // [3]
+Array.of(3, 11, 8) // [3, 11, 8]
+
+```
+
