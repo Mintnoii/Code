@@ -339,5 +339,40 @@ Array.of(3, 11, 8) // [3, 11, 8]
 ```javascript
 // 数组
 const arr = ['a', 'b', 'c']
+for (let v of arr.entries()) {
+    console.log(v)
+}
+// [0, 'a'] [1, 'b'] [2, 'c']
+
+// Set
+const arr = new Set(['a', 'b', 'c'])
+for (let v of arr.entries()) {
+    console.log(v)
+}
+// ['a', 'a'] ['b', 'b'] ['c', 'c']
+
+// Map
+const arr = new Map()
+arr.set('a', 'a')
+arr.set('b', 'b')
+for (let v of arr.entries()) {
+    console.log(v)
+}
+// ['a', 'a'] ['b', 'b'] 
+```
+
+## 8. keys()和values()
+
+返回迭代器：分别返回键值对的key和value
+
+```javascript
+// 上面的例子 keys的返回结果
+// 0 1 2
+// 'a' 'b' 'c'
+// 'a' 'b'
+// 上面的例子 values返回结果
+// 'a' 'b' 'c'
+// 'a' 'b' 'c'
+// 'a' 'b'
 ```
 
