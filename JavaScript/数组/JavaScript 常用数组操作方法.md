@@ -376,3 +376,17 @@ for (let v of arr.entries()) {
 // 'a' 'b'
 ```
 
+## 9. includes()
+
+判断数组中是否存在该元素，参数：查找的值、起始位置
+
+以替换 ES5 时代的 indexOf 判断方式。
+
+indexOf 判断元素是否为 NaN，会判断错误。
+
+```javascript
+let arr = [1, 2, 3]
+arr.includes(2) // true
+arr.includes(4) // false
+```
+
