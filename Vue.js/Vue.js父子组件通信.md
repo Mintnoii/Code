@@ -41,6 +41,30 @@ new Vue({
 
 ## `$emit`
 
+触发当前实例上的事件。附加参数都会传给监听器回调。
+
+```vue
+<div id="app">
+    <my-button @greet="sayHi"></my-button>
+</div>
+
+let MyButton = Vue.extend({
+	template: '<button @click="triggerClick">click</button>',
+	data () {
+		return {
+			greeting: 'Vue.js!'
+		}
+	},
+	methods: {
+		triggerClick () {
+			this.$emit('greet', this.greeting)
+		}
+	}
+})
+```
+
+
+
 ## `.sync`
 
 ## `$attrs` 和 `$listeners`
