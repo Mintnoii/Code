@@ -61,6 +61,18 @@ let MyButton = Vue.extend({
 		}
 	}
 })
+
+new Vue({
+	el: '#app',
+	components: {
+		MyButton
+	},
+	methods: {
+		sayHi (val) {
+			alert('Hi,' + val) // 'Hi, vue.js'
+		}
+	}
+})
 ```
 
 
