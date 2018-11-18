@@ -75,7 +75,9 @@ new Vue({
 })
 ```
 
-
+1. 点击页面上的按钮，会触发MyButton组件上的监听事件triggerClick
+2. triggerClick方法会通知greet回调函数，同时把参数this.greeting传递过去
+3. vue实例中greet回调执行时，会触发sayHi方法，同时得到组件传递过来的this.greeting参数
 
 ## `.sync`
 
