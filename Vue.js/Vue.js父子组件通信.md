@@ -79,7 +79,11 @@ new Vue({
 2. triggerClick方法会通知greet回调函数，同时把参数this.greeting传递过去
 3. vue实例中greet回调执行时，会触发sayHi方法，同时得到组件传递过来的this.greeting参数
 
-## `.sync`
+## `.sync修饰符`
+
+一个编译时的语法糖，它会被扩展为一个自动更新父组件属性的 v-on 监听器。
+
+也就是让我们手动进行更新父组件中的值，从而使数据改动来源更加的明显。
 
 ## `$attrs` 和 `$listeners`
 
