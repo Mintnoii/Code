@@ -138,11 +138,10 @@ npm i webpack webpack-cli -D
 
 从webpack v4.0.0 开始可以一个配置文件都不写，实现零配置。
 
-首先创建webapck默认的开发阶段的src文件夹用来存放项目源代码，以及项目入口文件index.js。也可以同时创建一个html页面文件。
+首先创建webapck默认的开发阶段的src文件夹用来存放项目源代码，以及项目入口文件index.js。
 
 ```cmd
 cd webpack-demo
-touch index.html
 mkdir src && cd src
 touch index.js
 ```
@@ -162,7 +161,7 @@ touch index.js
 
 ### 自定义配置文件
 
-实际情况下大多数项目都会需要很复杂的设置，而要想对 webpack 中增加更多的配置信息，我们需要在根目录下创建webpack 的配置文件 `webpack.config.js` 。再执行npm run build，webpack 就会使用我们在这个配置文件里定义的配置信息了。
+实际情况下大多数项目都会需要很复杂的设置，而要想对 webpack 中增加更多的配置信息，我们需要在根目录下创建webpack 的配置文件 `webpack.config.js` 。再执行 npm run build，webpack 就会使用我们在这个配置文件里定义的配置信息了。
 
 ```cmd
 cd webpack-demo
@@ -175,6 +174,7 @@ Webpack.config.js中常用的基本配置信息：
 module.exports = {
   entry: '', // 打包入口：指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始
   output: '', // 出口目录
+  mode: 'development', // 在这里更改了模式，就不必在package.json里再设置 --mode
   resolve: {}, // 配置解析：配置别名、extensions 自动解析确定的扩展等等
   devServer: {}, // 开发服务器：run dev/start 的配置，如端口、proxy等
   module: {}, // 模块配置：配置loader（处理非 JavaScript 文件，比如 jsx、sass、vue、图片等等）
@@ -191,16 +191,96 @@ module.exports = {
 const path = require('path')
 
 module.exports = {
-    // 指定打包入口
+    // 页面入口 js 文件
     entry:  './src/index.js',
+    
+    // 配置打包输出相关
     output: {
-      // 必须使用绝对地址，输出文件夹路径
+      // 打包输出目录，必须使用绝对地址，输出文件夹路径
       path: path.resolve(__dirname, 'dist'), // 解析路径为 ./dist
-      // 打包后输出文件的文件名，默认为main.js
+      // 入口 js 的打包输出文件名，默认为 main.js
       filename: "bundle.js" 
     }
   }
 ```
+
+也可以使用下面的写法：
+
+```javascript
+const path = require('path')
+
+// 重新配置入口文件路径以及出口文件路径
+const PATH = {
+    app:path.join(__dirname, "./src/index.js"),
+    build:path.resolve(__dirname, "./dist")
+}
+
+module.exports = {
+    entry:{
+        //这里面的key值决定了下面name的名字叫什么
+        app:PATH.app
+    },
+    output:{
+        path:PATH.build,
+        filename:"[name].js" // 即app.js
+    }
+  }
+```
+
+> - path.join() 将第一个参数和第二个参数进行链接(路径连接)，该方法的主要用途在于，会正确使用当前系统的路径分隔符，Unix系统是 /，Windows系统是 \。
+> - path.resolve() 会把一个路径或路径片段的序列参数解析为一个绝对路径， 也可以变成相对路径。
+> - __dirname：当前文件夹的绝对路径。
+
+
+
+### 使用 html-webpack-plugin 创建 html 文件
+
+在此之前我们在 src 文件夹下只创建了入口文件 index.js，所以如果我们要引用打包后的 app.js 那么还要在 src 下创建一个 index.html入口页面文件，并正确引用打包后的文件。
+
+```html
+<script src="../dist/app.js"></script>
+```
+
+但更多情况下，如果我们有多个入口页面或要打包的模块，我们不希望打包一次，就新建一次 html 文件来引用打包后的文件，这样显得不智能或者当我们修改打包输出的文件名后，html里的引用路径就会出错。
+
+这时我们可以使用 [html-webpack-plugin](https://link.juejin.im/?target=https%3A%2F%2Fwebpack.docschina.org%2Fplugins%2Fhtml-webpack-plugin%2F) 插件来生成html文件，并将 HTML 引用路径和我们的构建结果关联起来。
+
+安装：
+
+`npm install html-webpack-plugin -D`
+
+修改 webpack.config.js 文件：
+
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+module.exports = {
+  //...
+  plugins: [new HtmlWebpackPlugin()]
+}
+```
+
+重新执行 npm run build 这将会产生一个包含以下内容的文件 `dist/index.html`：
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>webpack App</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
+```
+
+### 打包CSS文件
+
+我们希望使用 webpack 来进行构建 css 文件，为此需要在配置中引入 loader 来解析和处理 CSS 文件。
+
+安装：
+
+`cnpm install style-loader css-loader -D`
 
 
 
