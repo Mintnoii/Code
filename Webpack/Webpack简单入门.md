@@ -282,5 +282,31 @@ module.exports = {
 
 `cnpm install style-loader css-loader -D`
 
+新建 `src/assets/style/color.css`, 修改 `webpack.config.js` 文件：
 
+```javascript
+module.exports = {
+  //...
+  module: {
+    /**
+     * test: 匹配特定条件。一般是提供一个正则表达式或正则表达式的数组
+     * include: 匹配特定条件。一般是提供一个字符串或者字符串数组
+     * exclude: 排除特定条件
+     * and: 必须匹配数组中的所有条件
+     * or: 匹配数组中任何一个条件,
+     * nor: 必须排除这个条件
+     */
+    rules: [
+      {
+        test: /\.css$/,
+        include: [path.resolve(__dirname, 'src')],
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
+  //...
+}
+```
+
+经由上述两个 loader 的处理后，CSS 代码会转变为 JS， 如果需要单独把 CSS 文件分离出来，我们需要使用 [mini-css-extract-plugin](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fmini-css-extract-plugin) 插件。
 
