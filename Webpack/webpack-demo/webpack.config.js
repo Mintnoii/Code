@@ -20,24 +20,36 @@ module.exports = {
     mode: 'development',
 
     //做模块的处理 用loader进行处理
-    // module: {
-    //     rules:[
-    //         {
-    //             test: /\.js$/,
-    //             use: {
-    //                     loader:"babel-loader",
-    //                     options:{
-    //                     presets:["@babel/env","@babel/react"]
-    //                 }
-    //             }
-    //         },
-    //         {
-    //             test: /\.(css|scss)$/,
-    //             use: ["style-loader","css-loader","sass-loader"] //loader的执行顺序是从下至上 从右至左
-    //         }
-    //     ]
-    // },
+    module: {
+        rules:[
+            {
+            // 匹配 html 文件
+            test: /\.html$/,
+            /*
+            使用 html-loader, 将 html 内容存为 js 字符串，比如当遇到
+            import htmlString from './template.html';
+            template.html 的文件内容会被转成一个 js 字符串，合并到 js 文件里。
+            */
+            use: 'html-loader'
+            },
+            // {
+            //     test: /\.js$/,
+            //     use: {
+            //             loader:"babel-loader",
+            //             options:{
+            //             presets:["@babel/env","@babel/react"]
+            //         }
+            //     }
+            // },
+            // {
+            //     test: /\.(css|scss)$/,
+            //     use: ["style-loader","css-loader","sass-loader"] //loader的执行顺序是从下至上 从右至左
+            // }
+        ]
+    },
     plugins:[
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
     ]
 }

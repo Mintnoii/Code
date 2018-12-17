@@ -138,15 +138,35 @@ npm i webpack webpack-cli -D
 
 从webpack v4.0.0 开始可以一个配置文件都不写，实现零配置。
 
-首先创建webapck默认的开发阶段的src文件夹用来存放项目源代码，以及项目入口文件index.js。
+首先创建webapck默认的开发阶段用来存放项目源代码的src文件夹，并在里面创建项目入口文件index.html和index.js。
 
 ```cmd
 cd webpack-demo
 mkdir src && cd src
+touch index.html
 touch index.js
 ```
 
-在终端执行`npx webpack`，发现webpack已经把src/index.js文件打包到了dist目录 mian.js 文件里。
+index.html页面：
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+      <h2>
+          这是webpack-demo的项目入口页面。
+      </h2>
+      <p id="test"></p>
+		<!-- 同时引入index.js入口文件 -->	
+      <script src="./index.js"></script>
+  </body>
+</html>
+```
+
+然后如果我们在终端执行`npx webpack`，发现webpack已经把src/index.js文件里的内容打包到了dist(将来部署到服务器上的文件夹)目录 mian.js 文件里。
 
 ![npx webpack](./images/npxwebpack.png)
 
@@ -155,7 +175,7 @@ touch index.js
 - 这里直接执行webpack会提示command not found: webpack，这是因为我们没有将webpack以及webpack-cli进行全局安装。
 - 而项目内安装的webpack实际上执行的是 node_modules 目录下 .bin 目录内的 webpack.js 脚本，所以直接使用`node ./node_modules/.bin/webpack`就可以启动webpack。
 - 而这里使用的是更简单的方式就是通过npm的包执行器npx，`npx command` 默认就是执行 `./node_modules` 目录中安装的可执行脚本。如果webpack未安装，它也会自动从npm源下载安装后再执行。
-- 但是这样在4.0版本的webpack中，终端会出现未定义构建模式的WARNING，所以最好的方式是在package.json的 scripts 里添加一个`"build": "webpack --mode production"`(默认production)后使用 `npm run build` 来运行webpack。
+- 但是这样在4.0版本的webpack中，终端会出现未定义构建模式的WARNING，所以最好的方式是在package.json的 scripts 里添加一个`"build": "webpack --mode development"`(默认production)后使用 `npm run build` 来运行webpack。
 
 
 
@@ -168,7 +188,7 @@ cd webpack-demo
 touch webpack.config.js
 ```
 
-Webpack.config.js中常用的基本配置信息：
+Webpack.config.js 中常用的基本配置信息：
 
 ```javascript
 module.exports = {
@@ -182,7 +202,7 @@ module.exports = {
 }
 ```
 
-
+> 注意这个文件是在 node.js 中运行的，因此不支持 ES6 的 `import` 语法。
 
 ### 配置打包入口和出口
 
@@ -231,19 +251,21 @@ module.exports = {
 > - path.resolve() 会把一个路径或路径片段的序列参数解析为一个绝对路径， 也可以变成相对路径。
 > - __dirname：当前文件夹的绝对路径。
 
+### 打包html入口文件
 
+了解了如何配置webopack后，我们回到项目代码上来。
 
 ### 使用 html-webpack-plugin 创建 html 文件
 
-在此之前我们在 src 文件夹下只创建了入口文件 index.js，所以如果我们要引用打包后的 app.js 那么还要在 src 下创建一个 index.html入口页面文件，并正确引用打包后的文件。
+在此之前我们在 src 文件夹下只创建了 index.js入口文件，所以如果我们要引用打包后的 app.js 那么还要在 src 下创建一个 index.html入口页面文件，并正确引用打包后的文件。
 
 ```html
 <script src="../dist/app.js"></script>
 ```
 
-但更多情况下，如果我们有多个入口页面或要打包的模块，我们不希望打包一次，就新建一次 html 文件来引用打包后的文件，这样显得不智能或者当我们修改打包输出的文件名后，html里的引用路径就会出错。
+但更多情况下，如果我们有多个需要打包的模块或者多个入口页面，我们不希望打包一次，就编辑一次 html 文件来引用打包后的文件，这样显得不智能而且当我们修改打包输出的文件名后，html里的引用路径就会出错。
 
-这时我们可以使用 [html-webpack-plugin](https://link.juejin.im/?target=https%3A%2F%2Fwebpack.docschina.org%2Fplugins%2Fhtml-webpack-plugin%2F) 插件来生成html文件，并将 HTML 引用路径和我们的构建结果关联起来。
+这时我们可以使用 [html-webpack-plugin](https://link.juejin.im/?target=https%3A%2F%2Fwebpack.docschina.org%2Fplugins%2Fhtml-webpack-plugin%2F) 插件来生成html文件，并将 HTML 引用路径和我们的构建结果自动关联起来。
 
 安装：
 
@@ -259,7 +281,7 @@ module.exports = {
 }
 ```
 
-重新执行 npm run build 这将会产生一个包含以下内容的文件 `dist/index.html`：
+重新执行 npm run build ，dist目录下会产生一个包含以下内容的 index.html 文件：
 
 ```html
 <!DOCTYPE html>
@@ -274,33 +296,45 @@ module.exports = {
 </html>
 ```
 
-### 打包CSS文件
 
-我们希望使用 webpack 来进行构建 css 文件，为此需要在配置中引入 loader 来解析和处理 CSS 文件。
+
+### 打包CSS/SCSS文件
+
+如果我们希望使用 webpack 来进行构建 css 文件，为此需要在配置中引入`css-loader`和 `style-loader`这两个 loader 来解析和处理 CSS 文件。
+
+前者可以让 CSS 文件也支持 `import`，并且会解析 CSS 文件，后者可以将解析出来的 CSS 通过标签的形式插入到 HTML 中，所以后面依赖前者。
+
+如果要处理SCSS文件，还需要引入`scss-loader`这个loader，它依赖前两个loader。
 
 安装：
 
-`cnpm install style-loader css-loader -D`
+`npm install css-loader style-loader scss-loader -D`
 
-新建 `src/assets/style/color.css`, 修改 `webpack.config.js` 文件：
+新建 `src/styles/reset.css`, 修改 `webpack.config.js` 文件：
 
 ```javascript
 module.exports = {
   //...
+  /*
+    配置各种类型文件的加载器，称之为 loader
+    webpack 当遇到 import ... 时，会调用这里配置的 loader 对引用的文件进行编译
+    */
   module: {
     /**
      * test: 匹配特定条件。一般是提供一个正则表达式或正则表达式的数组
      * include: 匹配特定条件。一般是提供一个字符串或者字符串数组
      * exclude: 排除特定条件
      * and: 必须匹配数组中的所有条件
-     * or: 匹配数组中任何一个条件,
+     * or: 匹配数组中任何一个条件
      * nor: 必须排除这个条件
+     * use: 指定该文件的 loader, 值可以是字符串或者数组
      */
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/, // 匹配css和scss文件
         include: [path.resolve(__dirname, 'src')],
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', 'scss-loader']
+        // loader的执行顺序是从右至左/从下往上。
       }
     ]
   }
@@ -308,5 +342,8 @@ module.exports = {
 }
 ```
 
-经由上述两个 loader 的处理后，CSS 代码会转变为 JS， 如果需要单独把 CSS 文件分离出来，我们需要使用 [mini-css-extract-plugin](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fmini-css-extract-plugin) 插件。
+先使用 css-loader 处理，返回的结果交给 style-loader 处理。
+css-loader 将 css 内容存为 js 字符串，并且会把 background, @font-face 等引用的图片，
+字体文件交给指定的 loader 打包，类似上面的 html-loader, 用什么 loader 同样在 loaders 对象中定义，等会下面就会看到。
 
+经由上述 loader 的处理后，CSS/SCSS 代码会转变为 JS， 如果需要单独把 CSS 文件分离出来，我们需要使用 [mini-css-extract-plugin](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fmini-css-extract-plugin) 插件。
