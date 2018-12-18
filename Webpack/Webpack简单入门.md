@@ -253,15 +253,13 @@ module.exports = {
 
 ### 打包html入口文件
 
-了解了如何配置webopack后，我们回到项目代码上来。
+上面webpack.config.js 里的 entry 配置的入口是 js 文件，webpack 以 js 文件为入口，遇到里面的 import，就用配置的 loader 加载引入文件。
 
-### 使用 html-webpack-plugin 创建 html 文件
+但 index.html 作为浏览器打开的入口 html 页面, 是要引用入口 js 的文件，它在整个编译过程的外面。
 
-在此之前我们在 src 文件夹下只创建了 index.js入口文件，所以如果我们要引用打包后的 app.js 那么还要在 src 下创建一个 index.html入口页面文件，并正确引用打包后的文件。
+所以，我们需要 html-webpack-plugin 来打包作为入口的 html 文件。
 
-```html
-<script src="../dist/app.js"></script>
-```
+
 
 但更多情况下，如果我们有多个需要打包的模块或者多个入口页面，我们不希望打包一次，就编辑一次 html 文件来引用打包后的文件，这样显得不智能而且当我们修改打包输出的文件名后，html里的引用路径就会出错。
 
@@ -298,7 +296,7 @@ module.exports = {
 
 
 
-### 打包CSS/SCSS文件
+### 打包css/scss文件
 
 如果我们希望使用 webpack 来进行构建 css 文件，为此需要在配置中引入`css-loader`和 `style-loader`这两个 loader 来解析和处理 CSS 文件。
 
