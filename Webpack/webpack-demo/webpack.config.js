@@ -41,10 +41,10 @@ module.exports = {
             //         }
             //     }
             // },
-            // {
-            //     test: /\.(css|scss)$/,
-            //     use: ["style-loader","css-loader","sass-loader"] //loader的执行顺序是从下至上 从右至左
-            // }
+            {
+                test: /\.(css|scss)$/,
+                use: ["style-loader", "css-loader", "sass-loader"] //loader的执行顺序是从下至上 从右至左
+            }
         ]
     },
     plugins:[
