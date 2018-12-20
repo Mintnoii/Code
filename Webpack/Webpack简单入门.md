@@ -322,7 +322,7 @@ module.exports = {
 
 前者可以让 css 文件也支持 `import`，并且会解析 css文件，后者可以将解析出来的 css 通过标签的形式插入到 HTML 中，所以后者依赖前者。
 
-如果要处理 scss 文件，还需要引入`sass-loader`这个loader，同样，它依赖于前两个loader。
+如果要处理 scss 文件，还需要引入`sass-loader`loader，同样，它依赖于前两个loader。同时还要安装`node-sass`，[node-sass](https://github.com/sass/node-sass) 是 sass-loader 的[`peerDependency`](https://docs.npmjs.com/files/package.json#peerdependencies)。
 
 > PS：注意是 sass-loader 不是 scss-loader 哦！🤪
 
@@ -372,6 +372,13 @@ module.exports = {
 }
 ```
 
-如果匹配到 scss 文件那么首先经过 sass-loader 处理为 css ，然后 css-loader 将 css 内容存为 js 字符串，并且会把 background, @font-face 等引用的图片，字体文件交给指定的 loader 打包。最后返回的结果交给 style-loader 处理。
+如果匹配到 scss 文件那么首先经过 sass-loader 处理为 css ，然后 css-loader 将 css 内容存为 js 字符串，并转化成 CommonJS 模块，把 background、@font-face 等引用的图片，字体文件交给指定的 loader 打包。最后 style-loader 将 js 字符串生成为 style 节点。
 
 经由上述 loader 的处理后，css/scss 代码会转变为 JS， 如果需要单独把 css 文件分离出来，我们需要使用 [mini-css-extract-plugin](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fmini-css-extract-plugin) 插件。
+
+### 打包图片
+
+安装：
+
+`npm install file-loader url-loader -D`
+
