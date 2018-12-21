@@ -44,6 +44,18 @@ module.exports = {
             {
                 test: /\.(css|scss)$/,
                 use: ["style-loader", "css-loader", "sass-loader"] //loader的执行顺序是从下至上 从右至左
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            outputPath: 'images/', //输出到images文件夹
+                            limit: 10000 //是把小于500B的文件打成Base64的格式，写入JS
+                        }
+                    }
+                ]
             }
         ]
     },

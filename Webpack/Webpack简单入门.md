@@ -382,3 +382,55 @@ module.exports = {
 
 `npm install file-loader url-loader -D`
 
+**file-loader:** 可以用于处理很多类型的文件，它的主要作用是直接输出文件，把构建后的文件路径返回。
+
+**url-loader:** 如果图片较多，会发很多 http 请求，会降低页面性能。`url-loader` 会将引入的图片编码，生成 dataURl。相当于把图片数据翻译成一串字符。再把这串字符打包到文件中，最终只需要引入这个文件就能访问图片了。当然，如果图片较大，编码会消耗性能。因此 `url-loader` 提供了一个 limit 参数，小于 limit 字节的文件会被转为 DataURl，大于 limit 的还会使用 `file-loader` 进行 copy。
+
+> - url-loader 可以看作是增强版的 file-loader。
+> - url-loader 把图片编码成 base64 格式写进页面，从而减少服务器请求。
+
+添加图片资源文件夹：
+
+```bash
+cd src
+mkdir assets && cd assets
+mkdir images 
+```
+
+在 assets/images 文件夹内放入图片，并在 index.html 内加载引用：`<img src="./assets/images/webpack.jpg" alt="">`，然后编辑配置文件
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      // ...
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              outputPath: 'images/', //输出到dist的images文件夹
+              limit: 600 //是把小于600B的文件打成Base64的格式
+            }
+          }
+        ]
+      }
+    ]
+  }
+  //...
+}
+```
+
+执行 webpack 后，我们会发现  dist 目录下多出了 images 文件夹，里面就是打包后的图片文件。而同时 dist 内生成的 index.html 文件也正确加载了该资源。`<img src="images/c3a15be258d6b4608711ca123c23c4df.jpg" alt="">`
+
+> - 当文件大于 limit 时，url-loader 会调用 file-loader, 把文件储存到输出目录，并把引用的文件路径改写成输出后的路径
+>
+> - 当文件体积小于 limit 时，url-loader 把文件转为 Data URI 的格式内联到引用的地方
+>
+> - ```html
+>   <img src="./assets/images/smallpic.png">
+>   <!--会被编译成-->
+>   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAA...">
+>   ```
+
