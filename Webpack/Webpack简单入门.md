@@ -434,3 +434,18 @@ module.exports = {
 >   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAA...">
 >   ```
 
+### 配置 babel
+
+接下来，为了能让不支持 ES6 的浏览器 （比如 IE) 也能照常运行，我们需要安装 [babel](http://babeljs.io/), 它会把我们写的 ES6 源代码转化成 ES5，这样我们源代码写 ES6，打包时生成 ES5。
+
+安装：
+
+Babel 7.x 的相关依赖包需要加上 `@babel` scope。一个主要变化是 presets 设置由原来的 `env` 换成了 `@babel/preset-env`, 可以配置 `targets`, `useBuiltIns` 等选项用于编译出兼容目标环境的代码。其中 `useBuiltIns` 如果设为 `"usage"`，Babel 会根据实际代码中使用的 ES6/ES7 代码，以及与你指定的 targets，按需引入对应的 `polyfill`，而无需在代码中直接引入 `import '@babel/polyfill'`，避免输出的包过大，同时又可以放心使用各种新语法特性。
+
+> webpack 4.x | babel-loader 8.x | babel 7.x
+
+`npm i babel-loader @babel/core @babel/preset-env -D`
+
+
+
+
