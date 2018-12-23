@@ -23,14 +23,14 @@ module.exports = {
     module: {
         rules:[
             {
-            // 匹配 html 文件
-            test: /\.html$/,
-            /*
-            使用 html-loader, 将 html 内容存为 js 字符串，比如当遇到
-            import htmlString from './template.html';
-            template.html 的文件内容会被转成一个 js 字符串，合并到 js 文件里。
-            */
-            use: 'html-loader'
+                // 匹配 html 文件
+                test: /\.html$/,
+                /*
+                使用 html-loader, 将 html 内容存为 js 字符串，比如当遇到
+                import htmlString from './template.html';
+                template.html 的文件内容会被转成一个 js 字符串，合并到 js 文件里。
+                */
+                use: 'html-loader'
             },
             // {
             //     test: /\.js$/,
@@ -56,6 +56,16 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             }
         ]
     },

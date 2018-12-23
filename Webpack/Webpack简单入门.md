@@ -446,6 +446,31 @@ Babel 7.x 的相关依赖包需要加上 `@babel` scope。一个主要变化是 
 
 `npm i babel-loader @babel/core @babel/preset-env -D`
 
+我在这里的版本号：
+
+```javascript
+{
+  "babel-loader": "^8.0.4",
+  "@babel/core": "^7.2.2",
+  "@babel/preset-env": "^7.2.3"
+}
+```
+
+配置webpack.config.js：
+
+```javascript
+{
+	test: /\.m?js$/,
+    exclude: /(node_modules|bower_components)/,
+    use: {
+    	loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+}
+```
+
 
 
 
