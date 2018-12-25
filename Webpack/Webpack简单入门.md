@@ -467,3 +467,9 @@ module.exports = {
 }
 ```
 
+### 配置热加载
+
+上面讲到了都是如何打包文件，但是开发中我们需要一个本地服务，这时我们可以使用 `webpack-dev-server` 在本地开启一个简单的静态服务来进行开发。
+
+`webpack-dev-server` 是 webpack 官方提供的一个工具，可以基于当前的 webpack 构建配置快速启动一个静态服务。当 `mode` 为 `development` 时，会具备 `hot reload` 的功能，即当源码文件变化时，会即时更新当前页面，以便你看到最新的效果。
+
