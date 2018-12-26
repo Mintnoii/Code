@@ -473,3 +473,13 @@ module.exports = {
 
 `webpack-dev-server` 是 webpack 官方提供的一个工具，可以基于当前的 webpack 构建配置快速启动一个静态服务。当 `mode` 为 `development` 时，会具备 `hot reload` 的功能，即当源码文件变化时，会即时更新当前页面，以便你看到最新的效果。
 
+安装：
+
+`npm i webpack-dev-server -D`
+
+package.json 中 scripts 中添加：
+
+`"start": "webpack-dev-server --mode development"`
+
+默认开启一个本地服务的窗口 [http://localhost:8080/](https://link.juejin.im/?target=http%3A%2F%2Flocalhost%3A8080%2F) 便于开发。
+
