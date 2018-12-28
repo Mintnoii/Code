@@ -354,7 +354,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack-dev-server --mode development"
   },
   "keywords": [],
   "author": "",
