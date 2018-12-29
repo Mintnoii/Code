@@ -444,20 +444,18 @@ module.exports = {
 
 `npm i babel-loader @babel/core @babel/preset-env -D`
 
-> - Babel 7.x 的相关依赖包需要加上 `@babel` scope。
-> - 一个主要变化是 presets 设置由原来的 `env` 换成了 `@babel/preset-env`, 可以配置 `targets`, `useBuiltIns` 等选项用于编译出兼容目标环境的代码。
+> - Babel 7.x 的相关依赖包需要加上 `@babel/ scope`(babel核心库)
+> - 用 babel 转换 ES6 代码需要使用到 `babel-loader`
+> -  `@babel/preset-env`默认情况下是等于 ES2015 + ES2016 + ES2017，也就是说它对这三个版本的 ES 语法进行转化
+> - Babel 7.x 一个主要变化是 presets 设置由原来的 `env` 换成了 `@babel/preset-env`, 可以配置 `targets`, `useBuiltIns` 等选项用于编译出兼容目标环境的代码
 > - 其中 `useBuiltIns` 如果设为 `"usage"`，Babel 会根据实际代码中使用的 ES6/ES7 代码，以及与你指定的 targets，按需引入对应的 `polyfill`，而无需在代码中直接引入 `import '@babel/polyfill'`，避免输出的包过大，同时又可以放心使用各种新语法特性。
-
-- [@babel/core](https://link.juejin.im/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40babel%2Fcore)：babel 核心库
-- [babel-loader](https://link.juejin.im/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fbabel-loader): 用 babel 转换 ES6 代码需要使用到 `babel-loader`
-- [@babel-preset-env](https://link.juejin.im/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40babel%2Fpreset-env)： 默认情况下是等于 ES2015 + ES2016 + ES2017，也就是说它对这三个版本的 ES 语法进行转化。
 
 配置webpack.config.js：
 
 ```javascript
 {
 	test: /\.m?js$/,
-    exclude: /(node_modules|bower_components)/,
+    exclude: /node_modules/,
     use: {
     	loader: 'babel-loader',
         options: {
@@ -466,6 +464,29 @@ module.exports = {
       }
 }
 ```
+
+**同时可以把babel配置写到.babelrc中：**
+
+在根目录下新建 .babelrc 文件 `touch .babelrc`
+
+```javascript
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+      }
+    }]
+  ]
+}
+```
+
+> 这就是 babel-preset-env 的作用，帮助我们配置 babel。我们只需要告诉它我们要兼容的情况（目标运行环境），它就会自动把代码转换为兼容对应环境的代码。
+>
+> 以上代码表示我们要求代码兼容最新两个版本的浏览器，不用兼容 IE 8，另外市场份额超过 1% 的浏览器也必须支持。
+>
+> 只需要告诉 babel-preset-env 你想要兼容的环境，它就会自动转换。
 
 ### 配置热加载
 
