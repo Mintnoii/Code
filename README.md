@@ -95,12 +95,16 @@ web前端开发真的是一个入门非常简单的领域，我最初入坑前�
 
 **1. 《锋利的jQuery》** [源码](https://github.com/W-Qing/Code/tree/master/Books/%E9%94%8B%E5%88%A9%E7%9A%84jQuery%20(%E7%AC%AC2%E7%89%88))
 
-## 进阶：ES6
+## 进阶：ES6/scss
 
 ### 1. ES6
 
 - [ES6简单介绍视频](https://www.bilibili.com/video/av26349151/?p=1)
 - [ES6学习笔记](http://sunburst.wang/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html)
+
+### 2. SCSS
+
+- scss简单入门
 
 ###  其他
 
