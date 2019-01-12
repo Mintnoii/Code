@@ -8,3 +8,8 @@
 4. JSX：JSX是 JavaScript 语法的扩展。
 5. 组件：通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。
 6. 单向响应的数据流：React 实现了单向响应的数据流，这也是它为什么比传统数据绑定更简单。
+
+### 与Vue框架的对比
+
+ [React与Vue的对比](https://cn.vuejs.org/v2/guide/comparison.html)
+
