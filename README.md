@@ -141,13 +141,12 @@ web前端开发真的是一个入门非常简单的领域，我最初入坑前�
 
 ## 面试
 
-### 面试技巧
-
-- [前端面试技巧](https://github.com/W-Qing/Code/blob/master/%E9%9D%A2%E8%AF%95/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7.md)
-
 ### 面试题
 
 - [前端JS基础面试题](https://github.com/W-Qing/Code/blob/master/%E9%9D%A2%E8%AF%95/%E5%89%8D%E7%AB%AFJS%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98.md)
+- [interviewMap](https://yuchengkai.cn/docs/frontend/#%E5%86%85%E7%BD%AE%E7%B1%BB%E5%9E%8B)
 
+### 面试技巧
 
+- [前端面试技巧](https://github.com/W-Qing/Code/blob/master/%E9%9D%A2%E8%AF%95/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7.md)
 
