@@ -7,3 +7,5 @@
 - webpack 进阶 掌握高级概念及用法
 - React 项目入门
 - 重学Node.js
+- 完成 github 自动提交
+
