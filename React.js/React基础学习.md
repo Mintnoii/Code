@@ -49,3 +49,37 @@
  let Dom = <h3>{true?10:20}</h3>
 ```
 
+- v-html
+
+```react
+let message = <h1>标题</h1>
+let Dom = <div>{message}</div>
+```
+
+- v-bind
+
+```react
+let message = "商一璇"
+let Dom = <h3 title={message}>{message}</h3>
+```
+
+- v-if、v-show
+
+```react
+let message = "商一璇"
+let Dom = false?<h3 title={message} style={{display:true?"block":"none"}}>{message}</h3>:""
+```
+
+- v-for
+
+```react
+let arr = ["商一璇","陈剑鸣","王秋爽"]
+let Dom = <ul>
+      {
+        arr.map((item, index) => {
+          return <li key={index}>{item}</li>
+        })
+      }
+    </ul>
+```
+
