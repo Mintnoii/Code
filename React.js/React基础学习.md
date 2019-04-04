@@ -83,3 +83,12 @@ let Dom = <ul>
     </ul>
 ```
 
+在react中  
+
+- class  需要改变成className
+
+  `let Dom  = <div className="abc">王秋爽</div>`
+
+-  for  需要改变成htmlFor 
+
+  `let Dom = <label htmlFor="11">11</label>`
