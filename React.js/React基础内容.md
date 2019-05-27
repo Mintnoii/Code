@@ -16,6 +16,15 @@ npm start
 
 **todolist**
 
+React中要声明一个组件必须先引入react文件，然后继承react的组件类方法。
+
+```javascript
+import React from 'react'
+class TodoList extends React.Compoment{}
+```
+
+也可以使用下面这种写法：
+
 ```react
 import React, { Component, Fragment } from 'react';
 
