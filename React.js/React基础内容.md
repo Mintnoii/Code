@@ -27,7 +27,7 @@ class TodoList extends React.Compoment{}
 
 ```react
 import React, { Component, Fragment } from 'react';
-
+{/*这是React里的注释的写法，外面要包裹一层大括号*/}
 class TodoList extends Component{
   constructor(props){
     super(props)
@@ -65,9 +65,7 @@ class TodoList extends Component{
     );
   }
 }
-
+{/*最后要记得导出组件*/}
 export default TodoList;
 ```
-
-
 
