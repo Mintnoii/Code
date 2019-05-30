@@ -69,6 +69,7 @@ class TodoList extends Component{
 export default TodoList;
 ```
 
-- 组件中要渲染到页面上的部分都写在`render`函数里
+- 组件中要渲染到页面上的 jsx 部分都写在`render`函数里
 - 组件里定义的数据写在`constructor`部分里的`this.state` 对象里面，并一定要写`super(props)`来继承`React`的属性
 - 组件里的方法要想改变数据就必须通过`this.setState()`方法来处理
+- 使用`this.onClick`等来绑定事件，注意要通过`bind`将`this`传递进去
