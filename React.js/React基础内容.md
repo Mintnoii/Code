@@ -71,5 +71,6 @@ export default TodoList;
 
 - 组件中要渲染到页面上的 jsx 部分都写在`render`函数里
 - 组件里定义的数据写在`constructor`部分里的`this.state` 对象里面，并一定要写`super(props)`来继承`React`的属性
+- 不想在导出的组件外包裹一层`div`的话，可以导入`Fragment`内置组件来当占位符
 - 组件里的方法要想改变数据就必须通过`this.setState()`方法来处理
 - 使用`this.onClick`等来绑定事件，注意要通过`bind`将`this`传递进去
