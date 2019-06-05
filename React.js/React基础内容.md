@@ -1,3 +1,5 @@
+## React-todoList
+
 [React官网](<https://reactjs.org/docs/getting-started.html>)
 
 React Fiber版本
@@ -74,4 +76,6 @@ export default TodoList;
 - 不想在导出的组件外包裹一层`div`的话，可以导入`Fragment`内置组件来当占位符
 - 组件里的方法要想改变数据就必须通过`this.setState()`方法来处理
 - 使用`this.onClick`等来绑定事件，注意要通过`bind`将`this`传递进去
-- 
+
+## 知识清单
+
