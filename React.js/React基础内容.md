@@ -75,3 +75,30 @@ export default TodoList;
 - 组件里的方法要想改变数据就必须通过`this.setState()`方法来处理
 - 使用`this.onClick`等来绑定事件，注意要通过`bind`将`this`传递进去
 - 
+
+```react
+import React,{Component} from 'react'
+
+class TodoItem extends Component{
+  constructor(props){
+    super(props)
+  }
+  
+  handleClick = () => {
+    this.props.deleteItem(this.props.index)
+  }
+  render(){
+    return (
+      <li 
+        key={this.props.index} 
+        onClick={this.handleClick}
+      >
+        {this.props.content}
+      </li>
+    )
+  }
+}
+
+export default TodoItem
+```
+
