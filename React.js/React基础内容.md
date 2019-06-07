@@ -77,6 +77,8 @@ export default TodoList;
 - 组件里的方法要想改变数据就必须通过`this.setState()`方法来处理
 - 使用`this.onClick`等来绑定事件，注意要通过`bind`将`this`传递进去
 
+TodoItem组件
+
 ```react
 import React,{Component} from 'react'
 
