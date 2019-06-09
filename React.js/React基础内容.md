@@ -106,3 +106,5 @@ class TodoItem extends Component{
 
 export default TodoItem
 ```
+- 通过`props`来得到父组件传递进来的值
+
