@@ -314,7 +314,7 @@ module.exports = {
 </html>
 ```
 
-> 插件已经自动帮我们把打包后的 app.js 文件正确地引用到这里啦。🥳
+> 插件已经自动帮我们把打包后的 app.js 文件正确地引用到这里啦。👏
 
 ### 打包 css/scss 文件
 
@@ -322,13 +322,21 @@ module.exports = {
 
 前者可以让 css 文件也支持 `import`，并且会解析 css文件，后者可以将解析出来的 css 通过标签的形式插入到 HTML 中，所以后者依赖前者。
 
-如果要处理 scss 文件，还需要引入`sass-loader`loader，同样，它依赖于前两个loader。同时还要安装`node-sass`，[node-sass](https://github.com/sass/node-sass) 是 sass-loader 的[`peerDependency`](https://docs.npmjs.com/files/package.json#peerdependencies)。
-
-> PS：注意是 sass-loader 不是 scss-loader 哦！🤪
-
 安装：
 
-`npm install css-loader style-loader sass-loader -D`
+```bash
+npm install css-loader style-loader --save -dev
+```
+
+如果要处理 scss 文件，还需要引入`sass-loader`loader，同样，它依赖于前两个loader。
+
+同时还要安装`node-sass`，[node-sass](https://github.com/sass/node-sass) 是 sass-loader 的[`peerDependency`](https://docs.npmjs.com/files/package.json#peerdependencies)。
+
+> PS：注意是 sass-loader 不是 scss-loader 哦！⚠️
+
+```bash
+npm i node-sass sass-loader -D
+```
 
 添加样式文件：
 
@@ -433,6 +441,9 @@ module.exports = {
 >   <!--会被编译成-->
 >   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAA...">
 >   ```
+> ```
+> 
+> ```
 
 ### 配置 babel
 
