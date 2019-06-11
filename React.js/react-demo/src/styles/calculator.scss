@@ -1,0 +1,24 @@
+.value{
+    display: block;
+    margin: 10px 0;
+    width: 120px;
+    height: 20px;
+}
+#operator {
+    width: 35px;
+    height: 20px;
+    margin: 0 15px;
+}
+button {
+    display: block;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    margin: 5px 15px;
+}
+.result {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 16px;
+    color: darkorange;
+}
