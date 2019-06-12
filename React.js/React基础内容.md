@@ -1,6 +1,6 @@
 ## React-todoList
 
-[React官网](<https://reactjs.org/docs/getting-started.html>)
+[React官网文档](https://zh-hans.reactjs.org/docs/getting-started.html)
 
 React Fiber版本
 
