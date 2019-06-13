@@ -1,27 +1,12 @@
 import React, { Component } from 'react';
 import Calculator from '../components/Calculator'
-import { Link } from "react-router-dom";
+import store from '../store/index.js'
+
 class Home extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            data: ''
-        }
-        this.handleResultChange = this.handleResultChange.bind(this)
-    }
-    handleResultChange(val){
-        this.setState({
-            data: val
-        })
-    }
     render() {
         return (
-            <div className="content">
-                <Calculator onResultChange={this.handleResultChange} ></Calculator> 
-                <Link to={`/Pagetwo?data=${this.state.data}`}>Reversal Result</Link>
-            </div>
+            <Calculator onResultChange={this.props.changedata} ></Calculator>  
         );
     }
 }
 
-export default Home;

@@ -1,58 +1,17 @@
 import React, { Component } from 'react'
 import '../styles/calculator.scss'
-import NP from 'number-precision'
-
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import * as actionCreators from '../store/actionCreators'
 class Calculator extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value1: '',
-            value2: '',
-            operator: '+',
-            result: ''
-        };
-
-        this.handleChange = this.handleChange.bind(this)
-        this.handleBtnClick = this.handleBtnClick.bind(this)
-    }
-
-    handleChange(event) {
-        const target = event.target
-        const value = target.value
-        const name = target.name
-
-        this.setState({
-            [name]: value
-        })
-    }
-    handleBtnClick() {
-        let res
-        switch(this.state.operator){
-            case '+':
-            res = NP.plus(this.state.value1, this.state.value2)
-            break;
-            case '-':
-            res =  NP.minus(this.state.value1, this.state.value2)
-            break;
-            case '*':
-            res = NP.times(this.state.value1, this.state.value2)
-            break;
-            case '/':
-            res =  NP.divide(this.state.value1, this.state.value2)
-            break;
-        }
-        this.setState({
-            result: res
-        })
-        this.props.onResultChange(res);
-    }
     render() {
+        console.log(this.props)
         return (
             <div>
                 Data1: 
-                <input className="value" type="number" name="value1" value={this.state.value1} onChange={this.handleChange} />
+                <input className="value" type="number" name="value1" value={this.props.value1} onChange={e => this.props.updateInput1(e.target.value)} />
                 Operator: 
-                <select id="operator" name="operator" value={this.state.operator} onChange={this.handleChange}>
+                <select id="operator" name="operator" value={this.props.operator} onChange={e => this.props.updateOperator(e.target.value)}>
                     <option value="+"> + </option>
                     <option value="-"> - </option>
                     <option value="*"> * </option>
@@ -60,14 +19,17 @@ class Calculator extends Component {
                 </select>
                 <br/>
                 Data2: 
-                <input className="value" type="number" name="value2" value={this.state.value2} onChange={this.handleChange} />
+                <input className="value" type="number" name="value2" value={this.props.value2} onChange={e => this.props.updateInput2(e.target.value)} />
                 Calculation：
-                <button onClick={this.handleBtnClick}>Get result</button>
+                <button onClick={this.props.updateResult}>Get result</button>
                 Result:
-                <span className="result">{this.state.result}</span>
+                <span className="result">{this.props.result}</span>
             </div>
         );
     }
 }
-
-export default Calculator
+// state.dispatch -> props
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators(actionCreators, dispatch)
+}
+export default connect(state => state, mapDispatchToProps)(Calculator);
