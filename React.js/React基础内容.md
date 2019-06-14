@@ -108,3 +108,24 @@ export default TodoItem
 ```
 - 通过`props`来得到父组件传递进来的值
 
+react 的特点
+
+1. 组件化
+2. 单向数据流
+3. JSX
+
+重绘 重排
+
+react性能真的比原生JS 好吗
+
+痛点：单向数据流 
+
+redux
+
+1. 父子组件
+2. 状态提升
+3. 非父子组件通信
+4. store 公司实体
+5. reducers 规章制度
+6. action 请求公司的资源
+7. connect （mapStatetoprops、mapDispatchtoProps）员工的信息与技能
