@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jqueryÍ¼Æ¬ÂÖ²¥</title>
+	<link rel="stylesheet" href="css/css.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/js.js"></script>
+</head>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".area").hover(function(){
+  		//mouseover
+	  $(this).find(".qq").show(100);}
+	  ,function(){
+	  	//mouseout
+		$(this).find(".qq").hide(100);
+	});
+});
+</script>
+<body>
+<div class="area">
+	<a id="prev" class="prevBtn qq" href="javascript:void(0)"></a>
+	<a id="next" class="nextBtn qq" href="javascript:void(0)"></a>
+	<div id=js class="js">
+		<div class="box01">
+			<img src="images/01.jpg">
+			<img src="images/02.jpg"> 
+			<img src="images/03.jpg">
+			<img src="images/04.jpg"> 
+			<img src="images/05.jpg">	
+		</div>
+		<div class="bg"></div>
+		<div id=jsNav class=jsNav>	
+			<a class="trigger imgSelected" href="javascript:void(0)">1</a>
+			<a class="trigger" href="javascript:void(0)">2</a>
+			<a class="trigger" href="javascript:void(0)">3</a>
+			<a class="trigger" href="javascript:void(0)">4</a>
+			<a class="trigger" href="javascript:void(0)">5</a>		
+		</div>
+	</div>
+</div>
+</body>
+</html>
