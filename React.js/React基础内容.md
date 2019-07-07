@@ -110,9 +110,11 @@ export default TodoItem
 
 react 的特点
 
-1. 组件化
+总结一下react的主要特点
+
+1. 组件化 => 维护和重构
 2. 单向数据流
-3. JSX
+3. JSX => 更好的用js写html
 
 重绘 重排
 
@@ -129,3 +131,14 @@ redux
 5. reducers 规章制度
 6. action 请求公司的资源
 7. connect （mapStatetoprops、mapDispatchtoProps）员工的信息与技能
+
+
+
+![](https://raw.githubusercontent.com/W-Qing/ImageHosting/src/Blog/aboutme.jpg)
+
+
+
+
+
+
+
