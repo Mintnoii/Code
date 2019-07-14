@@ -157,6 +157,11 @@ React-redux
 
 ## 前端工程化：webpack
 
+> - 理解 webpack 的作用及原理
+> - 学会 webpack 的配置
+> - 上手项目的打包配置过程
+> - 拥有工程化的前端思维
+
 ### 1. webpack
 
 - [Webpack简单入门](https://github.com/W-Qing/Code/blob/master/Webpack/Webpack%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8.md)
