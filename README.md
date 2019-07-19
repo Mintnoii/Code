@@ -151,6 +151,9 @@ web前端开发真的是一个入门非常简单的领域，最初入前端这�
 
 ### 3. React.js
 
+> - 父子组件传值通信、事件传递
+> - 生命周期 
+
 [技术胖的react教程]([http://jspang.com/posts/2019/05/04/new-react-base.html#%E7%AC%AC01%E8%8A%82%EF%BC%9Areact%E8%AF%BE%E7%A8%8B%E5%89%8D%E8%A8%80](http://jspang.com/posts/2019/05/04/new-react-base.html#第01节：react课程前言))
 
 [React文档学习笔记](<https://sunburst.wang/posts/2019/06/23/react-docs-notes.html>)
