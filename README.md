@@ -164,7 +164,7 @@ React-redux
 
 
 
-## 前端工程化：webpack
+## 前端工程化
 
 > - 理解 webpack 的作用及原理
 > - 学会 webpack 的配置
@@ -176,6 +176,12 @@ React-redux
 - [Webpack简单入门](https://github.com/W-Qing/Code/blob/master/Webpack/Webpack%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8.md)
 - Webapck进阶学习
 - [Webpack 4 和单页应用入门](https://github.com/wallstreetcn/webpack-and-spa-guide)
+
+## 网络与浏览器
+
+📖《网络是怎样连接的》
+
+[图解浏览器的工作原理（史上最全）](https://mp.weixin.qq.com/s/X4yAFZBNLwaDUFYaR0Cn5g)
 
 ## 面试
 
