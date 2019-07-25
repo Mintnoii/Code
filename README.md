@@ -172,12 +172,14 @@ React-redux
 ### 1. webpack
 
 - [Webpack简单入门](https://github.com/W-Qing/Code/blob/master/Webpack/Webpack%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8.md)
-- Webapck进阶学习
+- Webapck进阶学习(暂时计划将Webpack简单入门重新搭建一遍 同时掌握高级概念 时间充足的话再整理笔记)
 - [Webpack 4 和单页应用入门](https://github.com/wallstreetcn/webpack-and-spa-guide)
 
 ## 网络与浏览器
 
 📖《网络是怎样连接的》
+
+todo（浏览器工作原理 以及 输入url后发生了什么 整理属于自己的笔记）
 
 [图解浏览器的工作原理（史上最全）](https://mp.weixin.qq.com/s/X4yAFZBNLwaDUFYaR0Cn5g)
 
