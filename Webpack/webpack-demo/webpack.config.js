@@ -43,7 +43,14 @@ module.exports = {
             // },
             {
                 test: /\.(css|scss)$/,
-                use: ["style-loader", "css-loader", "sass-loader"] //loader的执行顺序是从下至上 从右至左
+                use: ["style-loader", "css-loader", "sass-loader"] 
+                //loader的执行顺序是从下至上 从右至左
+                /* use: [
+                    {loader: "style-loader"},
+                    {loader: "css-loader"},
+                    {loader: "sass-loader"},
+                    {loader: "postcss-loader"}
+                ]*/
             },
             {
                 test: /\.(png|jpg|gif)$/,
