@@ -69,10 +69,10 @@ var runningDays = (arr_days)=> {
 var GetCheckinInfo = (createdate, userNick, callback) => {
     // Modal.alert('usernick'+userNick)
     StorageOper.localGet({
-        key: 'userUsedRebate,userHadCheckin',
-        callback: (res) => {
+        key: 'checkInHadEnd,userHadCheckin',
+        callback: (data) => {
             // 判断有没有用户已经使用过活动奖品的缓存
-            if (!IsEmpty(res) && res.userUsedRebate) {
+            if (!IsEmpty(data) && data.checkInHadEnd) {
                 callback({
                     show: false
                 }) // 退出 不显示活动入口
@@ -93,22 +93,38 @@ var GetCheckinInfo = (createdate, userNick, callback) => {
                     error_callback: (res) => {
                         res = {
                             "data": [
-                                // {
-                                //     "0": "79",
-                                //     "1": "cblallen",
-                                //     "2": "cblallen",
-                                //     "3": "2019-08-10 21:32:10",
-                                //     "4": "1",
-                                //     "5": "item",
-                                //     "6": "0",
-                                //     "id": "79",
-                                //     "nick": "cblallen",
-                                //     "operator": "cblallen",
-                                //     "checkintime": "2019-08-10 21:30:10",
-                                //     "series": "1",
-                                //     "app": "item",
-                                //     "remark": "0"
-                                // },
+                                {
+                                    "0": "79",
+                                    "1": "cblallen",
+                                    "2": "cblallen",
+                                    "3": "2019-08-10 21:32:10",
+                                    "4": "1",
+                                    "5": "item",
+                                    "6": "0",
+                                    "id": "79",
+                                    "nick": "cblallen",
+                                    "operator": "cblallen",
+                                    "checkintime": "2019-08-11 23:28:12",
+                                    "series": "1",
+                                    "app": "item",
+                                    "remark": "0"
+                                },
+                                {
+                                    "0": "79",
+                                    "1": "cblallen",
+                                    "2": "cblallen",
+                                    "3": "2019-08-10 21:32:10",
+                                    "4": "1",
+                                    "5": "item",
+                                    "6": "0",
+                                    "id": "79",
+                                    "nick": "cblallen",
+                                    "operator": "cblallen",
+                                    "checkintime": "2019-08-10 21:30:10",
+                                    "series": "1",
+                                    "app": "item",
+                                    "remark": "0"
+                                },
                                 {
                                     "0": "79",
                                     "1": "cblallen",
@@ -188,41 +204,9 @@ var GetCheckinInfo = (createdate, userNick, callback) => {
                                     "series": "1",
                                     "app": "item",
                                     "remark": "0"
-                                },
-                                {
-                                    "0": "79",
-                                    "1": "cblallen",
-                                    "2": "cblallen",
-                                    "3": "2019-08-04 00:48:12",
-                                    "4": "1",
-                                    "5": "item",
-                                    "6": "0",
-                                    "id": "79",
-                                    "nick": "cblallen",
-                                    "operator": "cblallen",
-                                    "checkintime": "2019-08-04 00:48:12",
-                                    "series": "1",
-                                    "app": "item",
-                                    "remark": "0"
-                                },
-                                {
-                                    "0": "79",
-                                    "1": "cblallen",
-                                    "2": "cblallen",
-                                    "3": "2019-08-03 00:48:12",
-                                    "4": "1",
-                                    "5": "item",
-                                    "6": "0",
-                                    "id": "79",
-                                    "nick": "cblallen",
-                                    "operator": "cblallen",
-                                    "checkintime": "2019-08-03 00:48:12",
-                                    "series": "1",
-                                    "app": "item",
-                                    "remark": "0"
-                                },
+                                }
                             ],
-                            "useDiscount": 0
+                            "useDiscount": 1
                           }
                         // Modal.alert(JSON.stringify(res))
                         let checkinTimes = res.data.map((d) => {
@@ -236,9 +220,26 @@ var GetCheckinInfo = (createdate, userNick, callback) => {
                         let lastRecords = checkinDays >= 1 ? checkinRecords[checkinDays - 1] : '' // 最后一条签到记录
                         //let lastCheckinTime = moment(lastRecords).format('YYYY-MM-DD hh:mm:ss'); // 最后一条签到记录的签到时间格式化
                         if (userUsedRebate) {
-                            StorageOper.localSet({
-                                userUsedRebate: true
-                            })
+                            // 已经使用折扣券
+                            let activeEndTime = new Date(lastRecords).getTime() + (24 * 3600 * 1000)
+                            if (activeEndTime > new Date().getTime()) {
+                                Modal.alert(222)
+                                callback({
+                                    show: true,
+                                    type: 'fixedEntrance',
+                                    cutdown: activeEndTime
+                                })
+                                return ;
+                            } else {
+                                Modal.alert(111)
+                                callback({
+                                    show: false
+                                })
+                                return ;
+                            }
+                            // StorageOper.localSet({
+                            //     userUsedRebate: true
+                            // })
                             callback({
                                 show: false
                             }) // 退出 并设置缓存
@@ -264,12 +265,14 @@ var GetCheckinInfo = (createdate, userNick, callback) => {
                                         callback({
                                             show: false
                                         })
+                                        return ;
                                     }
                                 } else {
                                     // 非新人无签到记录
                                     callback({
                                         show: false
                                     })
+                                    return ;
                                 }
                             }
                             // 连续签到签满7天
@@ -283,19 +286,18 @@ var GetCheckinInfo = (createdate, userNick, callback) => {
                                         cutdown: activeEndTime
                                     })
                                 } else {
-                                    Modal.alert(444)
                                     callback({
                                         show: false
                                     })
                                 }
                             } else {
                                 // 有今日已签到的缓存
-                                if (res.userHadCheckin) {
+                                if (data.userHadCheckin == moment().format('YYYY/MM/DD')) {
                                     callback({
                                         show: true,
                                         type: 'fixedEntrance'
                                     })
-                                } else if (lastRecords.substr(0, 10) == moment().format('YYYY/MM/DD')) {
+                                } else if (lastRecords.substr(0, 10) == moment().format('YYYY/MM/DD')) { //moment().format('YYYY/MM/DD')
                                     // 最后一天的签到记录为今天
                                     callback({
                                         show: true,
