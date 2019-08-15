@@ -55,6 +55,13 @@ module.exports = {
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         outputPath: 'images/', //输出到images文件夹
+                    //         name: '[name].[ext]', // placeholder 的具体含义可查看文档
+                    //     }
+                    // },
                     {
                         loader: 'url-loader',
                         options: {
