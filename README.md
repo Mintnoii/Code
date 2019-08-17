@@ -130,7 +130,7 @@ web前端开发真的是一个入门非常简单的领域，最初入前端这�
 
 ## 高级
 
-### 1. Vue.js
+### 1. Vue.js 技术栈
 
 > 1. 理解MVVM的原理，掌握Vue框架的用法。
 > 2. 学会vue-router、vuex、axios等常用第三方库。
@@ -138,7 +138,29 @@ web前端开发真的是一个入门非常简单的领域，最初入前端这�
 - [vue源码解析](https://ustbhuangyi.github.io/vue-analysis/prepare/entrance.html)
 - [Vue-MintShop外卖实战项目](https://github.com/W-Qing/Vue-MintShop)
 
-### 2. Node.js
+### 2. React.js 技术栈
+
+**React 基础**
+
+> - 父子组件传值通信、事件传递
+> - 生命周期 
+
+[技术胖的react教程]([http://jspang.com/posts/2019/05/04/new-react-base.html#%E7%AC%AC01%E8%8A%82%EF%BC%9Areact%E8%AF%BE%E7%A8%8B%E5%89%8D%E8%A8%80](http://jspang.com/posts/2019/05/04/new-react-base.html#第01节：react课程前言))
+
+[React文档学习笔记](<https://sunburst.wang/posts/2019/06/23/react-docs-notes.html>)
+
+**React-router 路由**
+
+**Redux 状态管理**
+
+入门文章：
+
+- [《Redux 入门教程—阮一峰》](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
+- [《Redux 中文文档》](https://cn.redux.js.org/)
+
+React-Redux
+
+### 3. Node.js
 
 > 1. 了解 Node.js 特性和核心 API 的使用
 > 2. 学习静态资源服务器的原理和开发
@@ -148,17 +170,6 @@ web前端开发真的是一个入门非常简单的领域，最初入前端这�
 
 - 文章(todo)
 - 视频教程
-
-### 3. React.js
-
-> - 父子组件传值通信、事件传递
-> - 生命周期 
-
-[技术胖的react教程]([http://jspang.com/posts/2019/05/04/new-react-base.html#%E7%AC%AC01%E8%8A%82%EF%BC%9Areact%E8%AF%BE%E7%A8%8B%E5%89%8D%E8%A8%80](http://jspang.com/posts/2019/05/04/new-react-base.html#第01节：react课程前言))
-
-[React文档学习笔记](<https://sunburst.wang/posts/2019/06/23/react-docs-notes.html>)
-
-React-redux
 
 ### 4. 浏览器机制
 
