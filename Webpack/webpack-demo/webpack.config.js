@@ -1,6 +1,7 @@
 // 引入自带的node核心模块
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const PATH = {
     app:path.join(__dirname, "./src/index.js"),
@@ -18,6 +19,13 @@ module.exports = {
         path:PATH.build
     },
     mode: 'development',
+    devtool: 'eval',
+    devServer: {
+        port: 8086,
+        proxy: {
+            '/api': 'http://localhost:8086'
+          }
+    },
 
     //做模块的处理 用loader进行处理
     module: {
@@ -86,6 +94,7 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             template: './src/index.html'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }
