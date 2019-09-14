@@ -674,7 +674,7 @@ bindEvent(a, 'click', function (e) {
 })
 ```
 
-### 2.4 Ajax、跨域
+### 2.4 Ajax
 
 #### XMLHttpRequest
 
@@ -716,32 +716,6 @@ request.onreadystatechange() = function(){
 4xx - 客户端请求错误，如404 
 5xx - 服务器端错误，如500
 ```
-
-#### 跨域
-
-- **JSONP实现原理**
-
-  1. 提前定义好跨域请求的接口要返回的函数
-  2. 通过script跨域加载js文件，绕过浏览器的同源策略
-  3. 加载请求的js文件，同时执行callback函数 得到请求的数据
-
-  ```javascript
-  <script>
-  window.callback = function (data) {
-      // 这是执行请求得到的信息
-      console.log(data)
-  }
-  <script/>
-  <script src = "http://demo.com/api.js"><script/>
-  // 该接口讲返回 callback({x:10, y:20})
-  ```
-
-- 服务端设置 http header 也可以解决跨域问题
-
-  ```javascript
-  // 不同的后端语言会有不同
-  response.setHeader("Access-Control-Allow-Origin", "http://test.com") // 不建议直接写 '*'
-  ```
 
 ## 3. JS开发环境
 
