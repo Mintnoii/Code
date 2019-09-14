@@ -974,41 +974,6 @@ module.exports = {
 
 ### 运行环境：
 
-### 3.4 页面渲染
-
-#### 加载资源的形式
-
-- 输入 url (或跳转页面) 加载 html
-- 加载 html 中的静态资源 `<img>` `<script>` `<video>` CSS等
-
-#### 加载一个资源的过程
-
-- 浏览器根据 DNS 服务器得到域名的 IP 地址
-- 向这个 IP 的服务器发送 http 请求
-- 服务器收到请求，处理并返回 http 请求
-- 浏览器得到返回内容
-
-#### 浏览器渲染页面的过程
-
-- 根据 HTML 结构生成 DOM Tree
-- 根据 CSS 生成 CSSOM
-- 将 DOM 和 CSSOM 整合形成 RenderTree
-- 浏览器根据 RenderTree开始渲染和展示
-- 遇到`<script>` 时，会执行并阻塞渲染，因为JS有可能改变DOM树结构
-- 而 img、 video则是异步加载，不会阻塞渲染
-
-**window.onload 和 DOMContentLoaded**
-
-```javascript
-window.addEventListener('load', function () {
-    // 页面的全部资源加载完才会执行，包括图片、视频等
-})
-
-document.addEventListener('DOMContentLoaded', function () {
-    // DOM 渲染完即可执行，此时图片、视频可能还没有加载完
-})
-```
-
 ### 3.5 性能优化
 
 #### 优化原则
