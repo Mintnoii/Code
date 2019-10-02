@@ -1,34 +1,3 @@
-## Typeof
-
-**1.  用`typeof` 来判断基本类型，除了 `null` 都可以显示正确的类型** 
-
-```javascript
-typeof 1 // 'number'
-typeof '1' // 'string'
-typeof undefined // 'undefined'
-typeof true // 'boolean'
-typeof Symbol() // 'symbol'
-typeof b // b 没有声明，但是还会显示 undefined
-```
-
-`typeof null`结果是`object` ，实际这是`typeof`的一个bug，null是原始类型，而非引用类型
-
-```javascript
-typeof null // 'Object'
-```
-
-> PS: 为什么会出现这种情况呢？
->
-> 因为在 JS 的最初版本中，使用的是 32 位系统，为了性能考虑使用低位存储了变量的类型信息，`000` 开头代表是对象，然而 `null` 表示为全零，所以将它错误的判断为 `object` 。虽然现在的内部类型判断代码已经改变了，但是对于这个 Bug 却是一直流传下来。
-
-**2. 用`typeof` 来判断引用类型(对象)，除了函数都显示`Object`**
-
-```javascript
-typeof {} // 'Object'
-typeof [] // // 'Object'
-typeof console.log // 'function'
-```
-
 ## 类型转换todo
 
 会发生类型转换的几种情况：
