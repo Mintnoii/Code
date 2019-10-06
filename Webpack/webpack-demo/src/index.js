@@ -19,15 +19,29 @@ console.log(testStr);
 
 function getComponent() {
   // Lodash, now imported by this script
-  /* webpackChunkName: "lodash" */ 
-	return import('lodash').then(({ default: _ }) => {
+	return import(/* webpackChunkName: "lodash" */'lodash').then(({ default: _ }) => {
 		var element = document.createElement('div');
 		element.innerHTML = _.join(['Hello', 'webpack'], '🎉');
 		return element;
 	}).catch(
-    error => 'An error occurred while loading the component');
+    error => 'An error occurred while loading the component.');
 }
 
 getComponent().then(component => {
 	document.body.appendChild(component);
+})
+
+
+// Lazy Loading 
+document.addEventListener('click', () => {
+  getComponent().then(component => {
+    document.body.appendChild(component);
+  })
+})
+
+document.addEventListener('click', () => {
+	// 这里通过 default 来拿到导出的方法后重命名为 func
+	import(/* webpackPrefetch: true */ './click.js').then(({default: func}) => {
+		func();
+	})
 })

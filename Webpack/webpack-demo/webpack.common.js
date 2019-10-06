@@ -12,9 +12,9 @@ module.exports = {
   },
   output:{
       // publicPath: '',
-      filename:"[name].js", // 使用占位符来命名  即app.js
+      filename:"[name].js", // 使用占位符来命名  即项目直接引用的 app.js
+      chunkFilename: "[name].chunk.js", // 代码在 node-modules 下的模块打包生成的 chunks 会按照这个格式命名
       path:PATH.build,
-      chunkFilename: '[name].bundle.js'
   },
   //做模块的处理 用loader进行处理
   module: {
@@ -39,18 +39,7 @@ module.exports = {
         //     }
         // },
         {
-            test: /\.(css|scss)$/,
-            use: ["style-loader", "css-loader", "sass-loader"] 
-            //loader的执行顺序是从下至上 从右至左
-            /* use: [
-                {loader: "style-loader"},
-                {loader: "css-loader"},
-                {loader: "sass-loader"},
-                {loader: "postcss-loader"}
-            ]*/
-        },
-        {
-            test: /\.(png|jpg|gif)$/,
+            test: /\.(png|jpg|gif)$/, 
             use: [
                 {
                     loader: 'file-loader',
@@ -73,9 +62,15 @@ module.exports = {
         // }
     ]
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all'
-  //   }
-  // }
+  optimization: {
+    usedExports: true,
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendors: false,
+        default: false
+      }
+    },
+    
+  }
 }
