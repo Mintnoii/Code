@@ -169,48 +169,6 @@ for (item in f) {
 
 ### 1.3 作用域、闭包
 
-#### 作用域
-
-- 没有块级作用域 (不考虑let)
-
-```javascript
-if(true){ 
-    var name='zhangsan'
-}
-console.log(name)//'zhangsan'
-```
-
-- 只有全局和函数作用域
-
-```javascript
-var a=100
-function fn(){
-    var a=200
-    console.log('fn',a)
-}            
-console.log('global',a) // global 100
-fn() // fn 200
-```
-
-#### 作用域链
-
-- 寻找一个自由变量时会从当前作用域开始一直不断的往父级作用域去找，然后形成一个链式结构。
-
-```javascript
-var a=100
-function F1(){
-  var b=200 
-  function F2(){
-      var c=300
-      console.log(a) //a是自由变量
-      console.log(b) //b是自由变量
-      console.log(c) 
-	}          
-   F2()       
-}
-F1()
-```
-
 #### 面试题
 
 1. 对变量提升的理解？
