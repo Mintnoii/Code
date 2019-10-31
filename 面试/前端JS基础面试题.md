@@ -170,19 +170,6 @@ for (item in f) {
 
 ### 1.4 异步、单线程
 
-#### 什么是异步
-
-```javascript
-console.log(100) 
-setTimeout(function(){ 
-console.log(200) 
-},1000) 
-console.log(300) //100 300 200
-// 先打印100 再打印300 1s后打印200
-// 而不是先打印100 堵塞等待1s后打印200 最后打印300
-// 这就是异步
-```
-
 #### 前端使用异步的场景
 
 可能发生等待的情况下，等待过程不能像alert一样阻塞程序运行。
@@ -372,50 +359,7 @@ p.getAttribute('style')
 p.setAttribute('style', 'font-size:30px')
 ```
 
-#### DOM结构的操作
-
-- 新增节点
-
-  ```javascript
-  var div1 = document.getElementById('div1')
-  // 添加新节点
-  var p1 = document.creatElement('p')
-  p1.innerHtml = 'this is p1'
-  div1.appendChild(p1) // 添加新创建的元素
-  // 移动已有节点
-  var p2 = document.getElementById('p2')
-  div1.appendChild(p2)
-  ```
-
-- 查询子节点
-
-  ```javascript
-  var parent = div1.parentElement
-  ```
-
-- 查询父节点
-
-  ```javascript
-  var child = div1.childNodes
-  ```
-
-- 删除节点
-
-  ```javascript
-  div1.removeChild(child[0])
-  ```
-
 #### 面试题
-
-1. dom是哪种基本的数据结构？
-
-   > - 树
-
-2. Dom操作的常用API有哪些？
-
-   > 1. 获取DOM节点，以及节点的property和Attribute 
-   > 2. 获取父节点，获取子节点  childNodes/ parentNode
-   > 3. 新增节点，删除节点
 
 3. Dom节点的Attribute和Property有和区别？ 
 
