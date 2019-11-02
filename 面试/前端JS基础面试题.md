@@ -167,44 +167,6 @@ for (item in f) {
    }).html('<p>world</p>')
    ```
 
-### 1.3 作用域、闭包
-
-#### 面试题
-
-1. 对变量提升的理解？
-
-   > 变量的定义
-   >
-   > 函数的声明（注意和函数表达式的区别）
-
-2. 说明this的几种不同使用场景？
-
-   > 参考上文的this知识点
-
-3. 创建10个`<a>`标签，点击的时候弹出来对应的序号？
-
-   ```javascript
-   var i
-   for(i=0;i<10;i++){
-   	(function(i){
-   	var a=document.createElement('a')
-       a.innerHTML=i+'<br>'
-       a.addEventListener('click',function(e){		   							e.preventDefault()
-      		alert(i)
-      	})
-      	document.body.appendChild(a)
-   	})(i)//相当于创建了10个函数 每个函数内的i都不同
-   }
-   ```
-
-4. 如何理解作用域？
-
-   > 自由变量
-   >
-   > 作用域链，即自由变量的查找
-   >
-   > 闭包的使用场景
-
 
 ### 1.4 异步、单线程
 
