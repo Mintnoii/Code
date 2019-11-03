@@ -253,27 +253,6 @@ js 是单线程的语言，所以需要异步。
 
 ### 1.5 补充知识
 
-#### 日期
-
-```javascript
-Date.now()  // 获取当前时间毫秒数 
-var dt=new Date() 
-dt.getTime()   // 获取毫秒数 
-dt.getFullYear()   // 年
-dt.getMonth()  // 月 (0-11)
-dt.getDate() // 日 (0-31)
-dt.getHours()   // 小时 (0-23) 
-dt.getMinutes() // 分钟 (0-59) 
-dt.getSeconds() // 秒 (0-59)
-```
-
-#### Math
-
-```javascript
-Math.random()
-// random 在实际中的应用有清除缓存的作用，是每次访问到的都不是缓存
-```
-
 #### 对象API
 
 ```javascript
