@@ -10,6 +10,8 @@
 
 当然，我目前对于 Nginx 的打算也只是先学会其用法，然后可以 control 基本的服务器配置和运维工作就 ok。
 
+对于 Nginx，我们可以深入探索的有很多，但对前端开发者而言，能够熟悉掌握和编写 Nginx 的核心配置文件 `nginx.conf`，其实已经能解决 80% 的问题了。
+
 ## Nginx 的优点：
 
 Nginx ("engine x") 是一个高性能的 HTTP 和反向代理服务器,特点是**占有内存少**，**并发能力强**。(官方测试 Nginx 能够支持5万并发链接，实际生产环境中可以支撑2-4万并发连接数。)
@@ -50,6 +52,88 @@ Nginx 不仅可以做反向代理，实现负载均衡。还能用作正向代�
 ## 什么是动静分离
 
 为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度。降低原来单个服务器的压力。
+
+## 配置反向代理
+
+进入`/etc/nginx`目录，查看`nginx.conf`配置文件，在`http`块中找到这样两句：
+
+```
+# include /etc/nginx/conf.d/*.conf;
+# include /etc/nginx/sites-enabled/*; // centos 下是没有这个的
+```
+
+看看你的这两句有没有注释掉，如果注释了就把`#`号去掉，没有注释的话就跳过这一步。
+
+4.进入`/etc/nginx/conf.d`目录，创建我们自己的配置文件，去名规则最好是域名加端口，这样以后方便找，比如我的：`rockjins-com-8081.conf`，配置文件写入以下内容：
+
+```
+upstream rockjins {
+    server 127.0.0.1:8081; # 这里的端口号写你node.js运行的端口号，也就是要代理的端口号，我的项目跑在8081端口上
+    keepalive 64;
+}
+
+server {
+    listen 80; #这里的端口号是你要监听的端口号
+    server_name 39.108.55.xxx www.rockjins.com rockjins.com; # 这里是你的服务器名称，也就是别人访问你服务的ip地址或域名，可以写多个，用空格隔开
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Nginx-Proxy true;
+        proxy_set_header Connection "";
+        proxy_pass http://rockjins; # 这里要和最上面upstream后的应用名一致，可以自定义
+    }
+}复制代码
+```
+
+5.保存文件后，输入`sudo nginx -t`测试我们的配置文件是否有错误，一般错误都是漏个分号，少个字母之类的，错误提示很精确，没错的话会输出下面两句:
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful复制代码
+```
+
+6.现在我们需要重启`Nginx`，我们的配置文件才会生效，输入`sudo service nginx reload`;
+
+**配置一个单节点的反向代理**
+
+```javascript
+# simple reverse-proxy
+server { 
+    listen       80;
+    server_name  big.server.com;
+    access_log   logs/big.server.access.log  main;
+
+    # pass requests for dynamic content to rails/turbogears/zope, et al
+    location / {
+      proxy_pass      http://127.0.0.1:8080;
+    }
+  }
+
+```
+
+这里定义的规则是以big.server.com域名来请求Nginx的80端口，会将请求代理到127.0.0.1:8080上。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Todo..
 
