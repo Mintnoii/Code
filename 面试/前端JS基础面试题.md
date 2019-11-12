@@ -249,27 +249,6 @@ F1()
    >
    > 闭包的使用场景
 
-5. 实际开发中闭包的应用？
-
-   ```javascript
-   //闭包实际应用中主要用于封装变量，收敛权限
-   function isFirstLoad(){
-   	var _list=[] //  不想暴露出去的私有数组
-   	return function(id){
-       	if(_list.indexOf(id)>=0){
-   			return false
-       	}else{
-       		_list.push(id)
-           	return true
-       	}
-       }
-   }
-   //使用：判读是否是第一次加载
-   var firstLoad=isFirstLoad()
-   firstLoad(10) // true
-   firstLoad(10) // false
-   firstLoad(20) // true
-   ```
 
 ### 1.4 异步、单线程
 
@@ -836,33 +815,6 @@ request.onreadystatechange() = function(){
   // 不同的后端语言会有不同
   response.setHeader("Access-Control-Allow-Origin", "http://test.com") // 不建议直接写 '*'
   ```
-
-### 2.5 存储
-
-#### cookie
-
-- 本身用于客户端和服务端通信
-- 但是它有本地存储的功能，于是就被 ”借用“
-- 使用 document.cookie = ... 获取和修改即可
-
-缺点：
-
-- 数据存储量太小，只有4kb
-- 所有http请求都带着，会影响获取资源的效率
-- API简单，需要封装才能用
-
-#### localStorage、sessionStorage
-
-- HTML5专门为存储而设计，最大容量 5M
-- API简单易用：localStorage.setItem( key, val )   localStorage.getItem( key )
-- sessionStorage保存的数据会在浏览器或会话关闭后被清除，而localStorage不会，所以更常用localStorage
-- IOS safari 隐藏模式下，localStorage.getItem 会报错，建议统一使用 try-catch 封装 
-
-#### 区别
-
-- 容量 4kb VS 5M
-- 是否会携带到ajax请求中
-- API易用性
 
 ## 3. JS开发环境
 
