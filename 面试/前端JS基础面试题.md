@@ -604,54 +604,8 @@ history.go(-1)
 
 ### 2.3 事件
 
-#### 事件冒泡
-
-在父级 div 中定义的事件，会在子级的事件执行之后冒泡上来执行
-
-- 阻止事件冒泡 e.stopPropagation()
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div id="div1">
-      <p id="p1">激活</p>
-      <p id="p2">取消</p>
-      <p id="p3">取消</p>
-      <p id="p4">取消</p>
-    </div>
-    <div id="div2">
-      <p id="p5">取消</p>
-      <p id="p6">取消</p>
-    </div>
- 
- 
-    <script type="text/javascript">
-    // 利用阻止冒泡的机制实现：只点击 p1 的时候弹窗激活
-      function bindEvent(elem,type,func) {
-        elem.addEventListener(type,func)
-      }
-      var p1 = document.getElementById('p1')
-      bindEvent(p1,'click',function(e){
-        e.stopPropagation()
-        alert('激活')
-      })
-      bindEvent(body,'click',function (e) {
-        alert('取消')
-      })
-    </script>
-  </body>
-</html>
-```
-
 #### 事件代理
 
-利用事件冒泡和事件监听来实现事件代理(事件委托)：使代码简洁，减少浏览器内存占用
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -660,12 +614,7 @@ history.go(-1)
     <title></title>
   </head>
   <body>
-    <ul id="list">
-  		<li id="item1">项目1</li>
-  		<li id="item2">项目2</li>
-  		<li id="item3">项目3</li>
-        <!-- 随时会新增更多的 li 标签 -->
-	</ul>
+    
     <script type="text/javascript">
       // 要求用代理的方式实现 动态事件绑定，绑定 div1 中的所有 a 标签
       var list = document.getElementById('list')
@@ -769,28 +718,6 @@ request.onreadystatechange() = function(){
 ```
 
 #### 跨域
-
-- 浏览器有同源策略，不允许ajax访问其他域接口
-
-- 跨域条件：协议、域名、端口，有一个不同就算跨域
-
-- 所有的跨域请求都必须经过信息提供方允许
-
-- 但是有三个标签允许跨域加载资源
-
-  ```html
-  <img src="xxx">
-  <link href="xxx">
-  <script src="xxx">
-  ```
-
-- 三个标签的使用场景
-
-  > img 用于打点统计，统计网站可能是其他域
-  >
-  > link、script 可以使用CDN，CDN的也是其他域
-  >
-  > script 可以用于JSONP
 
 - **JSONP实现原理**
 
