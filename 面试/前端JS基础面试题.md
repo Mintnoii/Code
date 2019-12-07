@@ -4,126 +4,6 @@
 
 ## 1. JS基础
 
-### 1.1 变量类型和计算
-
-#### 题目
-
-1. JS中使用typeof 能得到的哪些类型？
-2. 何时使用 == ，何时使用 === ？
-3. JS中有哪些内置函数？
-4. JS变量按照存储方式区分为哪些类型，并描述其特点？
-5. 如何理解JSON ?
-
-#### 知识点
-
-**变量类型**
-
-```javascript
-// 问题1：使用typeof运算符查看JS变量类型
-console.log(typeof undefined)      // undefined
-console.log(typeof 'abc')  // string
-console.log(typeof 123)   // number
-console.log(typeof true)   // boolean
-console.log(typeof {})    // object
-console.log(typeof [])    // object
-console.log(typeof null)       // object
-console.log(typeof console.log)    //function
-```
-
-```javascript
-// 问题4：按照存储方式区分:值类型 VS 引用类型
-
-//值类型
-var a = 10
-var b = a
-a = 11
-console.log(b) // 10
-
-//引用类型: 对象、数组、函数
-var a = { age : 19}
-var b = a
-b.age = 20
-console.log(a.age) // 20
-```
-
-**变量计算**
-
-会发生类型转换的几种情况：
-
-1. 字符串拼接
-
-   ```javascript
-   var a = 100 + 10 // 110
-   var b = 100 + '10' // '10010'
-   ```
-
-2. == 运算符
-
-   ```javascript
-   100 == '100' // true
-   0 == '' // true
-   null == undefined // true
-   ```
-
-3. if 语句
-
-   ```javascript
-   var a = true
-   if (a) {
-   	// ...
-   }
-   var b = 100
-   if (b) {
-       // ...
-   }
-   // 会被判断为false的6种情况： 0、''、NaN、null、undefined、false
-   ```
-
-4. 逻辑运算
-
-   ```javascript
-   console.log(10 && 0) // 0 与
-   console.log(''|| 'abc') // 'abc' 或
-   console.log(!window.abc) // true 非
-   
-   // 使用！！来查看在if()中判断一个变量会被当做true 还是 false
-   var b = 100
-   console.log(!!b)
-   ```
-
-```javascript
-// 问题2：何时使用 == ，何时使用 === ？
-// 一般全都使用 === 全等运算符
-// 除了要用在判断对象的属性时，可以使用下面的写法
-if(obj.a == null){
-    //这里相当于 obj.a === null || obj.a === undefined, 简写形式
-    //这是 jquery 源码中推荐写法
-}
-```
-
-```javascript
-// 问题3：JS中有哪些内置函数？ —— 数据封装类对象
-Object
-Array
-Boolean
-Number
-String
-Function
-Date
-RegExp
-Error
-```
-
-```javascript
-// 问题5：如何理解JSON？
-// JSON是一种数据格式，但单纯从JS语法来看它只不过是一个JS内置对象而已(类似于Math)
-
-//把对象变成字符串
-JSON.stringify({ a : 10, b : 20})
-//把字符串变成json对象
-JSON.parse('{"a" : 10, "b" : 20}')
-```
-
 ### 1.2 原型、原型链
 
 #### 构造函数
@@ -241,14 +121,6 @@ for (item in f) {
 
 #### 面试题
 
-1. 如何准确判断一个变量是否是数组类型？
-
-   ```javascript
-   var arr = []
-   arr instance Array //true
-   typeof arr //object,typeof是无法判断是否是数组的
-   ```
-
 2. 写一个原型链继承的例子
 
    ```javascript
@@ -299,91 +171,6 @@ for (item in f) {
 
 ### 1.3 作用域、闭包
 
-#### 执行上下文
-
-js 是解释型语言不是编译型语言，所以有些错误在编写程序时不会报错，什么时候执行什么时候报错。
-
-- 范围：一段<script>或者一个函数
-- 全局环境内：变量定义(var x)、函数声明(function fn)
-- 函数环境内：变量定义、函数声明、this、arguments 
-- 注意：‘函数声明’和‘函数表达式’的区别
-
-```javascript
-console.log(a)//undefined    
-var a=100    
-
-fn('zhangsan') //'zhangsan' 20    
-function fn(name){   
-	age=20       
-    console.log(name,age)       
-    var age    
-}
-```
-
-#### this
-
-**this要在执行时才能确认值，定义时无法确认**
-
-```javascript
-var a={       
-	name:"A",       
-	fn:function(){           					     	console.log(this.name)       
-	}
-}    
-a.fn()  // this===a    
-a.fn.call({name:B}) // this==={name:'B'}    
-var fn1=a.fn;    
-fn1() // this===window
-```
-
-**this的几种使用场景：**
-
-- 作为构造函数执行
-
-  ```javascript
-  function Foo(name){
-  	//this={}
-  	this.name=name;
-  	//return this
-  }
-  var f=new Foo('zhangsan')
-  ```
-
-- 作为对象属性执行
-
-  ```javascript
-  var obj={           
-      name:'A',            
-      printName:function(){                			console.log(this.name)
-  	} 
-  }
-  obj.printName()
-  ```
-
-- 作为普通函数执行
-
-  ```javascript
-  function fn(){
-  	console.log(this)
-      //this===window
-  }
-  fn()
-  ```
-
-- call、apply、bind
-
-  ```javascript
-  function fn1 (name,age){          
-      alert(name)
-      console.log(this)  //this===window       }       
-  fn1.call({x:100},'zhangsan',20)       fn1.apply({x:100},['zhangsan',20])
-      
-  var fn2 = function(name,age){          alert(name)
-   console.log(this)  //this==={x:100}       }.bind({x:100}) 
-  //bind只能用函数表达式，函数声明不可用，会报错       
-  fn2('zhangsan',200)
-  ```
-
 #### 作用域
 
 - 没有块级作用域 (不考虑let)
@@ -426,38 +213,6 @@ function F1(){
 F1()
 ```
 
-#### 闭包
-
-**一个函数的父级作用域是它定义时的作用域，而不是执行时的作用域。**
-
-```javascript
-function F1(){
-    var a=100
-    //返回一个函数(函数作为返回值)
-    return function(){
-        console.log(a) //自由变量，父作用域寻找
-    }
-}     
-//f1得到一个函数     
-var f1=F1()
-var a=200
-f1() // 100 此时执行f1打印的仍然是这个函数定义时的父级作用域F1()函数内的a 等于100
-```
-
-**闭包的使用场景：**
-
-- 函数作为返回值（上面的示例代码）
-
-- 函数作为参数传递(函数自由变量要到父级作用域中找)
-
-  ```javascript
-  function F2(fn){
-  	var a=200
-  	fn() // (自由变量要到声明定义时的父作用域中找，和执行的作用域没有关系)
-  }
-  F2(f1) // 100 在F2内执f1()方法，去f1定义的作用域内找到a=100
-  ```
-
 #### 面试题
 
 1. 对变量提升的理解？
@@ -494,27 +249,6 @@ f1() // 100 此时执行f1打印的仍然是这个函数定义时的父级作用
    >
    > 闭包的使用场景
 
-5. 实际开发中闭包的应用？
-
-   ```javascript
-   //闭包实际应用中主要用于封装变量，收敛权限
-   function isFirstLoad(){
-   	var _list=[] //  不想暴露出去的私有数组
-   	return function(id){
-       	if(_list.indexOf(id)>=0){
-   			return false
-       	}else{
-       		_list.push(id)
-           	return true
-       	}
-       }
-   }
-   //使用：判读是否是第一次加载
-   var firstLoad=isFirstLoad()
-   firstLoad(10) // true
-   firstLoad(10) // false
-   firstLoad(20) // true
-   ```
 
 ### 1.4 异步、单线程
 
@@ -870,54 +604,8 @@ history.go(-1)
 
 ### 2.3 事件
 
-#### 事件冒泡
-
-在父级 div 中定义的事件，会在子级的事件执行之后冒泡上来执行
-
-- 阻止事件冒泡 e.stopPropagation()
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div id="div1">
-      <p id="p1">激活</p>
-      <p id="p2">取消</p>
-      <p id="p3">取消</p>
-      <p id="p4">取消</p>
-    </div>
-    <div id="div2">
-      <p id="p5">取消</p>
-      <p id="p6">取消</p>
-    </div>
- 
- 
-    <script type="text/javascript">
-    // 利用阻止冒泡的机制实现：只点击 p1 的时候弹窗激活
-      function bindEvent(elem,type,func) {
-        elem.addEventListener(type,func)
-      }
-      var p1 = document.getElementById('p1')
-      bindEvent(p1,'click',function(e){
-        e.stopPropagation()
-        alert('激活')
-      })
-      bindEvent(body,'click',function (e) {
-        alert('取消')
-      })
-    </script>
-  </body>
-</html>
-```
-
 #### 事件代理
 
-利用事件冒泡和事件监听来实现事件代理(事件委托)：使代码简洁，减少浏览器内存占用
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -926,12 +614,7 @@ history.go(-1)
     <title></title>
   </head>
   <body>
-    <ul id="list">
-  		<li id="item1">项目1</li>
-  		<li id="item2">项目2</li>
-  		<li id="item3">项目3</li>
-        <!-- 随时会新增更多的 li 标签 -->
-	</ul>
+    
     <script type="text/javascript">
       // 要求用代理的方式实现 动态事件绑定，绑定 div1 中的所有 a 标签
       var list = document.getElementById('list')
@@ -991,7 +674,7 @@ bindEvent(a, 'click', function (e) {
 })
 ```
 
-### 2.4 Ajax、跨域
+### 2.4 Ajax
 
 #### XMLHttpRequest
 
@@ -1033,81 +716,6 @@ request.onreadystatechange() = function(){
 4xx - 客户端请求错误，如404 
 5xx - 服务器端错误，如500
 ```
-
-#### 跨域
-
-- 浏览器有同源策略，不允许ajax访问其他域接口
-
-- 跨域条件：协议、域名、端口，有一个不同就算跨域
-
-- 所有的跨域请求都必须经过信息提供方允许
-
-- 但是有三个标签允许跨域加载资源
-
-  ```html
-  <img src="xxx">
-  <link href="xxx">
-  <script src="xxx">
-  ```
-
-- 三个标签的使用场景
-
-  > img 用于打点统计，统计网站可能是其他域
-  >
-  > link、script 可以使用CDN，CDN的也是其他域
-  >
-  > script 可以用于JSONP
-
-- **JSONP实现原理**
-
-  1. 提前定义好跨域请求的接口要返回的函数
-  2. 通过script跨域加载js文件，绕过浏览器的同源策略
-  3. 加载请求的js文件，同时执行callback函数 得到请求的数据
-
-  ```javascript
-  <script>
-  window.callback = function (data) {
-      // 这是执行请求得到的信息
-      console.log(data)
-  }
-  <script/>
-  <script src = "http://demo.com/api.js"><script/>
-  // 该接口讲返回 callback({x:10, y:20})
-  ```
-
-- 服务端设置 http header 也可以解决跨域问题
-
-  ```javascript
-  // 不同的后端语言会有不同
-  response.setHeader("Access-Control-Allow-Origin", "http://test.com") // 不建议直接写 '*'
-  ```
-
-### 2.5 存储
-
-#### cookie
-
-- 本身用于客户端和服务端通信
-- 但是它有本地存储的功能，于是就被 ”借用“
-- 使用 document.cookie = ... 获取和修改即可
-
-缺点：
-
-- 数据存储量太小，只有4kb
-- 所有http请求都带着，会影响获取资源的效率
-- API简单，需要封装才能用
-
-#### localStorage、sessionStorage
-
-- HTML5专门为存储而设计，最大容量 5M
-- API简单易用：localStorage.setItem( key, val )   localStorage.getItem( key )
-- sessionStorage保存的数据会在浏览器或会话关闭后被清除，而localStorage不会，所以更常用localStorage
-- IOS safari 隐藏模式下，localStorage.getItem 会报错，建议统一使用 try-catch 封装 
-
-#### 区别
-
-- 容量 4kb VS 5M
-- 是否会携带到ajax请求中
-- API易用性
 
 ## 3. JS开发环境
 
@@ -1365,41 +973,6 @@ module.exports = {
 ```
 
 ### 运行环境：
-
-### 3.4 页面渲染
-
-#### 加载资源的形式
-
-- 输入 url (或跳转页面) 加载 html
-- 加载 html 中的静态资源 `<img>` `<script>` `<video>` CSS等
-
-#### 加载一个资源的过程
-
-- 浏览器根据 DNS 服务器得到域名的 IP 地址
-- 向这个 IP 的服务器发送 http 请求
-- 服务器收到请求，处理并返回 http 请求
-- 浏览器得到返回内容
-
-#### 浏览器渲染页面的过程
-
-- 根据 HTML 结构生成 DOM Tree
-- 根据 CSS 生成 CSSOM
-- 将 DOM 和 CSSOM 整合形成 RenderTree
-- 浏览器根据 RenderTree开始渲染和展示
-- 遇到`<script>` 时，会执行并阻塞渲染，因为JS有可能改变DOM树结构
-- 而 img、 video则是异步加载，不会阻塞渲染
-
-**window.onload 和 DOMContentLoaded**
-
-```javascript
-window.addEventListener('load', function () {
-    // 页面的全部资源加载完才会执行，包括图片、视频等
-})
-
-document.addEventListener('DOMContentLoaded', function () {
-    // DOM 渲染完即可执行，此时图片、视频可能还没有加载完
-})
-```
 
 ### 3.5 性能优化
 
