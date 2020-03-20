@@ -1,18 +1,3 @@
-## 内置类型
-
-JS中有**7种内置类型** ，这7中类型又分为**6种基本类型(原始类型)和对象**。
-
-ECMAScript 中定义了 6 种基本类型：
-
-- `Number`（`NaN`也属于number）
-- `String`
-- `Boolean`
-- `Null`
-- `undefined`
-- `Symbol`（ES6 新增）
-
-对象（Object）是引用类型，包括：`Object 类型`、`Array 类型`、`Date 类型`、`RegExp 类型`、`Function `类型，引用类型在使用过程中会经常遇到浅拷贝和深拷贝的问题。
-
 ## Typeof
 
 **1.  用`typeof` 来判断基本类型，除了 `null` 都可以显示正确的类型** 
