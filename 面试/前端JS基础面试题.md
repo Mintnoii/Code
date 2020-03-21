@@ -356,15 +356,6 @@ Math.random()
 // random 在实际中的应用有清除缓存的作用，是每次访问到的都不是缓存
 ```
 
-#### 数组API
-
-- forEach  遍历所有元素
-- sort  数组排序
-- every  判断所有元素是否都符合条件 返回值为true或false
-- some  判断是否至少一个元素符合条件 返回值为true或false
-- filter 过滤符合条件的元素
-- map  对元素重新组装，生成新数组
-
 #### 对象API
 
 ```javascript
@@ -383,31 +374,6 @@ for(key in obj){
 ```
 
 #### 面试题
-
-1. 获取2017-06-10格式的日期 ？
-
-   ```javascript
-   function formatDate(dt){
-   	if(!dt){
-   		dt=new Date()
-       }
-       var year=dt.getFullYear()
-       var month=dt.getMonth()+1
-       var date=dt.getDate()
-       if(month<10){
-       	// 强制类型转换
-       	month="0"+month
-       }
-       if(date<10){
-       	//强制类型转换
-       	date="0"+month
-        }
-        return year+"-"+month+"-"+date
-   }
-   var dt=new Date()
-   var formatDate=formatDate(dt)
-   console.log(formatDate)
-   ```
 
 2. 获取随机数，要求是长度一致的字符串格式？
 
@@ -720,20 +686,6 @@ request.onreadystatechange() = function(){
 ## 3. JS开发环境
 
 ### 开发环境：
-
-### 3.1 版本管理
-
-```bash
-git add . /*添加所有的修改*/
-git checkout xxx /*切换到某个版本*/
-git commit -m 'xxx' /*将添加的修改文件提交到本地暂存区，并为提交记录添加备注*/
-git push origin master /*将修改提交到远程代码库*/
-git pull origin master /*拉取远程仓库的更新*/
-
-git branch xxx /*查看或切换到某个分支*/
-git checkout -b xxx /*新建并切换到某个分支*/
-git merge xxx /*将xxx分支的修改合并到当前分支*/
-```
 
 ### 3.2 模块化
 
