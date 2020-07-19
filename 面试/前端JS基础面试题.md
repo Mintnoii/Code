@@ -814,24 +814,3 @@ module.exports = {
      ```
 
    - 尽早执行操作（如 DOMContentLoaded ）
-
-### 3.6 安全性
-
-#### XSS(Cross Site Scripting) 跨站请求攻击
-
-- 在页面中偷偷插入一段 script 代码
-- 在攻击代码中，获取页面查看者的cookie，发送到攻击者的服务器
-
-**防范：**
-
-- 前端替换关键字，例如替换 < 为 `&lt;` 等
-- 更好的方案是后端替换
-
-#### XSRF （Cross-site request forgery） 跨站请求伪造
-
-- 登录一个购物网站浏览商品，而该网站的付费购买接口是xxx.com/pay?id=10
-- 然后可能会收到邮件，其中隐藏着对购物网站（已登录）没有任何验证的购买请求`<img src = "xxx.com/pay?id=10">`
-
-**防范：**
-
-- 增加验证流程，如指纹、密码、短信验证码
