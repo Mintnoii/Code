@@ -1,5 +1,7 @@
 # 前端JS基础面试题
 
+- 删除webpack 相关内容
+
 ## 1. JS基础
 
 ### 1.2 原型、原型链
@@ -94,51 +96,9 @@ for (item in f) {
 // 输出p的name printName两个属性
 ```
 
-#### 原型链
-
-![原型模式](http://owoccema2.bkt.clouddn.com/Readme/Code/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.jpg)
-
-> **图中矩形代表函数，带圆角的矩形代表对象，再结合上面的5条原型规则：**
->
-> **如果调用上面构造函数Foo创建的实例 f 的 toString()方法，当 p 这个实例对象没有这个属性方法时，它会去自身的隐式原型`f._proto_`中去找（规则2、5），也就是它自身构造函数的显式原型`Foo.prototype`（规则3、4）。**
->
-> **Foo.prototype也是一个对象（规则3）,而且这个对象中也没有toString这个方法，所以这个对象会继续向自身隐式原型_proto_指向的构造函数Object的显式原型Object.prototype中去找。**
->
-> **也就是最后要去`f._proto_._proto_`中找toSting方法。**
->
-> **补充：Object.prototype对象的隐式原型_proto_指向的是null，这里是JS原型链的终点。**
-
-**扩展**
-
-`instanceof`：用于判断引用类型属于哪个构造函数的方法
-
-`f instanceof Foo`的判断逻辑是：
-
--  f 的`__proto__`一层一层往上，能否对应到`Foo.prototype`
-- 再试着判断`f instance Object`
-
 #### 面试题
 
 2. 写一个原型链继承的例子
-
-   ```javascript
-   // 动物
-   function Animal(){ 
-       this.eat = function(){ 
-           console.log('Animal eat')
-       }
-   }
-   // 狗
-   function Dog(){ 
-       this.bark = function(){ 
-           console.log("dog bark")
-       }
-   }
-   Dog.prototype = new Animal()
-   // 哈士奇
-   var hashiqi = new Dog()
-   hashiqi.eat() // "Animal eat"
-   ```
 
    ```javascript
    // 写一个封装DOM查询的例子
@@ -158,7 +118,7 @@ for (item in f) {
    
    Elem.prototype.on = function(type,fn){
        var elem = this.elem
-       elem.addEventListener(type,fn)
+    elem.addEventListener(type,fn)
    }
    
    var div1 = new Elem('content_wrapper')
@@ -308,24 +268,6 @@ for(key in obj){
 
 ### 2.1 DOM操作
 
-#### DOM的本质
-
-Document  Object  Model文档对象模型可以理解为：
-浏览器把拿到的html代码，将其结构化成为一个浏览器能识别，并且js可操作的一个模型而已。
-
-#### 获取DOM节点
-
-```javascript
-var div1 = document.getElementById('div1') // 元素 
-var divList = document.getElementsByTagName('div') // 集合 
-console.log(divList.length) 
-console.log(divList[0])
- 
-var containerList = document.getElementsByClassName('.contaner') // 集合 
-var pList = document.querySelectorAll('p') // 集合 
-```
-
-#### DOM节点的操作
 **property**
 
 ```javascript
@@ -725,17 +667,6 @@ module.exports = {
   var aUtil = require('a-util.js')
   var dt = new Date()
   console.log(aUtil.aGetFormatDate(dt))
-  ```
-
-**使用webpack压缩JS代码:**
-
-- 如果进行代码压缩，只需要在 webpack.config.js 文件中配置 plugins
-
-  ```javascript
-  plugins: {
-      new webpack.optimize.UglifyJSPlugin() // 压缩js
-      // 具体配置压缩规则(压缩html、css等)请看官网文档
-  }
   ```
 
 #### linux基础命令
