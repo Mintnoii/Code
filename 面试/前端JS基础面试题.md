@@ -607,68 +607,6 @@ module.exports = {
 }
 ```
 
-### 3.3 打包工具
-
-#### webpack
-
-**遵循CommonJS规范使用构建打包工具webpack实现模块化：**
-
-- 安装node 与 npm后(可npm全局安装http-server模块，开启一个本地服务)，新建项目demo
-
-- 进入项目文件夹demo，`npm init` 初始化项目的npm环境，填写项目信息，生成package.json文件
-
-- `npm install webpcak --save-dev`安装开发环境下的webpack
-
-- `npm install jquery --save` 为项目安装jQuery
-
-- 在项目中新建一个 webpack.config.js 文件 和 src 文件夹
-
-  ```javascript
-  const path = require('path')
-  const webpack = require('webpack')
-  
-  module.exports = {
-      context: path.resolve(__dirname, './src'), // __dirname 代表项目目录
-      entry: {
-      	app: './app.js' // 入口文件为src下的app.js
-  	},
-      output: {
-          path: path.resolve(__dirname, './dist')
-          filename: 'bundle.js'  // 处理之后输出的文件
-      }
-  }
-  ```
-
-- 在 package.json 文件的 scripts 对象里加一行代码
-
-  ```javascript
-  "start": "webpack"
-  ```
-
-- 在终端执行 `npm start` 启动webpack，可以在项目中新生成的dist 文件夹内发现打包后的bundle.js文件
-
-- 在项目根目录下的index.html文件中引入打包后的bundle.js
-
-  ```html
-  <body>
-      <div id="test"></div>
-      
-      <script src="dist/bundle.js"></script>
-  </body>
-  ```
-
-- 接下来的开发，可以直接在app.js 中引入并使用 a-util.js (自己编写的代码都在src文件夹下) 或 jQuery
-
-  ```javascript
-  var $ = require('jquery')
-  var $testDiv = $('#test')
-  $testDiv.html('<p>这是 jQuery 插入的文字 </p>')
-  
-  var aUtil = require('a-util.js')
-  var dt = new Date()
-  console.log(aUtil.aGetFormatDate(dt))
-  ```
-
 #### linux基础命令
 
 ```bash
