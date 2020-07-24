@@ -1,7 +1,5 @@
 # 前端JS基础面试题
 
-- 删除webpack 相关内容
-
 ## 1. JS基础
 
 ### 1.2 原型、原型链
@@ -25,20 +23,6 @@ console.log(p.name) // zhangsan
 > - 构造函数执行时，函数内部的this会先变成一个空对象。
 > - 然后函数根据参数列表，对this进行属性的赋值。
 > - 最后默认将this对象return出去赋值给变量(p、p1)。
-
-#### 构造函数—扩展
-
-- var a = {} 其实是 var a = new Object() 的语法糖
-
-- var a = [] 其实是 var a = new Array() 的语法糖
-
-- function Foo(){...} 其实是 var Foo = new Function(){...} 的语法糖
-
-- 使用`instanceof`判断一个函数是否是一个变量的构造函数
-
-  > 题目：判断一个变量是否为“数组”：
-  >
-  > 变量 instanceof Array
 
 #### 5条原型规则及示例
 
@@ -445,21 +429,6 @@ request.onreadystatechange() = function(){
 ```
 
 - IE低版本使用 ActiveXObject，和W3C标准不一样
-
-#### 状态码
-
-```javascript
-0 -（未初始化）还没有调用send()方法 
-1 -（载入）已调用send()方法，正在发送请求 
-2 -（载入完成）send()方法执行完成，已经接收得到全部响应内容 
-3 - (交互)正在解析响应内容 
-4 -（完成）响应内容解析完成，可以在客户端调用了
- 
-2xx - 表示成功处理请求。如200 
-3xx - 需要重定向，浏览器直接跳转 
-4xx - 客户端请求错误，如404 
-5xx - 服务器端错误，如500
-```
 
 ## 3. JS开发环境
 
