@@ -148,35 +148,6 @@ document.getElementById('btn1').addEventListener('click',function(){
 console.log('end') // 'start' 'clicked' 'end'
 ```
 
-#### 异步和单线程
-
-js 是单线程的语言，所以需要异步。
-
-上述定时器的异步代码的**执行过程**如下（其他异步函数也类似）：
-
-1. 执行第一行，打印100
-2. 执行setTimeout后，传入setTimeout的函数会被暂存起来，不会立即执行（单线程的特点，不能同时干两件事）
-3.  执行最后一行，打印 300
-4. 待所有程序执行完，处于空闲状态时，会立马看有没有暂存起来的函数要执行
-5. 发现暂存起来的setTimeout中的函数，在指定的时间后执行
-
-#### 面试题
-
-2. 一个关于setTimeout的笔试题?
-
-   ```javascript
-   console.log(1) 
-   setTimeout(function(){ 
-   console.log(2) 
-   },0) 
-   console.log(3) 
-   setTimeout(function(){ 
-   console.log(4) 
-   },1000) 
-   console.log(5) 
-   //1 3 5 2 4
-   ```
-
 ### 1.5 补充知识
 
 #### 对象API
@@ -299,7 +270,6 @@ Browser  Object  Model浏览器对象模型可以理解为：
 ```javascript
 var ua = navigator.userAgent // 或者通过window.navigator来访问，下同
 var isChrome = ua.indexOf(‘Chrome’) 
-console.log(isChrome) 
 ```
 
 #### screen
