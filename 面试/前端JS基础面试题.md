@@ -111,43 +111,6 @@ for (item in f) {
    }).html('<p>world</p>')
    ```
 
-
-### 1.4 异步、单线程
-
-#### 前端使用异步的场景
-
-可能发生等待的情况下，等待过程不能像alert一样阻塞程序运行。
-
-1. 定时任务：setTimeout、setInterval
-2. 网络请求：ajax请求，动态img加载
-3. 事件绑定
-
-**异步示例：**
-
-```javascript
-console.log('start')
-$.get('./data1.json',function(data1){
-	console.log(data1)
-})
-console.log('end') // 'start'  'end'   data1
- 
- 
-console.log('start')
-var img=document.createElement('img')
-img.onload=function(){
-	console.log('loaded')
-} // 图片加载完执行
-img.src='/xx.png'
-console.log('end')// 'start' 'end' 'loaded'
- 
- 
-console.log('start')
-document.getElementById('btn1').addEventListener('click',function(){
-       alert('clicked')
-}) // 点击时才会执行
-console.log('end') // 'start' 'clicked' 'end'
-```
-
 ### 1.5 补充知识
 
 #### 对象API
