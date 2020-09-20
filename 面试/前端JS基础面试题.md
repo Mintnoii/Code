@@ -4,26 +4,6 @@
 
 ### 1.2 原型、原型链
 
-#### 构造函数
-
-```javascript
-function Foo(name,age) { // 习惯将构造函数首字母大写
-    this.name = name
-    this.age = age
-    this.class = 'class-1'
-    // return this // 默认有这一行
-}
-var p = new Foo('zhangsan', 20)
-// var p1 = new Foo('lisi', 22) // 创建多个对象
-console.log(p.name) // zhangsan
-```
-
-> 题目：new一个构造函数返回对象的过程：
->
-> - 构造函数执行时，函数内部的this会先变成一个空对象。
-> - 然后函数根据参数列表，对this进行属性的赋值。
-> - 最后默认将this对象return出去赋值给变量(p、p1)。
-
 #### 5条原型规则及示例
 
 1. 所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（除了“null”以外）。
@@ -131,15 +111,6 @@ for(key in obj){
 ```
 
 #### 面试题
-
-2. 获取随机数，要求是长度一致的字符串格式？
-
-   ```javascript
-   var random=Math.random()
-   var random=random + '0000000000'   //后面加上10个零 
-   var random=random.slice(0,10) // 获取到的随机数长度都为10
-   console.log(random)
-   ```
 
 3. 写一个能遍历对象和数组的通用forEach函数？
 
