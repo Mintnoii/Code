@@ -91,25 +91,6 @@ for (item in f) {
    }).html('<p>world</p>')
    ```
 
-### 1.5 补充知识
-
-#### 对象API
-
-```javascript
-var obj={
-	x:100,
-	y:200,
-	z:300
-}
-var key
-for(key in obj){
-	// 注意这里的hasOwnProperty,在讲原型链时讲过
-	if(obj.hasOwnProperty(key)){
-		console.log(key,obj[key])
-	}
-}
-```
-
 #### 面试题
 
 3. 写一个能遍历对象和数组的通用forEach函数？
