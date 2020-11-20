@@ -1,27 +1,5 @@
 # CSS常用代码整理
 
-## 三角形列表项目符号
-
-```css
-ul {
-    margin: 0; 
-    padding: 0 1em; 
-    list-style: none;
-}
-li:before {
-    content: ""; 
-    border-color: transparent #111; 
-    border-style: solid;
-    border-width: 0.35em 0 0.35em 0.45em; 
-    display: block;
-    height: 0;
-    width: 0;
-    left: -1em;
-    top: 0.9em;
-    position: relative;
-} 
-```
-
 ## inline元素间的空白间隙
 
 如果你写了个列表，因为元素节点有文本节点，在缩进代码时会占据宽度，比如：
