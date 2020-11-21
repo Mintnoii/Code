@@ -1,36 +1,5 @@
 # CSS常用代码整理
 
-## 实现带背景遮罩的弹窗
-
-```css
-/*class为black_overlay遮罩层div*/
-.black_overlay{
-    display: none;
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    z-index:1001;
-    -moz-opacity: 0.8;
-    opacity:.80;
-    filter: alpha(opacity=80);
-}
-/*class为dialog_content的弹窗div*/
-.dialog_content {
-	display: none;
-	position: fixed;
-	top: 30%;
-	left: 30%;
-	background-color: white;
-	z-index: 1002;
-	overflow: auto;
-	border: 5px solid #ADD8E6;
-	padding: 10px 10px 10px 10px;
-}
-```
-
 ## 三角形列表项目符号
 
 ```css
