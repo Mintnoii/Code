@@ -126,16 +126,6 @@ for (item in f) {
 
 ## 2. JS-WEB-API
 
-**常说的JS(浏览器执行的JS)包括两部分：**
-
-- JS基础知识：ECMA 262标准
-- JS-WEB-API：W3C标准，它不参与规定任何JS基础相关的东西，不管什么变量类型、原型、作用域和异步，只管定义用于浏览器JS操作页面的API和全局变量
-
-所以全面的考虑，JS内置的全局函数和对象有哪些？
-
-- Object、 Array 、RegExp 、Function、 Error、 Date 、Number、 Boolean、 String、Math、JSON
-- 以及window、document、navigator...
-
 ### 2.1 DOM操作
 
 **property**
