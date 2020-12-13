@@ -527,3 +527,131 @@ module.exports = {
      ```
 
    - 尽早执行操作（如 DOMContentLoaded ）
+
+
+
+## 阿里面试题
+
+```js
+// 通过代码实现将符合下列数据结构的数据渲染成 HTML。例如：
+
+const data = [{
+  id: 'node1',
+  type: 'div',
+  className: 'section1',
+  children: [{
+    id: 'node2',
+    type: 'div',
+    className: 'text',
+    children: [{
+      id: 'node3',
+      type: 'span',
+      content: '说明文字',
+      onClick: () => {
+        console.log(123);
+      }
+    }, {
+      id: 'node4',
+      type: 'i',
+      className: 'icon-font-example'
+    }]
+  }]
+}, {
+  id: 'node5',
+  type: 'div',
+  className: 'section1',
+  children: [{
+    id: 'node6',
+    type: 'input',
+    className: 'custom-input'
+  }]
+}];
+
+// 你的实现
+class Renderer {
+  constructor(data) {
+    
+  }
+  // 假设是浏览器环境
+  createElem(obj) {
+    const {id,type,className,children}=obj
+    let html = document.createElement(type)
+    html.className = className;
+    
+    
+  }
+
+  render() {
+    // 返回 HTML
+  }
+
+  moveNode(source, target) {
+    // 将data中的任意一个节点移动到目标节点下，并重新渲染。source和target分别为被移动节点id和目标节点id
+    // 返回重新渲染后的 HTML
+  }
+}
+
+const r = new Renderer(data);
+
+r.render(); // 输出 HTML
+r.moveNode('node2', 'node5'); // 重新输出 HTML
+
+```
+
+```js
+// https://zhuanlan.zhihu.com/p/188370002
+const addRemote = async (a, b) => new Promise(resolve => {
+  setTimeout(() => resolve(a + b), 1000)
+});
+
+// 请实现本地的add方法，调用addRemote，能最优的实现输入数字的加法。
+
+async function add(...args) {
+  // 你的实现
+  let result = 0
+  function _sum(resolve) {
+        new Promise((r, j) => {
+            let a = args.pop()
+            let b = args.pop()
+            // 如果访问元素超出数组范围，则用 0 代替
+            a = a !== undefined? a : 0
+            b = b !== undefined? b : 0
+            let sum = addRemote(a,b)
+            r(sum)
+//             addRemote(a, b, (err, sum) => {
+//                 if (err) j(err)
+//                 r(sum)
+//             })
+
+            if (args.length) {
+                _sum(resolve)
+            }
+        })
+        .then(sum => {
+            result += sum
+            if (args.length <= 0) {
+                setTimeout(() => {
+                    resolve(result)
+                }, 100)
+            }
+        })
+    }
+  return new Promise((resolve, reject) => {
+//      无参数
+        if (!args || !args.length) resolve(0)
+        // 只有一个参数
+        if (args.length == 1) resolve(args[0])
+        _sum(resolve)
+  })
+  
+}
+add(1, 2)
+  .then(result => {
+    console.log(result); // 3
+  });
+add(3, 5, 2)
+  .then(result => {
+    console.log(result); // 10
+  })
+```
+
