@@ -126,42 +126,10 @@ for (item in f) {
 
 ## 2. JS-WEB-API
 
-### 2.1 DOM操作
+Dom节点的Attribute和Property有和区别？ 
 
-**property**
-
-```javascript
-// 获取到的DOM节点都是JS可操作的js对象,所以浏览器对它的property有一些规定的可以扩展的属性
-var pList = document.querySelectorAll('all')
-var p = pList[0]
-console.log(p.style.width) // style属性获取样式
-p.style.width = '100px' // 修改样式
-console.log(p.className) // 获取class
-p.className = 'p1'
-
-// 获取nodeName和nodeType 
-console.log(p.nodeName) 
-console.log(p.nodeType) 
-```
-
-**Attribute**
-
-```javascript
-// 获取到的DOM节点是一个可扩展属性的JS对象，但同时它指向的html元素也有一些可以设置的Attribute属性
-var pList = document.querySelectorAll('all')
-var p = pList[0]
-p.getAttribute('data-name')
-p.setAttribute('data-name', 'theP')
-p.getAttribute('style')
-p.setAttribute('style', 'font-size:30px')
-```
-
-#### 面试题
-
-3. Dom节点的Attribute和Property有和区别？ 
-
-   > 1. property只是一个JS对象的属性的修改 
-   > 2. Attribute是对html标签属性的修改
+> 1. property只是一个JS对象的属性的修改 
+> 2. Attribute是对html标签属性的修改
 
 ### 2.2 BOM操作
 
