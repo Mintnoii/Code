@@ -1,17 +1,5 @@
 # CSS常用代码整理
 
-## 设置全屏背景图片
-
-```css
-html {    
-    background: url('images/bg.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-```
-
 ## 实现带背景遮罩的弹窗
 
 ```css
