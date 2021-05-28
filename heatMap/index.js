@@ -1,4 +1,4 @@
-const { Scene, Sprite, Group, Label, Ring, Path, Rect, Gradient } = spritejs
+const { Scene, Sprite, Gradient } = spritejs
 const container = document.querySelector('#stage')
 const scene = new Scene({container, width: 1900, height: 900, mode: 'stickyTop'})
 
