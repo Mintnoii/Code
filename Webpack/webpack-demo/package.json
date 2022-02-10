@@ -30,7 +30,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   },
   "sideEffects": [
     "@babel/poly-fill",
